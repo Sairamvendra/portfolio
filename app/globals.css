@@ -1,0 +1,121 @@
+/* Google Fonts - Space Grotesk & Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Neobrutalism Colors */
+    --color-black: 0 0% 0%;
+    --color-white: 0 0% 100%;
+    --color-yellow: 51 100% 50%;
+    --color-pink: 6 93% 71%;
+    --color-cyan: 174 62% 58%;
+    --color-purple: 250 77% 76%;
+    --color-green: 120 100% 50%;
+    --color-blue: 216 100% 50%;
+  }
+
+  * {
+    @apply border-neobrutalism-black;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-neobrutalism-white text-neobrutalism-black font-body;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold;
+  }
+}
+
+@layer components {
+  /* Skip to content link for accessibility */
+  .skip-link {
+    @apply absolute -top-10 left-4 z-50 px-4 py-2 bg-neobrutalism-yellow text-neobrutalism-black font-bold border-3 border-neobrutalism-black shadow-neobrutalism-md;
+    @apply focus:top-4 transition-all;
+  }
+
+  /* Neobrutalism Button */
+  .btn-neobrutalism {
+    @apply px-6 py-3 font-bold text-base sm:text-lg border-3 border-neobrutalism-black shadow-neobrutalism-sm;
+    @apply hover:shadow-neobrutalism-md hover:-translate-x-0.5 hover:-translate-y-0.5;
+    @apply active:shadow-neobrutalism-sm active:translate-x-0 active:translate-y-0;
+    @apply transition-all duration-200;
+    @apply focus:outline-none focus:ring-[3px] focus:ring-neobrutalism-black focus:ring-offset-2;
+  }
+
+  .btn-primary {
+    @apply btn-neobrutalism bg-neobrutalism-yellow text-neobrutalism-black;
+  }
+
+  .btn-secondary {
+    @apply btn-neobrutalism bg-neobrutalism-cyan text-neobrutalism-black;
+  }
+
+  .btn-tertiary {
+    @apply btn-neobrutalism bg-neobrutalism-pink text-neobrutalism-black;
+  }
+
+  .btn-outline {
+    @apply btn-neobrutalism bg-neobrutalism-white text-neobrutalism-black;
+  }
+
+  /* Neobrutalism Card */
+  .card-neobrutalism {
+    @apply p-6 border-3 border-neobrutalism-black shadow-neobrutalism-lg bg-neobrutalism-white;
+    @apply hover:shadow-neobrutalism-xl hover:-translate-x-1 hover:-translate-y-1;
+    @apply transition-all duration-200;
+  }
+
+  /* Container */
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Section */
+  .section {
+    @apply py-12 sm:py-16 lg:py-24;
+  }
+
+  /* Section heading */
+  .section-heading {
+    @apply text-3xl sm:text-4xl lg:text-5xl font-black mb-8 sm:mb-12;
+  }
+
+  /* Focus visible for accessibility */
+  *:focus-visible {
+    @apply outline-[3px] outline-neobrutalism-black outline-offset-4;
+  }
+}
+
+@layer utilities {
+  /* Text balance for better typography */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Reduced motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .card-neobrutalism,
+    .btn-neobrutalism {
+      @apply border-5;
+    }
+  }
+}
