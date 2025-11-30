@@ -71,7 +71,14 @@ export function Hero() {
               <Button
                 variant="outline"
                 size="lg"
-                onClick={() => window.open('#', '_blank')}
+                onClick={() => {
+                  const link = document.createElement('a');
+                  link.href = '/sairam_v.pdf';
+                  link.download = 'Sairam_Vendra_Resume.pdf';
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+                }}
                 aria-label="Download resume"
               >
                 <Download className="h-5 w-5" aria-hidden="true" />
@@ -94,17 +101,12 @@ export function Hero() {
 
               {/* Profile image container */}
               <div className="relative z-10 w-full h-full border-5 border-neobrutalism-black shadow-neobrutalism-xl bg-neobrutalism-white overflow-hidden">
-                {/* Placeholder for profile image */}
-                <div className="w-full h-full bg-gradient-to-br from-neobrutalism-purple/30 to-neobrutalism-pink/30 flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <div className="text-8xl font-black text-neobrutalism-black/20">
-                      {PERSONAL_INFO.name.split(' ').map(n => n[0]).join('')}
-                    </div>
-                    <p className="text-sm font-bold mt-4 text-neobrutalism-black/60">
-                      Profile Image Placeholder
-                    </p>
-                  </div>
-                </div>
+                {/* Profile image */}
+                <img
+                  src="/sairam.png"
+                  alt={`${PERSONAL_INFO.name} - ${PERSONAL_INFO.title}`}
+                  className="w-full h-full object-cover"
+                />
               </div>
 
               {/* Accent border for neobrutalism effect */}
