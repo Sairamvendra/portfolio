@@ -5,48 +5,52 @@ import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { FadeIn } from '@/components/animations/FadeIn';
 import { StaggerContainer, StaggerItem } from '@/components/animations/StaggerContainer';
-import { TrendingUp, Users, Zap, Target, Award, Lightbulb } from 'lucide-react';
+import { Video, Image as ImageIcon, TrendingUp, Globe } from 'lucide-react';
 
-// TODO: Replace this with actual content from the Arc image
 const KEY_ACHIEVEMENTS = [
   {
-    icon: TrendingUp,
-    metric: '5 → 100',
-    title: 'Production Scale',
-    description: 'Scaled internal ad production capacity from 5 per week to 100 per week',
-    color: 'bg-neobrutalism-yellow',
-  },
-  {
-    icon: Zap,
-    metric: '2 → 20',
-    title: 'AI Automation',
-    description: 'Operationalized AI for automated systems increasing throughput',
+    icon: Video,
+    title: 'AI VIDEO PRODUCTION PIPELINE',
+    subtitle: 'From 5 Days to 4 Hours',
+    metrics: [
+      { label: 'TIME SAVED', value: '4.8 days' },
+      { label: 'COST REDUCTION', value: '85%' },
+      { label: 'QUALITY SCORE', value: '9.2/10' },
+    ],
     color: 'bg-neobrutalism-cyan',
   },
   {
-    icon: Lightbulb,
-    metric: '8+',
-    title: 'AI Innovations',
-    description: 'Shipped AI innovation slate including video analysis, comics, chatbots, and more',
+    icon: ImageIcon,
+    title: 'AI THUMBNAIL SYSTEM',
+    subtitle: '10x Daily Output Increase',
+    metrics: [
+      { label: 'DAILY OUTPUT', value: '20' },
+      { label: 'VARIANTS/TITLE', value: '10+' },
+      { label: 'CTR IMPROVEMENT', value: '+35%' },
+    ],
+    color: 'bg-neobrutalism-yellow',
+  },
+  {
+    icon: TrendingUp,
+    title: 'AD PRODUCTION SCALING',
+    subtitle: '5 to 100 Videos Per Week',
+    metrics: [
+      { label: 'WEEKLY OUTPUT', value: '100 vids' },
+      { label: 'SCALING FACTOR', value: '20x' },
+      { label: 'TEAM GROWTH', value: '0 new' },
+    ],
     color: 'bg-neobrutalism-pink',
   },
   {
-    icon: Users,
-    title: 'Team Leadership',
-    description: 'Led multi-disciplinary design org and external partners with automation-first practices',
+    icon: Globe,
+    title: 'MULTI-REGIONAL DESIGN OPS',
+    subtitle: 'Prime Video Global Campaigns',
+    metrics: [
+      { label: 'REGIONS', value: '3' },
+      { label: 'PLATFORMS', value: '3' },
+      { label: 'QUALITY SCORE', value: '9.5/10' },
+    ],
     color: 'bg-neobrutalism-purple',
-  },
-  {
-    icon: Target,
-    title: 'Campaign Excellence',
-    description: 'Directed full campaign lifecycles delivering on-brief, on-time creative tied to business outcomes',
-    color: 'bg-neobrutalism-yellow',
-  },
-  {
-    icon: Award,
-    title: 'Strategic Alignment',
-    description: 'Drove cross-functional alignment with Product, Marketing, and Content teams',
-    color: 'bg-neobrutalism-cyan',
   },
 ];
 
@@ -65,12 +69,12 @@ export function ProfileSummary() {
               Key Achievements
             </h2>
             <p className="text-lg text-neobrutalism-black/70 max-w-3xl mx-auto mt-4">
-              Track record of driving measurable impact through innovation, automation, and strategic leadership
+              Measurable impact through AI innovation and strategic execution
             </p>
           </div>
         </FadeIn>
 
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" staggerDelay={0.1}>
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto" staggerDelay={0.1}>
           {KEY_ACHIEVEMENTS.map((achievement, index) => {
             const IconComponent = achievement.icon;
             return (
@@ -80,22 +84,37 @@ export function ProfileSummary() {
                   className="h-full hover:scale-[1.02] transition-transform"
                 >
                   <div className="flex flex-col h-full">
+                    {/* Header */}
                     <div className="flex items-start gap-4 mb-4">
-                      <div className="p-3 bg-neobrutalism-black">
-                        <IconComponent className="h-6 w-6 text-neobrutalism-white" aria-hidden="true" />
+                      <div className="p-4 bg-neobrutalism-black">
+                        <IconComponent className="h-8 w-8 text-neobrutalism-white" aria-hidden="true" />
                       </div>
                       <div className="flex-1">
-                        {achievement.metric && (
-                          <Badge variant="default" className="mb-2">
-                            {achievement.metric}
-                          </Badge>
-                        )}
-                        <h3 className="text-xl font-black">{achievement.title}</h3>
+                        <h3 className="text-xl sm:text-2xl font-black leading-tight mb-1">
+                          {achievement.title}
+                        </h3>
+                        <p className="text-sm sm:text-base font-bold text-neobrutalism-black/70">
+                          {achievement.subtitle}
+                        </p>
                       </div>
                     </div>
-                    <p className="text-base leading-relaxed font-medium flex-1">
-                      {achievement.description}
-                    </p>
+
+                    {/* Metrics Grid */}
+                    <div className="grid grid-cols-3 gap-3 mt-auto">
+                      {achievement.metrics.map((metric, idx) => (
+                        <div
+                          key={idx}
+                          className="p-3 bg-neobrutalism-white/80 border-3 border-neobrutalism-black text-center"
+                        >
+                          <div className="text-xl sm:text-2xl font-black mb-1">
+                            {metric.value}
+                          </div>
+                          <div className="text-xs font-bold text-neobrutalism-black/60 uppercase leading-tight">
+                            {metric.label}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </Card>
               </StaggerItem>

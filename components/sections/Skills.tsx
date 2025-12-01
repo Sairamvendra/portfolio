@@ -5,33 +5,86 @@ import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { FadeIn } from '@/components/animations/FadeIn';
 import { StaggerContainer, StaggerItem } from '@/components/animations/StaggerContainer';
-import { Code, Palette, Cog, Database } from 'lucide-react';
+import { Palette, Code, Sparkles, Users, Briefcase, BarChart } from 'lucide-react';
 
-// TODO: Replace this with actual content from the SKILLS & EXPERTISE image
 const SKILLS_EXPERTISE = [
   {
-    category: 'Technical Skills',
-    icon: Code,
-    skills: ['AI/ML', 'Automation', 'Data Analysis', 'Product Development'],
-    color: 'bg-neobrutalism-cyan',
-  },
-  {
-    category: 'Creative Skills',
+    category: 'CREATIVE & DESIGN',
     icon: Palette,
-    skills: ['Creative Direction', 'Visual Design', 'Brand Strategy', 'Film Direction'],
+    skills: [
+      'Art Direction',
+      'Design Strategy',
+      'Brand Design',
+      'Performance Marketing',
+      'UI/UX Design',
+      'Visual Storytelling',
+    ],
     color: 'bg-neobrutalism-yellow',
   },
   {
-    category: 'Management Skills',
-    icon: Cog,
-    skills: ['Product Management', 'Team Leadership', 'Stakeholder Management', 'Operations'],
+    category: 'TECHNICAL',
+    icon: Code,
+    skills: [
+      'vertexAI',
+      'Midjourney',
+      'Sora / Runway ML',
+      'ComfyUI / SD',
+      'Google AI Studio',
+      'Eleven Labs',
+    ],
+    color: 'bg-neobrutalism-cyan',
+  },
+  {
+    category: 'AI & PRODUCT',
+    icon: Sparkles,
+    skills: [
+      'AI Product Management',
+      'Generative AI',
+      'LLM Training',
+      'Product Lifecycle',
+      'Digital Transformation',
+      'Innovation',
+    ],
     color: 'bg-neobrutalism-pink',
   },
   {
-    category: 'Tools & Platforms',
-    icon: Database,
-    skills: ['GPT', 'Midjourney', 'Runway ML', 'Sora', 'Dall-E', 'Eleven Labs'],
+    category: 'LEADERSHIP',
+    icon: Users,
+    skills: [
+      'Cross-functional Leadership',
+      'Stakeholder Management',
+      'Team Mentorship',
+      'Program Management',
+      'Change Management',
+      'Strategic Planning',
+    ],
     color: 'bg-neobrutalism-purple',
+  },
+  {
+    category: 'BUSINESS',
+    icon: Briefcase,
+    skills: [
+      'Market Research',
+      'Data-Driven Decisions',
+      'Brand Refresh',
+      'Process Optimization',
+      'Quality Governance',
+      'Budget Management',
+    ],
+    color: 'bg-neobrutalism-yellow',
+  },
+  {
+    category: 'ANALYTICS',
+    icon: BarChart,
+    skills: [
+      'Performance Analytics',
+      'A/B Testing',
+      'Workflow Automation',
+      'Asset Operations',
+      'Quality Assurance',
+      'SOP Development',
+    ],
+    color: 'bg-neobrutalism-cyan',
   },
 ];
 
@@ -44,12 +97,29 @@ export function Skills() {
     >
       <Container>
         <FadeIn>
-          <h2 id="skills-heading" className="section-heading text-center text-neobrutalism-white">
-            Skills & Expertise
-          </h2>
+          <div className="text-center mb-8">
+            <h2 id="skills-heading" className="section-heading text-neobrutalism-white mb-6">
+              Skills & Expertise
+            </h2>
+            {/* Stats badges */}
+            <div className="flex flex-wrap justify-center gap-4 mb-8">
+              <Badge variant="yellow" className="text-lg px-6 py-3">
+                <span className="font-black text-2xl mr-2">10+</span>
+                YEARS EXPERIENCE
+              </Badge>
+              <Badge variant="cyan" className="text-lg px-6 py-3">
+                <span className="font-black text-2xl mr-2">100+</span>
+                PROJECTS DELIVERED
+              </Badge>
+              <Badge variant="pink" className="text-lg px-6 py-3">
+                <span className="font-black text-2xl mr-2">20x</span>
+                PRODUCTIVITY GAINS
+              </Badge>
+            </div>
+          </div>
         </FadeIn>
 
-        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-12" staggerDelay={0.1}>
+        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto" staggerDelay={0.1}>
           {SKILLS_EXPERTISE.map((skillGroup, index) => {
             const IconComponent = skillGroup.icon;
             return (
@@ -58,21 +128,25 @@ export function Skills() {
                   bgColor={skillGroup.color}
                   className="h-full hover:scale-105 transition-transform"
                 >
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="p-3 bg-neobrutalism-black">
+                  <div className="flex items-start gap-4 mb-6">
+                    <div className="p-3 bg-neobrutalism-black flex-shrink-0">
                       <IconComponent className="h-6 w-6 text-neobrutalism-white" aria-hidden="true" />
                     </div>
-                    <h3 className="text-2xl font-black flex-1">
+                    <h3 className="text-xl sm:text-2xl font-black leading-tight">
                       {skillGroup.category}
                     </h3>
                   </div>
-                  <div className="flex flex-wrap gap-2">
+                  <ul className="space-y-2">
                     {skillGroup.skills.map((skill) => (
-                      <Badge key={skill} variant="default">
-                        {skill}
-                      </Badge>
+                      <li
+                        key={skill}
+                        className="flex items-start gap-2 text-sm sm:text-base font-bold"
+                      >
+                        <span className="text-lg leading-none flex-shrink-0" aria-hidden="true">•</span>
+                        <span>{skill}</span>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 </Card>
               </StaggerItem>
             );
