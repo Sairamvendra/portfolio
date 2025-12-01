@@ -6,22 +6,9 @@ import { Card } from '@/components/ui/Card';
 import { FadeIn } from '@/components/animations/FadeIn';
 import { StaggerContainer, StaggerItem } from '@/components/animations/StaggerContainer';
 import { VIDEOS } from '@/lib/constants';
-import { Play, Pause, Video as VideoIcon, ExternalLink } from 'lucide-react';
+import { Video as VideoIcon, ExternalLink } from 'lucide-react';
 
 export function VideoShowcase() {
-  const [playingVideos, setPlayingVideos] = useState<Set<string>>(new Set(VIDEOS.map(v => v.id)));
-
-  const toggleVideo = (videoId: string) => {
-    setPlayingVideos(prev => {
-      const newSet = new Set(prev);
-      if (newSet.has(videoId)) {
-        newSet.delete(videoId);
-      } else {
-        newSet.add(videoId);
-      }
-      return newSet;
-    });
-  };
 
   return (
     <section
@@ -61,14 +48,12 @@ export function VideoShowcase() {
 
         <StaggerContainer className="grid grid-cols-1 lg:grid-cols-3 gap-8" staggerDelay={0.15}>
           {VIDEOS.map((video) => {
-            const isPlaying = playingVideos.has(video.id);
-
             return (
               <StaggerItem key={video.id}>
                 <Card bgColor="bg-neobrutalism-white" className="overflow-hidden p-0 hover:scale-[1.02] transition-transform">
                   <div className="relative aspect-video bg-neobrutalism-black">
                     <iframe
-                      src={isPlaying ? video.embedUrl : `${video.embedUrl}&autoplay=0`}
+                      src={video.embedUrl}
                       title={video.title}
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
@@ -79,23 +64,6 @@ export function VideoShowcase() {
                   <div className="p-4 border-t-3 border-neobrutalism-black">
                     <h3 className="font-bold text-lg mb-2">{video.title}</h3>
                     <div className="flex items-center gap-2">
-                      <button
-                        onClick={() => toggleVideo(video.id)}
-                        className="inline-flex items-center gap-2 px-4 py-2 text-sm font-bold border-3 border-neobrutalism-black bg-neobrutalism-yellow hover:bg-neobrutalism-cyan shadow-neobrutalism-sm hover:shadow-neobrutalism-md transition-all focus:outline-none focus:ring-3 focus:ring-neobrutalism-black"
-                        aria-label={isPlaying ? `Pause ${video.title}` : `Play ${video.title}`}
-                      >
-                        {isPlaying ? (
-                          <>
-                            <Pause className="h-4 w-4" aria-hidden="true" />
-                            Pause
-                          </>
-                        ) : (
-                          <>
-                            <Play className="h-4 w-4" aria-hidden="true" />
-                            Play
-                          </>
-                        )}
-                      </button>
                       <a
                         href={video.url}
                         target="_blank"
