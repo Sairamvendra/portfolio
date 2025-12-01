@@ -6,6 +6,8 @@ import { PERSONAL_INFO } from '@/lib/constants';
 import { Download, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { scrollToSection } from '@/lib/utils';
+import { GlitchText } from '@/components/animations/GlitchText';
+import { Marquee } from '@/components/animations/Marquee';
 
 export function Hero() {
   return (
@@ -34,28 +36,22 @@ export function Hero() {
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
-            className="space-y-6"
+            className="space-y-8"
           >
             <div className="inline-block px-4 py-2 bg-neobrutalism-yellow border-3 border-neobrutalism-black shadow-neobrutalism-sm">
               <p className="text-sm font-bold">👋 Hello, I&apos;m</p>
             </div>
 
-            <h1
-              id="hero-heading"
-              className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight"
-            >
-              {PERSONAL_INFO.name}
-            </h1>
+            <GlitchText
+              text="SAIRAM VENDRA"
+              className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl leading-tight"
+            />
 
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-neobrutalism-black/80">
-              {PERSONAL_INFO.title}
-            </h2>
-
-            <div className="p-6 bg-neobrutalism-white border-3 border-neobrutalism-black shadow-neobrutalism-lg">
-              <p className="text-lg italic font-medium">
-                &quot;{PERSONAL_INFO.quote}&quot;
+            {/* Role descriptions card */}
+            <div className="p-6 bg-neobrutalism-black border-3 border-neobrutalism-black shadow-neobrutalism-xl">
+              <p className="text-lg sm:text-xl font-bold text-white leading-relaxed">
+                AI solutions architect, <span className="text-neobrutalism-yellow">Creative Technologist</span>, AI film director, Strategic generalist.
               </p>
-              <p className="text-sm mt-2 font-bold">— {PERSONAL_INFO.quoteAuthor}</p>
             </div>
 
             <div className="flex flex-wrap gap-4 pt-4">
@@ -121,7 +117,7 @@ export function Hero() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 1, repeat: Infinity, repeatType: 'reverse' }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-24 left-1/2 -translate-x-1/2"
       >
         <button
           onClick={() => scrollToSection('about')}
@@ -144,6 +140,21 @@ export function Hero() {
           </svg>
         </button>
       </motion.div>
+
+      {/* Rolling Marquee */}
+      <div className="absolute bottom-0 left-0 right-0 py-6 bg-neobrutalism-white border-t-5 border-neobrutalism-black">
+        <Marquee
+          items={[
+            'AI solutions',
+            'Creative direction',
+            'AI Films',
+            'GenAI Automations',
+            'Operations',
+            'Product strategy'
+          ]}
+          speed={30}
+        />
+      </div>
     </section>
   );
 }
