@@ -4,7 +4,7 @@ import { Hero } from '@/components/sections/Hero';
 import { Banner } from '@/components/sections/Banner';
 import { About } from '@/components/sections/About';
 import { Skills } from '@/components/sections/Skills';
-import { CircularGallery } from '@/components/sections/CircularGallery';
+import { DomeGallery } from '@/components/sections/DomeGallery';
 import { ProfileSummary } from '@/components/sections/ProfileSummary';
 import { Experience } from '@/components/sections/Experience';
 import { VideoShowcase } from '@/components/sections/VideoShowcase';
@@ -20,7 +20,7 @@ export default function Home() {
         <Banner />
         <About />
         <Skills />
-        <CircularGallery />
+        <DomeGallery />
         <ProfileSummary />
         <Experience />
         <VideoShowcase />

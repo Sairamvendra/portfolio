@@ -27,10 +27,13 @@ export function Experience() {
   return (
     <section
       id="experience"
-      className="section bg-gray-50"
+      className="section relative overflow-hidden"
+      style={{
+        background: 'linear-gradient(135deg, #FFE5B4 0%, #FFD1B3 50%, #FFC8DD 100%)'
+      }}
       aria-labelledby="experience-heading"
     >
-      <Container>
+      <Container className="relative z-10">
         <FadeIn>
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-neobrutalism-cyan border-3 border-neobrutalism-black shadow-neobrutalism-sm mb-4">

@@ -43,9 +43,13 @@ export function Hero() {
             </div>
 
             <GlitchText
-              text="SAIRAM VENDRA"
+              speed={1}
+              enableShadows={true}
+              enableOnHover={false}
               className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl leading-tight"
-            />
+            >
+              SAIRAM VENDRA
+            </GlitchText>
 
             {/* Role descriptions card */}
             <div className="p-6 bg-neobrutalism-black border-3 border-neobrutalism-black shadow-neobrutalism-xl">
