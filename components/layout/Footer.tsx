@@ -9,6 +9,13 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   palette: Palette,
 };
 
+const brandColors: Record<string, string> = {
+  linkedin: 'bg-[#0A66C2] hover:bg-[#004182]',
+  twitter: 'bg-[#1DA1F2] hover:bg-[#0c85d0]',
+  instagram: 'bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#F77737] hover:opacity-90',
+  palette: 'bg-[#FF6B6B] hover:bg-[#ee5a5a]',
+};
+
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -69,13 +76,14 @@ export function Footer() {
             <div className="flex gap-3">
               {SOCIAL_LINKS.map((social) => {
                 const Icon = iconMap[social.icon];
+                const brandColor = brandColors[social.icon];
                 return (
                   <a
                     key={social.platform}
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 border-3 border-neobrutalism-black bg-neobrutalism-white hover:bg-neobrutalism-yellow shadow-neobrutalism-sm hover:shadow-neobrutalism-md hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all focus:outline-none focus:ring-3 focus:ring-neobrutalism-black"
+                    className={`p-3 border-3 border-neobrutalism-black ${brandColor} text-white shadow-neobrutalism-sm hover:shadow-neobrutalism-md hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all focus:outline-none focus:ring-3 focus:ring-neobrutalism-black`}
                     aria-label={social.ariaLabel}
                   >
                     <Icon className="h-5 w-5" aria-hidden="true" />
@@ -87,8 +95,8 @@ export function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="border-t-3 border-neobrutalism-black py-6 text-center text-sm">
-          <p>© {currentYear} {PERSONAL_INFO.name}. All rights reserved.</p>
+        <div className="border-t-3 border-neobrutalism-black py-6 text-center text-sm bg-neobrutalism-yellow">
+          <p className="font-bold">© {currentYear} {PERSONAL_INFO.name}. All rights reserved.</p>
         </div>
       </Container>
     </footer>

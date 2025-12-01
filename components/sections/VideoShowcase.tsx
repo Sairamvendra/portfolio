@@ -6,7 +6,7 @@ import { Card } from '@/components/ui/Card';
 import { FadeIn } from '@/components/animations/FadeIn';
 import { StaggerContainer, StaggerItem } from '@/components/animations/StaggerContainer';
 import { VIDEOS } from '@/lib/constants';
-import { Play, Pause, Video as VideoIcon } from 'lucide-react';
+import { Play, Pause, Video as VideoIcon, ExternalLink } from 'lucide-react';
 
 export function VideoShowcase() {
   const [playingVideos, setPlayingVideos] = useState<Set<string>>(new Set(VIDEOS.map(v => v.id)));
@@ -26,10 +26,20 @@ export function VideoShowcase() {
   return (
     <section
       id="videos"
-      className="section bg-neobrutalism-white"
+      className="section relative overflow-hidden"
+      style={{
+        background: 'linear-gradient(135deg, #E0F4FF 0%, #D4E4FF 50%, #E8D4FF 100%)'
+      }}
       aria-labelledby="videos-heading"
     >
-      <Container>
+      {/* Decorative shapes */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-10 left-10 w-40 h-40 bg-neobrutalism-pink/15 border-5 border-neobrutalism-black -rotate-12" />
+        <div className="absolute bottom-20 right-10 w-56 h-56 bg-neobrutalism-cyan/15 border-5 border-neobrutalism-black rotate-12" />
+        <div className="absolute top-1/3 right-1/3 w-32 h-32 bg-neobrutalism-yellow/15 border-5 border-neobrutalism-black rotate-45" />
+      </div>
+
+      <Container className="relative z-10">
         <FadeIn>
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-neobrutalism-pink border-3 border-neobrutalism-black shadow-neobrutalism-sm mb-4">
@@ -42,6 +52,17 @@ export function VideoShowcase() {
             <p className="text-lg text-neobrutalism-black/70 max-w-3xl mx-auto">
               Explore my creative work and AI-powered innovations
             </p>
+            <div className="mt-6">
+              <a
+                href="https://drive.google.com/drive/folders/11wSLFydyzVOu7jozFvYH-rfI_cMeWmlB?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-neobrutalism-black text-neobrutalism-yellow font-black border-3 border-neobrutalism-black shadow-neobrutalism-lg hover:shadow-neobrutalism-xl transition-all"
+              >
+                <ExternalLink className="h-5 w-5" />
+                View Full Portfolio
+              </a>
+            </div>
           </div>
         </FadeIn>
 
@@ -51,7 +72,7 @@ export function VideoShowcase() {
 
             return (
               <StaggerItem key={video.id}>
-                <Card bgColor="bg-neobrutalism-white" className="overflow-hidden p-0">
+                <Card bgColor="bg-neobrutalism-white" className="overflow-hidden p-0 hover:scale-[1.02] transition-transform">
                   <div className="relative aspect-video bg-neobrutalism-black">
                     <iframe
                       src={isPlaying ? video.embedUrl : `${video.embedUrl}&autoplay=0`}
@@ -89,7 +110,7 @@ export function VideoShowcase() {
                         className="text-sm font-bold hover:underline focus:outline-none focus:ring-3 focus:ring-neobrutalism-black"
                         aria-label={`Watch ${video.title} on YouTube (opens in new tab)`}
                       >
-                        Watch on YouTube →
+                        YouTube →
                       </a>
                     </div>
                   </div>
@@ -98,15 +119,6 @@ export function VideoShowcase() {
             );
           })}
         </StaggerContainer>
-
-        {/* Note about accessibility */}
-        <FadeIn delay={0.5}>
-          <div className="mt-12 p-4 bg-gray-100 border-3 border-neobrutalism-black text-center">
-            <p className="text-sm font-medium">
-              💡 All videos include captions. Use keyboard controls to navigate video players.
-            </p>
-          </div>
-        </FadeIn>
       </Container>
     </section>
   );

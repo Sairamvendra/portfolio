@@ -27,10 +27,20 @@ export function Experience() {
   return (
     <section
       id="experience"
-      className="section bg-gray-50"
+      className="section relative overflow-hidden"
+      style={{
+        background: 'linear-gradient(135deg, #FFE5B4 0%, #FFD1B3 50%, #FFC8DD 100%)'
+      }}
       aria-labelledby="experience-heading"
     >
-      <Container>
+      {/* Decorative shapes */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 right-10 w-64 h-64 bg-neobrutalism-yellow/20 border-5 border-neobrutalism-black rotate-12" />
+        <div className="absolute bottom-10 left-20 w-48 h-48 bg-neobrutalism-cyan/20 border-5 border-neobrutalism-black -rotate-12" />
+        <div className="absolute top-1/2 right-1/4 w-32 h-32 bg-neobrutalism-pink/20 border-5 border-neobrutalism-black rotate-45" />
+      </div>
+
+      <Container className="relative z-10">
         <FadeIn>
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-neobrutalism-cyan border-3 border-neobrutalism-black shadow-neobrutalism-sm mb-4">

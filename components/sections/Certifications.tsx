@@ -12,10 +12,20 @@ export function Certifications() {
   return (
     <section
       id="certifications"
-      className="section bg-gray-50"
+      className="section relative overflow-hidden"
+      style={{
+        background: 'linear-gradient(135deg, #FFF5E6 0%, #FFE6F0 50%, #E6F5FF 100%)'
+      }}
       aria-labelledby="certifications-heading"
     >
-      <Container>
+      {/* Decorative shapes */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-10 right-10 w-48 h-48 bg-neobrutalism-purple/15 border-5 border-neobrutalism-black rotate-12" />
+        <div className="absolute bottom-20 left-10 w-56 h-56 bg-neobrutalism-yellow/15 border-5 border-neobrutalism-black -rotate-12" />
+        <div className="absolute top-1/2 left-1/2 w-32 h-32 bg-neobrutalism-cyan/15 border-5 border-neobrutalism-black rotate-45" />
+      </div>
+
+      <Container className="relative z-10">
         <FadeIn>
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-neobrutalism-purple border-3 border-neobrutalism-black shadow-neobrutalism-sm mb-4">
@@ -37,7 +47,7 @@ export function Certifications() {
               <StaggerItem key={`${cert.issuer}-${cert.name}`}>
                 <Card
                   bgColor={`bg-neobrutalism-${bgColor}`}
-                  className="h-full hover:scale-105 transition-transform"
+                  className="h-full hover:scale-105 hover:rotate-2 transition-all"
                 >
                   <div className="flex items-start gap-3 mb-4">
                     <div className="p-2 bg-neobrutalism-black">

@@ -192,6 +192,7 @@ export const EXPERIENCES: Experience[] = [
       'Led High-Profile Event Designs: Directed design sprints for Prime Day, Holiday Sale, and DEI events, delivering impactful creative assets.',
       'Managed Brand Onboarding and Refresh: Supported external partners with brand updates and onboarding, to ensure alignment with Amazon\'s high standards.',
     ],
+    technologies: ['Photoshop', 'Illustrator', 'After Effects', 'Figma', 'Jira', 'Confluence', 'Amazon Brand Guidelines'],
   },
   {
     id: '3',
@@ -204,6 +205,7 @@ export const EXPERIENCES: Experience[] = [
       'Enhanced Product Imagery: Led advanced retouching of apparel images, maintaining high-quality standards and meeting SLA deadlines.',
       'Improved Efficiency & Quality: Streamlined retouching processes, conducting audits and ensuring timely and high-quality deliverables.',
     ],
+    technologies: ['Photoshop', 'Lightroom', 'Bridge', 'Camera Raw', 'Quality Assurance Tools'],
   },
   {
     id: '4',
@@ -216,6 +218,7 @@ export const EXPERIENCES: Experience[] = [
       'Led end-to-end creation of digital/print assets from brief to final: built reusable templates and simple QA gates to speed up TAT and keep outputs consistent; provided live, on-the-spot design support for urgent requests.',
       'Partnered directly with clients/brands to deliver on-guideline creatives; translated complex briefs into clear visuals.',
     ],
+    technologies: ['InDesign', 'Illustrator', 'Photoshop', 'Print Production', 'Brand Templates'],
   },
 ];
 
