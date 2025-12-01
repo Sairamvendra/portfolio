@@ -18,13 +18,6 @@ export function Certifications() {
       }}
       aria-labelledby="certifications-heading"
     >
-      {/* Decorative shapes */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-10 right-10 w-48 h-48 bg-neobrutalism-purple/15 border-5 border-neobrutalism-black rotate-12" />
-        <div className="absolute bottom-20 left-10 w-56 h-56 bg-neobrutalism-yellow/15 border-5 border-neobrutalism-black -rotate-12" />
-        <div className="absolute top-1/2 left-1/2 w-32 h-32 bg-neobrutalism-cyan/15 border-5 border-neobrutalism-black rotate-45" />
-      </div>
-
       <Container className="relative z-10">
         <FadeIn>
           <div className="text-center mb-12">

@@ -33,13 +33,6 @@ export function Experience() {
       }}
       aria-labelledby="experience-heading"
     >
-      {/* Decorative shapes */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 right-10 w-64 h-64 bg-neobrutalism-yellow/20 border-5 border-neobrutalism-black rotate-12" />
-        <div className="absolute bottom-10 left-20 w-48 h-48 bg-neobrutalism-cyan/20 border-5 border-neobrutalism-black -rotate-12" />
-        <div className="absolute top-1/2 right-1/4 w-32 h-32 bg-neobrutalism-pink/20 border-5 border-neobrutalism-black rotate-45" />
-      </div>
-
       <Container className="relative z-10">
         <FadeIn>
           <div className="text-center mb-12">

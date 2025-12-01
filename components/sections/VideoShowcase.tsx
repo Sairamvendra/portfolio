@@ -32,13 +32,6 @@ export function VideoShowcase() {
       }}
       aria-labelledby="videos-heading"
     >
-      {/* Decorative shapes */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-10 left-10 w-40 h-40 bg-neobrutalism-pink/15 border-5 border-neobrutalism-black -rotate-12" />
-        <div className="absolute bottom-20 right-10 w-56 h-56 bg-neobrutalism-cyan/15 border-5 border-neobrutalism-black rotate-12" />
-        <div className="absolute top-1/3 right-1/3 w-32 h-32 bg-neobrutalism-yellow/15 border-5 border-neobrutalism-black rotate-45" />
-      </div>
-
       <Container className="relative z-10">
         <FadeIn>
           <div className="text-center mb-12">
