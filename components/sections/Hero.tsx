@@ -42,14 +42,9 @@ export function Hero() {
               <p className="text-sm font-bold">👋 Hello, I&apos;m</p>
             </div>
 
-            <GlitchText
-              speed={1}
-              enableShadows={true}
-              enableOnHover={false}
-              className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl leading-tight"
-            >
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black leading-tight">
               SAIRAM VENDRA
-            </GlitchText>
+            </h1>
 
             {/* Role descriptions card */}
             <div className="p-6 bg-neobrutalism-black border-3 border-neobrutalism-black shadow-neobrutalism-xl">
@@ -146,19 +141,26 @@ export function Hero() {
       </motion.div>
 
       {/* Rolling Marquee */}
-      <div className="absolute bottom-0 left-0 right-0 py-6 bg-neobrutalism-white border-t-5 border-neobrutalism-black">
-        <Marquee
-          items={[
-            'AI solutions',
-            'Creative direction',
-            'AI Films',
-            'GenAI Automations',
-            'Operations',
-            'Product strategy'
-          ]}
-          speed={30}
-        />
-      </div>
+      <section className="absolute bottom-0 left-0 right-0 bg-neobrutalism-black border-y-4 border-neobrutalism-black py-4 overflow-hidden">
+        <div className="ticker-wrap">
+          <div className="ticker">
+            <span className="inline-flex items-center gap-8 text-white font-black text-xl md:text-2xl px-4">
+              <span className="text-neobrutalism-yellow">★</span> PRODUCT STRATEGY
+              <span className="text-neobrutalism-pink">★</span> AI SOLUTIONS
+              <span className="text-neobrutalism-cyan">★</span> OPERATIONS
+              <span className="text-neobrutalism-purple">★</span> ZERO TO ONE
+              <span className="text-neobrutalism-yellow">★</span> STARTUP BUILDING
+              <span className="text-neobrutalism-pink">★</span> GENAI &amp; LLMS
+              <span className="text-neobrutalism-cyan">★</span> PRODUCT STRATEGY
+              <span className="text-neobrutalism-purple">★</span> AI SOLUTIONS
+              <span className="text-neobrutalism-yellow">★</span> OPERATIONS
+              <span className="text-neobrutalism-pink">★</span> ZERO TO ONE
+              <span className="text-neobrutalism-cyan">★</span> STARTUP BUILDING
+              <span className="text-neobrutalism-purple">★</span> GENAI &amp; LLMS
+            </span>
+          </div>
+        </div>
+      </section>
     </section>
   );
 }

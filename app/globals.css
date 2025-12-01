@@ -112,4 +112,25 @@
       @apply border-5;
     }
   }
+
+  /* Ticker animation for banner */
+  .ticker-wrap {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .ticker {
+    display: inline-block;
+    white-space: nowrap;
+    animation: ticker 30s linear infinite;
+  }
+
+  @keyframes ticker {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
 }

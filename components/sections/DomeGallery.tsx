@@ -44,7 +44,7 @@ export function DomeGallery() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-4"
         >
           <div className="inline-block px-6 py-3 bg-neobrutalism-black border-5 border-neobrutalism-black shadow-neobrutalism-lg mb-6 -rotate-1">
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-neobrutalism-yellow">
@@ -67,8 +67,8 @@ export function DomeGallery() {
           >
             {GALLERY_IMAGES.map((image, index) => {
               const angle = (index / GALLERY_IMAGES.length) * 360;
-              const radius = 400;
-              const yOffset = Math.sin((index / GALLERY_IMAGES.length) * Math.PI) * 100;
+              const radius = 350;
+              const yOffset = Math.sin((index / GALLERY_IMAGES.length) * Math.PI) * 80;
 
               return (
                 <motion.div
@@ -89,8 +89,8 @@ export function DomeGallery() {
                   <motion.div
                     className="relative border-5 border-neobrutalism-black bg-neobrutalism-white overflow-hidden cursor-pointer shadow-neobrutalism-xl"
                     style={{
-                      width: '240px',
-                      height: '320px',
+                      width: '280px',
+                      height: '360px',
                       backfaceVisibility: 'hidden',
                     }}
                     whileHover={{

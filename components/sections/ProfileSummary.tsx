@@ -59,7 +59,7 @@ export function ProfileSummary() {
     <section
       id="highlights"
       className="section"
-      style={{ backgroundColor: '#F5E6D3' }}
+      style={{ backgroundColor: '#E8F4F8' }}
       aria-labelledby="highlights-heading"
     >
       <Container>
