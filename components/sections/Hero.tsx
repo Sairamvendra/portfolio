@@ -8,6 +8,7 @@ import { motion } from 'framer-motion';
 import { scrollToSection } from '@/lib/utils';
 import { GlitchText } from '@/components/animations/GlitchText';
 import { Marquee } from '@/components/animations/Marquee';
+import { ProfileTiltCard } from '@/components/ui/ProfileTiltCard';
 
 export function Hero() {
   return (
@@ -94,15 +95,11 @@ export function Hero() {
               <div className="absolute -top-4 -left-4 w-24 h-24 bg-neobrutalism-yellow border-3 border-neobrutalism-black shadow-neobrutalism-lg" />
               <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-neobrutalism-cyan border-3 border-neobrutalism-black shadow-neobrutalism-lg" />
 
-              {/* Profile image container */}
-              <div className="relative z-10 w-full h-full border-5 border-neobrutalism-black shadow-neobrutalism-xl bg-neobrutalism-white overflow-hidden">
-                {/* Profile image */}
-                <img
-                  src="/sairam.png"
-                  alt={`${PERSONAL_INFO.name} - ${PERSONAL_INFO.title}`}
-                  className="w-full h-full object-cover"
-                />
-              </div>
+              {/* Profile image card — tilt + glare + info bar */}
+              <ProfileTiltCard
+                src="/sairam.png"
+                alt={`${PERSONAL_INFO.name} - ${PERSONAL_INFO.title}`}
+              />
 
               {/* Accent border for neobrutalism effect */}
               <div className="absolute top-2 left-2 w-full h-full border-3 border-neobrutalism-pink -z-10" />
