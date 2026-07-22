@@ -6,8 +6,6 @@ import { PERSONAL_INFO } from '@/lib/constants';
 import { Download, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { scrollToSection } from '@/lib/utils';
-import { GlitchText } from '@/components/animations/GlitchText';
-import { Marquee } from '@/components/animations/Marquee';
 import { ProfileTiltCard } from '@/components/ui/ProfileTiltCard';
 
 export function Hero() {

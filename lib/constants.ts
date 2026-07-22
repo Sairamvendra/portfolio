@@ -1,12 +1,9 @@
 import type {
   PersonalInfo,
   SocialLink,
-  Skill,
-  Achievement,
   Experience,
   Video,
   Certification,
-  PortfolioLink,
 } from '@/types';
 
 export const PERSONAL_INFO: PersonalInfo = {
@@ -54,106 +51,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
 ];
 
-export const SKILLS: Skill[] = [
-  {
-    category: 'Art & Creative Direction',
-    items: ['Visual Design', 'Creative Strategy', 'Brand Direction'],
-    color: 'neobrutalism-yellow',
-  },
-  {
-    category: 'AI Product Management',
-    items: ['AI Integration', 'Product Strategy', 'Innovation'],
-    color: 'neobrutalism-cyan',
-  },
-  {
-    category: 'Stakeholder & Agency Management',
-    items: ['Partnership Management', 'Vendor Relations', 'Communication'],
-    color: 'neobrutalism-pink',
-  },
-  {
-    category: 'Program & Project Management',
-    items: ['Agile', 'Cross-functional Leadership', 'Execution'],
-    color: 'neobrutalism-purple',
-  },
-  {
-    category: 'Design Strategy & Operations',
-    items: ['Process Optimization', 'Team Leadership', 'Strategic Planning'],
-    color: 'neobrutalism-yellow',
-  },
-  {
-    category: 'Brand Research & Rebranding',
-    items: ['Market Analysis', 'Brand Identity', 'Positioning'],
-    color: 'neobrutalism-cyan',
-  },
-  {
-    category: 'Market Research and Analysis',
-    items: ['Consumer Insights', 'Competitive Analysis', 'Data Analysis'],
-    color: 'neobrutalism-pink',
-  },
-  {
-    category: 'Digital Transformation',
-    items: ['Process Automation', 'Technology Integration', 'Change Management'],
-    color: 'neobrutalism-purple',
-  },
-  {
-    category: 'Brand and Communication Design',
-    items: ['Visual Identity', 'Messaging', 'Brand Guidelines'],
-    color: 'neobrutalism-yellow',
-  },
-  {
-    category: 'Performance Marketing',
-    items: ['Campaign Strategy', 'Analytics', 'ROI Optimization'],
-    color: 'neobrutalism-cyan',
-  },
-  {
-    category: 'Data-Driven Decision Making',
-    items: ['Analytics', 'KPI Tracking', 'Insights Generation'],
-    color: 'neobrutalism-pink',
-  },
-  {
-    category: 'Product Lifecycle Management',
-    items: ['Product Strategy', 'Launch Planning', 'Iteration'],
-    color: 'neobrutalism-purple',
-  },
-];
 
-export const ACHIEVEMENTS: Achievement[] = [
-  {
-    text: 'Used tools like Chat GPT, Midjourney bots, Dall-E, Sora, Runway ML, Google Flow, Google AI studio and Eleven labs to streamline and Optimize the overall ad production speeds for kukufm',
-  },
-  {
-    text: 'Scaled internal ad production capacity from 5 per week to 100 per week',
-    metric: '5 → 100',
-  },
-  {
-    text: 'Operationalized AI for an automated AI human system increasing throughput',
-    metric: '2 → 20',
-  },
-  {
-    text: 'Shipped an AI innovation slate—video pacing analysis, AI comics, chatbot storytelling, and intelligence, trend/news curation, book translation, and promo-script evaluation',
-  },
-  {
-    text: 'Built asset ops and quality governance across social, web, email, app, and offline',
-  },
-  {
-    text: 'Managed external creative agencies, ensuring their work aligned with performance metrics & brand goals',
-  },
-  {
-    text: 'Led a multi-disciplinary design org and external partners; mentored teams and embedded automation-first practices to lift velocity and craft',
-  },
-  {
-    text: 'Directed full campaign lifecycles—from concept to launch—delivering on-brief, on-time creative tied to business outcomes',
-  },
-  {
-    text: 'Translated ambiguous business problems into crisp creative briefs and product roadmaps; aligned exec stakeholders on scope, OKRs, and timelines',
-  },
-  {
-    text: 'Set end-to-end creative strategy for local and Chinese content portfolios, aligning output to market demand and audience insights',
-  },
-  {
-    text: 'Drove cross-functional alignment with Product, Marketing, and Content; partnered with creators and AI Labs to refine their product funnel, UX, and visual identity',
-  },
-];
 
 export const EXPERIENCES: Experience[] = [
   {
@@ -310,40 +208,7 @@ export const CERTIFICATIONS: Certification[] = [
   },
 ];
 
-export const PORTFOLIO_LINKS: PortfolioLink[] = [
-  {
-    title: 'AI LVR Real Footage',
-    url: '#',
-    description: 'AI-powered live video rendering',
-    type: 'video',
-  },
-  {
-    title: 'Sora Longform Content',
-    url: '#',
-    description: 'Long-form content creation with AI',
-    type: 'video',
-  },
-  {
-    title: 'Live Action AI-Lip-sync',
-    url: '#',
-    description: 'Real-time AI lip-sync technology',
-    type: 'video',
-  },
-  {
-    title: 'Privé',
-    url: '#',
-    description: 'Premium content platform',
-    type: 'external',
-  },
-  {
-    title: 'Notion Portfolio',
-    url: 'https://www.notion.so/sairamvendra/Sairam-Vendra-1eb4d5e77783804fa1bcdb800a6eeb01',
-    description: 'Detailed portfolio and case studies',
-    type: 'notion',
-  },
-];
 
-export const ABOUT_ME = `Leader in creative direction, AI product management, and design strategy. Track record of building automation-first pipelines, scaling static ad and video production, and driving measurable business outcomes. Cross-functional leadership; stakeholder alignment, and end-to-end campaign delivery.`;
 
 export const EDUCATION = {
   degree: 'B.Tech in Electrical and Electronics Engineering',
