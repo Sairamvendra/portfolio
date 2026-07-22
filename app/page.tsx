@@ -3,6 +3,7 @@ import { Footer } from '@/components/layout/Footer';
 import { Hero } from '@/components/sections/Hero';
 import { Banner } from '@/components/sections/Banner';
 import { About } from '@/components/sections/About';
+import { Showreel } from '@/components/sections/Showreel';
 import { Skills } from '@/components/sections/Skills';
 import { DomeGallery } from '@/components/sections/DomeGallery';
 import { ProfileSummary } from '@/components/sections/ProfileSummary';
@@ -19,6 +20,7 @@ export default function Home() {
         <Hero />
         <Banner />
         <About />
+        <Showreel />
         <Skills />
         <DomeGallery />
         <ProfileSummary />

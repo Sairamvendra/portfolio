@@ -10,7 +10,7 @@ export function About() {
   return (
     <section
       id="about"
-      className="section bg-neobrutalism-black"
+      className="section bg-neobrutalism-black relative z-10"
       aria-labelledby="about-heading"
     >
       <Container>
@@ -97,7 +97,7 @@ export function About() {
             <Card bgColor="bg-neobrutalism-purple">
               <div className="text-center">
                 <p className="text-lg sm:text-xl leading-relaxed font-medium">
-                  Leader in creative direction, vibe coding AI product management, design strategy. Track record of building automation-first pipelines, focused on strategic scalability to drive measurable business outcomes. Cross-functional leadership; stakeholder alignment, and end-to-end campaign delivery.
+                  Leader in AI product management, product design and creative direction &amp; design strategy. Track record of building production grade tools with automation-first pipelines, focused on strategic scalability to drive measurable business outcomes. Cross-functional leadership, stakeholder alignment, Strategic generalist.
                 </p>
               </div>
             </Card>

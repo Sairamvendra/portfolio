@@ -62,18 +62,7 @@ export function VideoShowcase() {
                     />
                   </div>
                   <div className="p-4 border-t-3 border-neobrutalism-black">
-                    <h3 className="font-bold text-lg mb-2">{video.title}</h3>
-                    <div className="flex items-center gap-2">
-                      <a
-                        href={video.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm font-bold hover:underline focus:outline-none focus:ring-3 focus:ring-neobrutalism-black"
-                        aria-label={`Watch ${video.title} on YouTube (opens in new tab)`}
-                      >
-                        YouTube →
-                      </a>
-                    </div>
+                    <h3 className="font-bold text-lg">{video.title}</h3>
                   </div>
                 </Card>
               </StaggerItem>

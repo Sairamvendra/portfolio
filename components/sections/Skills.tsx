@@ -45,7 +45,7 @@ const SKILLS_EXPERTISE = [
       'Digital Transformation',
       'Innovation',
     ],
-    color: 'bg-neobrutalism-pink',
+    color: 'bg-neobrutalism-magenta',
   },
   {
     category: 'LEADERSHIP',
@@ -71,7 +71,7 @@ const SKILLS_EXPERTISE = [
       'Quality Governance',
       'Budget Management',
     ],
-    color: 'bg-neobrutalism-yellow',
+    color: 'bg-neobrutalism-orange',
   },
   {
     category: 'ANALYTICS',
@@ -84,7 +84,7 @@ const SKILLS_EXPERTISE = [
       'Quality Assurance',
       'SOP Development',
     ],
-    color: 'bg-neobrutalism-cyan',
+    color: 'bg-neobrutalism-lime',
   },
 ];
 
@@ -92,7 +92,7 @@ export function Skills() {
   return (
     <section
       id="skills"
-      className="section bg-neobrutalism-black"
+      className="section bg-neobrutalism-black relative z-10"
       aria-labelledby="skills-heading"
     >
       <Container>

@@ -19,9 +19,11 @@ export function Experience() {
 
   const colorVariants = [
     { bg: 'bg-gradient-to-br from-neobrutalism-yellow to-neobrutalism-yellow/80', badge: 'yellow' },
+    { bg: 'bg-gradient-to-br from-neobrutalism-sky to-neobrutalism-sky/80', badge: 'sky' },
+    { bg: 'bg-gradient-to-br from-neobrutalism-magenta to-neobrutalism-magenta/80', badge: 'magenta' },
+    { bg: 'bg-gradient-to-br from-neobrutalism-lime to-neobrutalism-lime/80', badge: 'lime' },
+    { bg: 'bg-gradient-to-br from-neobrutalism-orange to-neobrutalism-orange/80', badge: 'orange' },
     { bg: 'bg-gradient-to-br from-neobrutalism-cyan to-neobrutalism-cyan/80', badge: 'cyan' },
-    { bg: 'bg-gradient-to-br from-neobrutalism-pink to-neobrutalism-pink/80', badge: 'pink' },
-    { bg: 'bg-gradient-to-br from-neobrutalism-purple to-neobrutalism-purple/80', badge: 'purple' },
   ] as const;
 
   return (

@@ -255,19 +255,19 @@ export const VIDEOS: Video[] = [
   {
     id: '1',
     url: 'https://youtu.be/wuv-b1FWMhY',
-    title: 'AI Innovation Showcase - Video 1',
+    title: 'AI Innovation Showcase',
     embedUrl: 'https://www.youtube.com/embed/wuv-b1FWMhY?autoplay=1&mute=1',
   },
   {
     id: '2',
     url: 'https://youtu.be/UiN-iTjGy0o',
-    title: 'Creative Design Process - Video 2',
+    title: 'Creative Design Process',
     embedUrl: 'https://www.youtube.com/embed/UiN-iTjGy0o?autoplay=1&mute=1',
   },
   {
     id: '3',
     url: 'https://youtu.be/QgitqyLypss',
-    title: 'Product Management Strategy - Video 3',
+    title: 'Product Management Strategy',
     embedUrl: 'https://www.youtube.com/embed/QgitqyLypss?autoplay=1&mute=1',
   },
 ];

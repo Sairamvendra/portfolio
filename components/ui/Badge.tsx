@@ -2,7 +2,7 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
-  variant?: 'default' | 'yellow' | 'cyan' | 'pink' | 'purple' | 'green';
+  variant?: 'default' | 'yellow' | 'cyan' | 'pink' | 'purple' | 'green' | 'orange' | 'magenta' | 'lime' | 'sky' | 'mint';
   children: React.ReactNode;
 }
 
@@ -15,6 +15,11 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(
       pink: 'bg-neobrutalism-pink',
       purple: 'bg-neobrutalism-purple',
       green: 'bg-neobrutalism-green',
+      orange: 'bg-neobrutalism-orange',
+      magenta: 'bg-neobrutalism-magenta',
+      lime: 'bg-neobrutalism-lime',
+      sky: 'bg-neobrutalism-sky',
+      mint: 'bg-neobrutalism-mint',
     };
 
     return (

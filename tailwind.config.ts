@@ -17,6 +17,11 @@ const config: Config = {
         'neobrutalism-purple': '#A78BFA',
         'neobrutalism-green': '#00FF00',
         'neobrutalism-blue': '#0066FF',
+        'neobrutalism-orange': '#FF9F1C',
+        'neobrutalism-magenta': '#FF90E8',
+        'neobrutalism-lime': '#A3E635',
+        'neobrutalism-sky': '#7EC8FF',
+        'neobrutalism-mint': '#7BF1A8',
       },
       fontFamily: {
         heading: ['"Space Grotesk"', '"Inter"', 'sans-serif'],
