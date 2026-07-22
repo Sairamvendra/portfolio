@@ -157,12 +157,41 @@ export const ACHIEVEMENTS: Achievement[] = [
 
 export const EXPERIENCES: Experience[] = [
   {
+    id: 'frameo',
+    company: 'Frameo ai',
+    role: 'Product Consultant',
+    period: 'Apr\'26 – Jun\'26',
+    startDate: '2026-04',
+    endDate: '2026-06',
+    achievements: [
+      'Built web designs for the product, redefining the UI experience to feel simple and intentional — not like a vibe-coded app.',
+      'Performed user interviews with production users to identify gaps, map behavioral patterns, and shape new features.',
+      'Streamlined asset management and designed the org-level access system.',
+      'Developed custom AI pipelines to streamline creative workflows and enhance production efficiency.',
+    ],
+    technologies: ['Figma', 'Claude Code', 'User Interviews', 'UX Design', 'System Design', 'AI Pipelines'],
+  },
+  {
+    id: 'consulting',
+    company: 'Self Employed',
+    role: 'Consulting',
+    period: 'Jul\'25 – Apr\'26',
+    startDate: '2025-07',
+    endDate: '2026-04',
+    achievements: [
+      'Developed a custom AI tool for the Jio Hotstar Tadka app thumbnails project — reducing overall feedback loops while increasing the number of versions to enhance production efficiency.',
+      'Directed 2 full-scale micro-drama productions, integrating live and AI workflows for innovative storytelling while reducing traditional VFX costs.',
+      'Built custom micro products serving specific niches using Claude Code and Google Antigravity.',
+    ],
+    technologies: ['Claude Code', 'Google Antigravity', 'Custom AI Tools', 'AI Video Workflows', 'Live + AI Production'],
+  },
+  {
     id: '1',
     company: 'KukuTV',
     role: 'Head of Design and AI Product Manager',
-    period: 'Since Nov\'23',
+    period: 'Nov\'23 – Jul\'25',
     startDate: '2023-11',
-    endDate: null,
+    endDate: '2025-07',
     achievements: [
       'Operationalized AI for design: GPT-powered bots and an automated AI thumbnail system generating multi-variant outputs from prompts; scaled daily throughput from 2 → 20 per title.',
       'Engineered AI video pipelines with multiple AI workflows; cut production TAT from 5 days → 4 hours per video while improving quality.',
@@ -175,7 +204,7 @@ export const EXPERIENCES: Experience[] = [
       'Set end-to-end creative strategy for local and Chinese content portfolios, aligning output to market demand and audience insights.',
       'Drove cross-functional alignment with Product, Marketing, and Content; partnered with creators and AI Labs to refine their product funnel, UX, and visual identity.',
     ],
-    technologies: ['Chat GPT', 'Dall-E', 'Sora', 'Midjourney', 'Runway ML', 'Google Flow', 'Google AI studio', 'Eleven labs'],
+    technologies: ['Figma', 'Claude Code', 'Sora', 'Midjourney', 'Runway ML', 'Google Veo', 'Google AI studio', 'Eleven labs'],
   },
   {
     id: '2',
@@ -192,7 +221,7 @@ export const EXPERIENCES: Experience[] = [
       'Led High-Profile Event Designs: Directed design sprints for Prime Day, Holiday Sale, and DEI events, delivering impactful creative assets.',
       'Managed Brand Onboarding and Refresh: Supported external partners with brand updates and onboarding, to ensure alignment with Amazon\'s high standards.',
     ],
-    technologies: ['Photoshop', 'Illustrator', 'After Effects', 'Figma', 'Jira', 'Confluence', 'Amazon Brand Guidelines'],
+    technologies: ['Figma', 'Jira', 'Confluence', 'Photoshop', 'Illustrator', 'After Effects', 'Amazon Brand Guidelines'],
   },
   {
     id: '3',

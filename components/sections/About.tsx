@@ -4,7 +4,7 @@ import { Container } from '@/components/layout/Container';
 import { Card } from '@/components/ui/Card';
 import { FadeIn } from '@/components/animations/FadeIn';
 import { StaggerContainer, StaggerItem } from '@/components/animations/StaggerContainer';
-import { Sparkles, Zap, Film } from 'lucide-react';
+import { Sparkles, Zap, Film, PenTool } from 'lucide-react';
 
 export function About() {
   return (
@@ -20,8 +20,8 @@ export function About() {
           </h2>
         </FadeIn>
 
-        {/* Three cards */}
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12" staggerDelay={0.1}>
+        {/* Four cards */}
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12" staggerDelay={0.1}>
           {/* Card 1: AI Solutions Architect */}
           <StaggerItem>
             <Card bgColor="bg-neobrutalism-cyan" className="h-full">
@@ -67,6 +67,23 @@ export function About() {
                   <h3 className="text-xl font-black mb-3">AI Film Director</h3>
                   <p className="text-base leading-relaxed">
                     Built proprietary tools from scratch to ease out the AI film making process saving significant amounts of time and cost.
+                  </p>
+                </div>
+              </div>
+            </Card>
+          </StaggerItem>
+
+          {/* Card 4: Product Designer */}
+          <StaggerItem>
+            <Card bgColor="bg-neobrutalism-purple" className="h-full">
+              <div className="flex items-start gap-4">
+                <div className="p-3 bg-neobrutalism-black">
+                  <PenTool className="h-6 w-6 text-neobrutalism-purple" aria-hidden="true" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-black mb-3">Product Designer</h3>
+                  <p className="text-base leading-relaxed">
+                    Designed web and mobile experiences end to end — from Figma to shipped product — pairing traditional design craft with Claude Code and agentic tools.
                   </p>
                 </div>
               </div>

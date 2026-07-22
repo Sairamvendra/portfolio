@@ -49,7 +49,7 @@ export function Hero() {
             {/* Role descriptions card */}
             <div className="p-6 bg-neobrutalism-black border-3 border-neobrutalism-black shadow-neobrutalism-xl">
               <p className="text-lg sm:text-xl font-bold text-white leading-relaxed">
-                AI solutions architect, <span className="text-neobrutalism-yellow">Creative Technologist</span>, AI film director, Strategic generalist.
+                AI solutions architect, <span className="text-neobrutalism-yellow">Creative Technologist</span>, Product Designer, AI film director, Strategic generalist.
               </p>
             </div>
 
