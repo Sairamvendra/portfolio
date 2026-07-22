@@ -1,44 +1,21 @@
 'use client';
 
-import { useRef, useState } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import { Container } from '@/components/layout/Container';
+import { motion } from 'framer-motion';
+import ReactBitsDomeGallery from '@/components/reactbits/DomeGallery';
 
-const GALLERY_IMAGES = [
-  '/carousel-1.jpg',
-  '/carousel-2.jpg',
-  '/carousel-3.jpg',
-  '/carousel-4.jpg',
-  '/carousel-5.jpg',
-  '/carousel-6.jpg',
-  '/carousel-7.jpg',
-  '/carousel-8.jpg',
-];
+const GALLERY_IMAGES = Array.from(
+  { length: 25 },
+  (_, i) => `/showcase/showcase-${String(i + 1).padStart(2, '0')}.jpg`
+);
 
 export function DomeGallery() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start end', 'end start'],
-  });
-
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
-
-  const rotate = useTransform(smoothProgress, [0, 1], [0, 180]);
-
   return (
     <section
-      ref={containerRef}
       className="section relative overflow-hidden py-16"
-      style={{ backgroundColor: '#B4E4E8' }}
+      style={{ backgroundColor: '#FF6B6B' }}
       aria-label="Work showcase gallery"
     >
-      <Container className="relative z-10">
+      <div className="relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -51,80 +28,25 @@ export function DomeGallery() {
               Work Showcase
             </h2>
           </div>
-          <p className="text-xl sm:text-2xl font-bold text-neobrutalism-black/80 max-w-2xl mx-auto">
-            Scroll to explore creative productions
+          <p className="text-xl sm:text-2xl font-bold text-neobrutalism-black max-w-2xl mx-auto">
+            Scroll to roll — drag to spin, click to enlarge
           </p>
         </motion.div>
 
-        {/* 3D Dome Gallery */}
-        <div className="relative w-full h-[600px] md:h-[700px] perspective-1000">
-          <motion.div
-            style={{
-              rotateY: rotate,
-              transformStyle: 'preserve-3d',
-            }}
-            className="relative w-full h-full max-w-5xl mx-auto"
-          >
-            {GALLERY_IMAGES.map((image, index) => {
-              const angle = (index / GALLERY_IMAGES.length) * 360;
-              const radius = 350;
-              const yOffset = Math.sin((index / GALLERY_IMAGES.length) * Math.PI) * 80;
-
-              return (
-                <motion.div
-                  key={index}
-                  className="absolute top-1/2 left-1/2"
-                  style={{
-                    transform: `
-                      translate(-50%, -50%)
-                      rotateY(${angle}deg)
-                      translateZ(${radius}px)
-                      translateY(${yOffset}px)
-                    `,
-                    transformStyle: 'preserve-3d',
-                  }}
-                  onMouseEnter={() => setHoveredIndex(index)}
-                  onMouseLeave={() => setHoveredIndex(null)}
-                >
-                  <motion.div
-                    className="relative border-5 border-neobrutalism-black bg-neobrutalism-white overflow-hidden cursor-pointer shadow-neobrutalism-xl"
-                    style={{
-                      width: '280px',
-                      height: '360px',
-                      backfaceVisibility: 'hidden',
-                    }}
-                    whileHover={{
-                      scale: 1.15,
-                      rotateZ: 5,
-                      zIndex: 50,
-                    }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 300,
-                      damping: 20
-                    }}
-                  >
-                    <img
-                      src={image}
-                      alt={`Gallery showcase ${index + 1}`}
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).src = '/sairam.png';
-                      }}
-                    />
-                  </motion.div>
-                </motion.div>
-              );
-            })}
-          </motion.div>
+        {/* React Bits dome, rolls with page scroll */}
+        <div className="relative w-full h-[600px] md:h-[700px]">
+          <ReactBitsDomeGallery
+            images={GALLERY_IMAGES}
+            grayscale={false}
+            minRadius={1400}
+            overlayBlurColor="#FF6B6B"
+            imageBorderRadius="14px"
+            openedImageBorderRadius="14px"
+            openedImageWidth="340px"
+            openedImageHeight="600px"
+          />
         </div>
-      </Container>
-
-      <style jsx>{`
-        .perspective-1000 {
-          perspective: 1000px;
-        }
-      `}</style>
+      </div>
     </section>
   );
 }

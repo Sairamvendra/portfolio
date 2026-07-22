@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/Badge';
 import { FadeIn } from '@/components/animations/FadeIn';
 import { StaggerContainer, StaggerItem } from '@/components/animations/StaggerContainer';
 import { EXPERIENCES } from '@/lib/constants';
-import { Building2, Calendar, TrendingUp, ChevronDown, ChevronUp } from 'lucide-react';
+import { Building2, Calendar, ChevronDown, ChevronUp } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export function Experience() {
@@ -51,15 +51,6 @@ export function Experience() {
             const isExpanded = expandedId === exp.id;
             const colorScheme = colorVariants[index % colorVariants.length];
 
-            // Extract key metrics from achievements
-            const metrics = exp.achievements
-              .map(a => {
-                const match = a.match(/(\d+\s*[→x]\s*\d+)/);
-                return match ? match[1] : null;
-              })
-              .filter(Boolean)
-              .slice(0, 3);
-
             return (
               <StaggerItem key={exp.id}>
                 <Card bgColor="bg-neobrutalism-white" className="overflow-hidden hover:scale-[1.01] transition-transform">
@@ -74,12 +65,6 @@ export function Experience() {
                           </Badge>
                           {exp.endDate === null && (
                             <Badge variant="green" className="text-sm">● Current</Badge>
-                          )}
-                          {metrics.length > 0 && (
-                            <Badge variant="default" className="text-sm">
-                              <TrendingUp className="h-3 w-3 mr-1" />
-                              {metrics[0]}
-                            </Badge>
                           )}
                         </div>
                         <h3 className="text-2xl sm:text-3xl font-black mb-2">{exp.role}</h3>
