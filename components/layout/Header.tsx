@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import { Container } from './Container';
@@ -28,9 +28,17 @@ export function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // The mobile menu's exit animation cancels an in-flight smooth scroll,
+  // so defer the scroll until the menu has fully closed.
+  const pendingScrollRef = useRef<string | null>(null);
+
   const handleNavClick = (href: string) => {
-    scrollToSection(href);
-    setMobileMenuOpen(false);
+    if (mobileMenuOpen) {
+      pendingScrollRef.current = href;
+      setMobileMenuOpen(false);
+    } else {
+      scrollToSection(href);
+    }
   };
 
   return (
@@ -86,7 +94,14 @@ export function Header() {
       </Container>
 
       {/* Mobile Navigation */}
-      <AnimatePresence>
+      <AnimatePresence
+        onExitComplete={() => {
+          if (pendingScrollRef.current) {
+            scrollToSection(pendingScrollRef.current);
+            pendingScrollRef.current = null;
+          }
+        }}
+      >
         {mobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
