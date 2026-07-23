@@ -989,6 +989,36 @@ class InfiniteGridMenu {
     this.#updateCameraMatrix();
   }
 
+  // Ray-pick the disc under a client point. The camera is axis-aligned on +z
+  // looking at the origin, so the ray needs no matrix inversions.
+  getItemIndexAt(clientX, clientY) {
+    const rect = this.canvas.getBoundingClientRect();
+    const ndcX = ((clientX - rect.left) / rect.width) * 2 - 1;
+    const ndcY = 1 - ((clientY - rect.top) / rect.height) * 2;
+    const tanFov = Math.tan(this.camera.fov / 2);
+    const dir = vec3.fromValues(ndcX * tanFov * this.camera.aspect, ndcY * tanFov, -1);
+    vec3.normalize(dir, dir);
+    const o = this.camera.position;
+    const b = vec3.dot(o, dir);
+    const c = vec3.dot(o, o) - this.SPHERE_RADIUS * this.SPHERE_RADIUS;
+    const disc = b * b - c;
+    if (disc < 0) return -1; // ray misses the sphere
+    const hit = vec3.scaleAndAdd(vec3.create(), o, dir, -b - Math.sqrt(disc));
+    const inv = quat.conjugate(quat.create(), this.control.orientation);
+    vec3.transformQuat(hit, hit, inv);
+    vec3.normalize(hit, hit);
+    let maxD = -1;
+    let nearest = -1;
+    this.instancePositions.forEach((p, i) => {
+      const d = vec3.dot(hit, vec3.normalize(vec3.create(), p));
+      if (d > maxD) {
+        maxD = d;
+        nearest = i;
+      }
+    });
+    return nearest % Math.max(1, this.items.length);
+  }
+
   #findNearestVertexIndex() {
     const n = this.control.snapDirection;
     const inversOrientation = quat.conjugate(quat.create(), this.control.orientation);
@@ -1023,8 +1053,12 @@ const defaultItems = [
 
 export default function InfiniteMenu({ items = [], scale = 1.0 }) {
   const canvasRef = useRef(null);
+  const menuRef = useRef(null);
+  const pressRef = useRef(null);
   const [activeItem, setActiveItem] = useState(null);
   const [isMoving, setIsMoving] = useState(false);
+
+  const itemList = items.length ? items : defaultItems;
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -1041,7 +1075,10 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
         items.length ? items : defaultItems,
         handleActiveItem,
         setIsMoving,
-        sk => sk.run(),
+        sk => {
+          menuRef.current = sk;
+          sk.run();
+        },
         scale
       );
     }
@@ -1061,13 +1098,28 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
     };
   }, [items, scale]);
 
-  const handleButtonClick = () => {
-    if (!activeItem?.link) return;
-    if (activeItem.link.startsWith('http')) {
-      window.open(activeItem.link, '_blank');
+  const openLink = link => {
+    if (!link) return;
+    if (link.startsWith('http')) {
+      window.open(link, '_blank');
     } else {
-      window.location.href = activeItem.link;
+      window.location.href = link;
     }
+  };
+
+  const handleButtonClick = () => openLink(activeItem?.link);
+
+  // click (pointer travel < 6px) on a disc opens that disc's link; more
+  // travel means the pointer was dragging the sphere
+  const onCanvasDown = e => {
+    pressRef.current = { x: e.clientX, y: e.clientY };
+  };
+  const onCanvasUp = e => {
+    const d = pressRef.current;
+    pressRef.current = null;
+    if (!d || Math.hypot(e.clientX - d.x, e.clientY - d.y) > 6) return;
+    const idx = menuRef.current?.getItemIndexAt(e.clientX, e.clientY);
+    if (idx != null && idx >= 0) openLink(itemList[idx]?.link);
   };
 
   // active/inactive: overlays fade out fast while the sphere spins, ease back
@@ -1078,6 +1130,8 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
     <div className="relative w-full h-full">
       <canvas
         ref={canvasRef}
+        onPointerDown={onCanvasDown}
+        onPointerUp={onCanvasUp}
         className="w-full h-full cursor-grab active:cursor-grabbing outline-none"
       />
 
