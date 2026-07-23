@@ -685,7 +685,10 @@ class InfiniteGridMenu {
 
     this.icoGeo = new IcosahedronGeometry();
     this.icoGeo.subdivide(1).spherize(this.SPHERE_RADIUS);
-    this.instancePositions = this.icoGeo.vertices.map(v => v.position);
+    this.instancePositions = this.#spreadPositions(
+      this.icoGeo.vertices.map(v => v.position),
+      Math.max(1, this.items.length)
+    );
     this.DISC_INSTANCE_COUNT = this.icoGeo.vertices.length;
     this.#initDiscInstances(this.DISC_INSTANCE_COUNT);
 
@@ -699,6 +702,76 @@ class InfiniteGridMenu {
     this.resize();
 
     if (onInit) onInit(this);
+  }
+
+  // Slot i shows item i % itemCount, and the icosahedron's natural vertex order
+  // puts consecutive slots next to each other — clustering identical chips in
+  // one view. Reorder positions greedily: each slot takes the position farthest
+  // from the already-placed copies of its own item.
+  #spreadPositions(positions, itemCount) {
+    const remaining = [...positions];
+    const placedByItem = Array.from({ length: itemCount }, () => []);
+    const ordered = [];
+    for (let slot = 0; remaining.length > 0; ++slot) {
+      const placed = placedByItem[slot % itemCount];
+      let best = 0;
+      let bestScore = -1;
+      remaining.forEach((p, i) => {
+        let score = Infinity;
+        for (const q of placed) score = Math.min(score, vec3.squaredDistance(p, q));
+        if (score === Infinity) score = 1e9 - i; // first copy of this item: keep stable order
+        if (score > bestScore) {
+          bestScore = score;
+          best = i;
+        }
+      });
+      const p = remaining.splice(best, 1)[0];
+      placed.push(p);
+      ordered.push(p);
+    }
+
+    // refine: swap positions between slots of different items whenever it raises
+    // the smallest same-item pair distance (pushes copies toward ~90° apart,
+    // the optimum for 5-6 copies on a sphere)
+    const n = ordered.length;
+    const groups = Array.from({ length: itemCount }, (_, k) => {
+      const g = [];
+      for (let i = k; i < n; i += itemCount) g.push(i);
+      return g;
+    });
+    const groupMin = g => {
+      let m = Infinity;
+      for (let a = 0; a < g.length; a++)
+        for (let b = a + 1; b < g.length; b++)
+          m = Math.min(m, vec3.squaredDistance(ordered[g[a]], ordered[g[b]]));
+      return m;
+    };
+    const mins = groups.map(groupMin);
+    let improved = true;
+    while (improved) {
+      improved = false;
+      for (let i = 0; i < n; i++) {
+        for (let j = i + 1; j < n; j++) {
+          const a = i % itemCount;
+          const b = j % itemCount;
+          if (a === b) continue;
+          [ordered[i], ordered[j]] = [ordered[j], ordered[i]];
+          const na = groupMin(groups[a]);
+          const nb = groupMin(groups[b]);
+          if (
+            Math.min(na, nb) > Math.min(mins[a], mins[b]) ||
+            (Math.min(na, nb) === Math.min(mins[a], mins[b]) && na + nb > mins[a] + mins[b])
+          ) {
+            mins[a] = na;
+            mins[b] = nb;
+            improved = true;
+          } else {
+            [ordered[i], ordered[j]] = [ordered[j], ordered[i]];
+          }
+        }
+      }
+    }
+    return ordered;
   }
 
   #initTexture() {
