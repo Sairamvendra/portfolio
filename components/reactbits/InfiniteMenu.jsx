@@ -66,6 +66,14 @@ in vec2 vUvs;
 in float vAlpha;
 flat in int vInstanceId;
 
+// neobrutalism disc: image shrunk to R_CONTENT, black border ring and solid
+// black shadow disc offset down-right (uv +x right, +y up). Border/shadow are
+// pixel-constant via fwidth to match the CSS tokens (border-3, 6px shadow),
+// capped so tiny far discs never overflow the mesh rim.
+#define R_CONTENT 0.43
+#define BORDER_PX 3.0
+#define SHADOW_PX 6.0
+
 void main() {
     int itemIndex = vInstanceId % uItemCount;
     int cellsPerRow = uAtlasSize;
@@ -81,15 +89,31 @@ void main() {
     float scale = max(imageAspect / containerAspect,
                      containerAspect / imageAspect);
 
-    vec2 st = vec2(vUvs.x, 1.0 - vUvs.y);
+    vec2 p = vUvs - 0.5;
+    float r = length(p);
+    float pxr = fwidth(r);
+    float aa = pxr * 1.5;
+    float bw = min(BORDER_PX * pxr, 0.02);
+    float so = min(SHADOW_PX * pxr, 0.03);
+    float rBorder = R_CONTENT + bw;
+    float rs = length(p - vec2(so, -so));
+
+    vec2 st = p / (2.0 * R_CONTENT) + 0.5;
+    st = vec2(st.x, 1.0 - st.y);
     st = (st - 0.5) * scale + 0.5;
 
     st = clamp(st, 0.0, 1.0);
 
     st = st * cellSize + cellOffset;
 
-    outColor = texture(uTex, st);
-    outColor.a *= vAlpha;
+    vec4 img = texture(uTex, st);
+
+    float inContent = 1.0 - smoothstep(R_CONTENT - aa, R_CONTENT, r);
+    float inBorder = 1.0 - smoothstep(rBorder - aa, rBorder, r);
+    float inShadow = 1.0 - smoothstep(rBorder - aa, rBorder, rs);
+
+    outColor = vec4(mix(vec3(0.0), img.rgb, inContent), max(inBorder, inShadow) * vAlpha);
+    if (outColor.a < 0.01) discard;
 }
 `;
 
