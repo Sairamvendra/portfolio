@@ -30,13 +30,13 @@ const PROJECT_ITEMS = [
     description: 'Design Lead, Creative direction',
   },
   {
-    image: '/projects/visualstudio.png',
+    image: '/projects/visualstudio.jpg',
     link: 'https://visualstudioprox.vercel.app/',
     title: 'Visual design studio',
     description: 'Agentic design, Product design, AI Product management',
   },
   {
-    image: '/projects/nukestorybook.png',
+    image: '/projects/nukestorybook.jpg',
     link: 'https://aistorybookz.vercel.app/',
     title: 'Nukestorybook',
     description: 'Agentic design, AI movie production, AI Product management',
