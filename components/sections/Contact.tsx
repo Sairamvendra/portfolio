@@ -46,11 +46,11 @@ export function Contact() {
                   <div className="p-3 bg-neobrutalism-yellow border-3 border-neobrutalism-black shadow-neobrutalism-sm">
                     <Mail className="h-6 w-6" aria-hidden="true" />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <p className="text-sm font-bold text-neobrutalism-black/60 mb-1">Email</p>
                     <a
                       href={getEmailLink(PERSONAL_INFO.email)}
-                      className="text-lg font-bold hover:underline focus:outline-none focus:ring-3 focus:ring-neobrutalism-black"
+                      className="text-lg font-bold break-all hover:underline focus:outline-none focus:ring-3 focus:ring-neobrutalism-black"
                       aria-label={`Send email to ${PERSONAL_INFO.email}`}
                     >
                       {PERSONAL_INFO.email}

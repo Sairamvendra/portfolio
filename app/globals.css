@@ -24,6 +24,10 @@
 
   html {
     scroll-behavior: smooth;
+    /* guard: off-screen slide-in transforms (FadeIn x-offset) and any wide element
+       clip instead of side-scrolling the page; hidden is the pre-Safari-16 fallback */
+    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   body {

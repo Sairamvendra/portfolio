@@ -109,7 +109,7 @@ export function ProfileSummary() {
                           <div className="text-xl sm:text-2xl font-black mb-1">
                             {metric.value}
                           </div>
-                          <div className="text-xs font-bold text-neobrutalism-black/60 uppercase leading-tight">
+                          <div className="text-xs font-bold text-neobrutalism-black/60 uppercase leading-tight break-words">
                             {metric.label}
                           </div>
                         </div>

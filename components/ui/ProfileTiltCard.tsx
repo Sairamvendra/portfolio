@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 // React Bits ProfileCard, translated to neobrutalism: 3D cursor tilt, glare
 // and holo rainbow shine, with hard borders and offset shadows instead of glass.
@@ -26,11 +26,36 @@ export function ProfileTiltCard({ src, alt }: { src: string; alt: string }) {
     setVars((py - 0.5) * -10, (px - 0.5) * 10, px * 100, py * 100);
   };
 
+  // Gyro tilt on mobile: first reading is the neutral hold position, tilt is
+  // relative to it. Desktops without sensors simply never fire the event.
+  const gyroBase = useRef<{ beta: number; gamma: number } | null>(null);
+  useEffect(() => {
+    const onOrient = (e: DeviceOrientationEvent) => {
+      if (e.beta == null || e.gamma == null) return;
+      if (!gyroBase.current) gyroBase.current = { beta: e.beta, gamma: e.gamma };
+      const clamp = (v: number) => Math.max(-10, Math.min(10, v));
+      const rx = clamp((gyroBase.current.beta - e.beta) * 0.5);
+      const ry = clamp((e.gamma - gyroBase.current.gamma) * 0.5);
+      setVars(rx, ry, 50 + ry * 5, 50 - rx * 5);
+    };
+    window.addEventListener('deviceorientation', onOrient);
+    return () => window.removeEventListener('deviceorientation', onOrient);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // iOS 13+ sends no orientation events until permission is requested from a
+  // user gesture, so ask on the first tap; Android needs nothing.
+  const enableGyro = () => {
+    const D = DeviceOrientationEvent as unknown as { requestPermission?: () => Promise<string> };
+    D.requestPermission?.().catch(() => {});
+  };
+
   return (
     <div style={{ perspective: '700px' }} className="w-full h-full">
       <div
         ref={ref}
         onPointerMove={onPointerMove}
+        onPointerDown={enableGyro}
         onPointerLeave={() => setVars(0, 0, 50, 50)}
         className="group relative z-10 w-full h-full border-5 border-neobrutalism-black shadow-neobrutalism-xl bg-neobrutalism-white overflow-hidden transition-transform duration-150 ease-out"
         style={{
