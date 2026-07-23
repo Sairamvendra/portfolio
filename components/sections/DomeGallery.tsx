@@ -82,7 +82,7 @@ export function DomeGallery() {
             </h2>
           </div>
           <p className="text-xl sm:text-2xl font-bold text-neobrutalism-black max-w-2xl mx-auto">
-            Scroll to roll — drag to spin, click to enlarge
+            Drag to spin, click to enlarge
           </p>
         </motion.div>
 

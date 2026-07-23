@@ -60,6 +60,17 @@ export function Footer() {
                   Contact
                 </a>
               </li>
+              <li>
+                <a
+                  href="https://www.notion.so/sairamvendra/Sairam-Vendra-1eb4d5e77783804fa1bcdb800a6eeb01"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline focus:outline-none focus:ring-3 focus:ring-neobrutalism-black"
+                  aria-label="View full profile on Notion (opens in new tab)"
+                >
+                  Full profile (Notion)
+                </a>
+              </li>
             </ul>
           </div>
 

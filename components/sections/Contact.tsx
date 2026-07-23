@@ -146,20 +146,12 @@ export function Contact() {
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Button
-                  variant="primary"
+                  variant="outline"
                   size="lg"
                   onClick={() => window.location.href = getEmailLink(PERSONAL_INFO.email, 'Let\'s Work Together')}
                   aria-label="Start a project"
                 >
                   Start a Project
-                </Button>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  onClick={() => window.open('https://www.notion.so/sairamvendra/Sairam-Vendra-1eb4d5e77783804fa1bcdb800a6eeb01', '_blank')}
-                  aria-label="View full portfolio on Notion (opens in new tab)"
-                >
-                  View Full Portfolio
                 </Button>
               </div>
             </Card>
