@@ -32,6 +32,12 @@
 
   body {
     @apply bg-neobrutalism-white text-neobrutalism-black font-body;
+    /* clip at the body BOX, not just the viewport: html-level clip only disables
+       scrolling, but the document still MEASURES wide (FadeIn x-offsets), and
+       Android expands its layout viewport to fit that — the "cropped edge" bug.
+       Clipping here makes the document actually measure viewport-width. */
+    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   h1, h2, h3, h4, h5, h6 {
