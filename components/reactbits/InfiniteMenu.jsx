@@ -1007,6 +1007,10 @@ class InfiniteGridMenu {
     const inv = quat.conjugate(quat.create(), this.control.orientation);
     vec3.transformQuat(hit, hit, inv);
     vec3.normalize(hit, hit);
+    // the instance matrix translates by -p, so each disc renders at the
+    // ANTIPODE of its instancePositions entry (same reason the snap logic
+    // targets (0,0,-1)); flip the hit to compare in that space
+    vec3.negate(hit, hit);
     let maxD = -1;
     let nearest = -1;
     this.instancePositions.forEach((p, i) => {
