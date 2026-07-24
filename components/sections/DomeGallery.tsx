@@ -19,13 +19,13 @@ const PROJECT_ITEMS = [
   },
   {
     image: '/projects/primevideo.jpg',
-    link: 'https://www.behance.net/gallery/115005921/Prime-Video',
+    link: '/primevideo',
     title: 'Prime Video',
     description: 'Design Lead, Creative direction, Art direction',
   },
   {
     image: '/projects/amazon.jpg',
-    link: 'https://www.behance.net/gallery/99484467/Imaging-Associate',
+    link: '/amazon',
     title: 'Amazon',
     description: 'Design Lead, Creative direction',
   },
@@ -49,13 +49,13 @@ const PROJECT_ITEMS = [
   },
   {
     image: '/projects/cimpress.png',
-    link: 'https://www.behance.net/gallery/99231029/Print-and-digital-design-products-(Previous-works)',
+    link: '/cimpress',
     title: 'Cimpress Vistaprint',
     description: 'Art direction, Custom designs, Print and digital media',
   },
   {
     image: '/projects/cashfree.jpg',
-    link: 'https://www.behance.net/gallery/253120527/Agentic-AD-Creative-engine-forCashfree',
+    link: '/cashfree',
     title: 'Cashfree Agentic design',
     description: 'Agentic design, Art direction, Creative direction',
   },
