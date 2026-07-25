@@ -37,7 +37,7 @@ const PROJECT_ITEMS = [
   },
   {
     image: '/projects/nukestorybook.jpg',
-    link: 'https://aistorybookz.vercel.app/',
+    link: '/nukestorybook',
     title: 'Nukestorybook',
     description: 'Agentic design, AI movie production, AI Product management',
   },

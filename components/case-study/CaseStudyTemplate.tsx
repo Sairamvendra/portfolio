@@ -84,7 +84,7 @@ export type Block =
       type: 'cta';
       links: { label: string; href: string; variant?: 'primary' | 'secondary' | 'tertiary' | 'outline' }[];
     }
-  | { type: 'section'; bg: Accent; blocks: Block[] }
+  | { type: 'section'; bg: Accent | 'black'; blocks: Block[] }
   | { type: 'custom'; node: ReactNode };
 
 export interface CaseStudyTemplateProps {
@@ -129,7 +129,7 @@ export function FramedImage({ src, alt, caption, sticker, accent }: ImageData & 
       />
       <figure className="relative border-5 border-neobrutalism-black shadow-neobrutalism-xl bg-neobrutalism-white">
         {/* eslint-disable-next-line @next/next/no-img-element -- ponytail: plain img, swap to next/image before prod */}
-        <img src={src} alt={alt} className="max-w-full max-h-[640px] w-auto h-auto block" />
+        <img src={src} alt={alt} loading="lazy" decoding="async" className="max-w-full max-h-[640px] w-auto h-auto block" />
         {caption && (
           // w-0 min-w-full: caption wraps to the image's width instead of widening the frame
           <figcaption className="w-0 min-w-full border-t-3 border-neobrutalism-black px-4 py-3 text-sm font-bold bg-neobrutalism-white">
@@ -224,7 +224,7 @@ function renderBlock(block: Block, accent: Accent, index: number) {
             <video src={img.src} className={`w-full block ${aspect}`} autoPlay muted loop playsInline aria-label={img.alt} />
           ) : (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={img.src} alt={img.alt} className={`w-full block ${aspect}`} />
+            <img src={img.src} alt={img.alt} loading="lazy" decoding="async" className={`w-full block ${aspect}`} />
           )}
         </figure>
       );
@@ -349,7 +349,8 @@ function BlockList({ blocks, accent }: { blocks: Block[]; accent: Accent }) {
           return (
             <div
               key={i}
-              className={`${ACCENT_BG[block.bg]} border-y-5 border-neobrutalism-black my-14 sm:my-20 pb-14 sm:pb-20`}
+              // 'black' band: a dark stage for imagery that carries its own framing (e.g. app mockups)
+              className={`${block.bg === 'black' ? 'bg-neobrutalism-black text-white' : ACCENT_BG[block.bg]} border-y-5 border-neobrutalism-black my-14 sm:my-20 pb-14 sm:pb-20`}
             >
               <BlockList blocks={block.blocks} accent={accent} />
             </div>
