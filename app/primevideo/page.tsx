@@ -1,4 +1,4 @@
-import { CaseStudyTemplate, type Block } from '@/components/case-study/CaseStudyTemplate';
+import { CaseStudyTemplate, FramedImage, type Block } from '@/components/case-study/CaseStudyTemplate';
 
 export const metadata = {
   title: 'Prime Video · Amazon | Sairam Vendra',
@@ -11,11 +11,21 @@ const ART = (n: number) => `/projects/primevideo/art-${String(n).padStart(2, '0'
 const BLOCKS: Block[] = [
   { type: 'heading', text: 'How the work works', kicker: 'The brief' },
   {
-    type: 'text',
-    body: [
-      'Every campaign starts the same way: a studio hands over its key art, the crown jewels of its season from Showtime, Max, or Starz, and it has to become unmistakably Prime Video without losing what makes the title sell.',
-      'That translation is the craft. Brand framing around partner art, a deal story that reads before the artwork does, and type that passes contrast from ten feet on a living-room TV down to thumb-size in a newsletter. Art directed once, shipped everywhere, judged in impressions.',
-    ],
+    type: 'custom',
+    node: (
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+        <p className="text-lg sm:text-xl leading-relaxed font-medium">
+          Every campaign starts the same way: a studio hands over its key art, the crown jewels of its season
+          from Showtime, Max, or Starz, and it has to become unmistakably Prime Video without losing what makes
+          the title sell.
+        </p>
+        <p className="text-lg sm:text-xl leading-relaxed font-medium">
+          That translation is the craft. Brand framing around partner art, a deal story that reads before the
+          artwork does, and type that passes contrast from ten feet on a living-room TV down to thumb-size in a
+          newsletter. Art directed once, shipped everywhere, judged in impressions.
+        </p>
+      </div>
+    ),
   },
   {
     type: 'image',
@@ -30,9 +40,17 @@ const BLOCKS: Block[] = [
     bg: 'yellow',
     blocks: [
       {
-        type: 'text',
-        title: 'One campaign, every surface',
-        body: 'Prime Day channels, one system: a blue that owns the storefront, a price that reads first, and layouts cut for every canvas Amazon owns, from a living-room TV to a 3480-pixel blast banner to a 640-pixel mobile web slot. Same art, same hierarchy, no surface left off-brand.',
+        type: 'custom',
+        node: (
+          <div className="max-w-5xl">
+            <h3 className="text-2xl sm:text-3xl font-black mb-4">One campaign, every surface</h3>
+            <p className="text-xl sm:text-2xl leading-relaxed font-medium">
+              Prime Day channels, one system: a blue that owns the storefront, a price that reads first, and
+              layouts cut for every canvas Amazon owns, from a living-room TV to a 3480-pixel blast banner to a
+              640-pixel mobile web slot. Same art, same hierarchy, no surface left off-brand.
+            </p>
+          </div>
+        ),
       },
       {
         type: 'gallery',
@@ -51,9 +69,17 @@ const BLOCKS: Block[] = [
   },
 
   {
-    type: 'text',
-    title: 'Templates that scale taste',
-    body: 'You cannot personally art-direct every banner in every market, so you build templates that carry the taste for you. Locked grids, brand guardrails, pricing hierarchy baked in. And Pug Pierre: our in-house placeholder star who kept every draft honest until the real key art arrived.',
+    type: 'custom',
+    node: (
+      <div className="max-w-5xl">
+        <h3 className="text-2xl sm:text-3xl font-black mb-4">Templates that scale taste</h3>
+        <p className="text-xl sm:text-2xl leading-relaxed font-medium">
+          You cannot personally art-direct every banner in every market, so you build templates that carry the
+          taste for you. Locked grids, brand guardrails, pricing hierarchy baked in. And Pug Pierre: our
+          in-house placeholder star who kept every draft honest until the real key art arrived.
+        </p>
+      </div>
+    ),
   },
   {
     type: 'gallery',
@@ -72,9 +98,17 @@ const BLOCKS: Block[] = [
     bg: 'cyan',
     blocks: [
       {
-        type: 'text',
-        title: 'Every region, same standard',
-        body: 'The system had to speak Portuguese in São Paulo, Spanish in Mexico City, Czech in Prague. Regional art directors in the US, UK, Australia and beyond ran their markets; my job was making sure a Buen Fin banner and a Black Friday banner felt like one brand having two conversations.',
+        type: 'custom',
+        node: (
+          <div className="max-w-5xl">
+            <h3 className="text-2xl sm:text-3xl font-black mb-4">Every region, same standard</h3>
+            <p className="text-xl sm:text-2xl leading-relaxed font-medium">
+              The system had to speak Portuguese in São Paulo, Spanish in Mexico City, Czech in Prague. Regional
+              art directors in the US, UK, Australia and beyond ran their markets; my job was making sure a Buen
+              Fin banner and a Black Friday banner felt like one brand having two conversations.
+            </p>
+          </div>
+        ),
       },
       {
         type: 'gallery',
@@ -90,9 +124,16 @@ const BLOCKS: Block[] = [
   },
 
   {
-    type: 'text',
-    title: 'The brand, off the storefront',
-    body: 'Campaign systems went past the buy box: out-of-home, merch, awards season. Find Your Story and Culture Rated took the storefront language to the street, with billboards, totes, hoodies, the works.',
+    type: 'custom',
+    node: (
+      <div className="max-w-5xl">
+        <h3 className="text-2xl sm:text-3xl font-black mb-4">The brand, off the storefront</h3>
+        <p className="text-xl sm:text-2xl leading-relaxed font-medium">
+          Campaign systems went past the buy box: out-of-home, merch, awards season. Find Your Story and Culture
+          Rated took the storefront language to the street, with billboards, totes, hoodies, the works.
+        </p>
+      </div>
+    ),
   },
   {
     type: 'gallery',
@@ -105,16 +146,26 @@ const BLOCKS: Block[] = [
   },
 
   {
-    type: 'twoCol',
-    title: 'Shipped, at Amazon scale',
-    body: 'Everything above ends here: the storefront. Heroes, deal tiles, and price rows, all measured in impressions, contrast-checked at every size, doing their job in the two seconds a scroll gives them.',
-    image: {
-      src: '/projects/primevideo/pv-01.jpg',
-      sticker: 'Live on amazon.com',
-      alt: 'Prime Video Store live: 99 cents per month channel deals hero with deal tiles',
-      caption: 'Channel deals, live on the store. The system at work.',
-    },
-    flip: true,
+    type: 'custom',
+    node: (
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div>
+          <h3 className="text-2xl sm:text-3xl font-black mb-4">Shipped, at Amazon scale</h3>
+          <p className="text-lg sm:text-xl leading-relaxed font-medium">
+            Everything above ends here: the storefront. Heroes, deal tiles, and price rows, all measured in
+            impressions, contrast-checked at every size, doing their job in the two seconds a scroll gives
+            them.
+          </p>
+        </div>
+        <FramedImage
+          src="/projects/primevideo/pv-01.jpg"
+          accent="sky"
+          sticker="Live on amazon.com"
+          alt="Prime Video Store live: 99 cents per month channel deals hero with deal tiles"
+          caption="Channel deals, live on the store. The system at work."
+        />
+      </div>
+    ),
   },
 
   {
@@ -132,13 +183,28 @@ const BLOCKS: Block[] = [
         ],
       },
       {
-        type: 'quote',
-        text: 'Studios trust you with their crown jewels. Send them back on-brand, accessible, and impossible to scroll past.',
-        attribution: 'Creative direction, in one sentence',
-      },
-      {
-        type: 'text',
-        body: 'The storefront is one of the most-seen design surfaces at Amazon, creative that lives or dies in impressions. This system is how one team kept it on-brand in every market it touched.',
+        type: 'custom',
+        node: (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            <div className="relative">
+              <div
+                aria-hidden="true"
+                className="absolute -top-4 -right-4 w-14 h-14 bg-neobrutalism-white border-3 border-neobrutalism-black rotate-12"
+              />
+              <figure className="relative p-8 sm:p-10 bg-neobrutalism-black border-5 border-neobrutalism-black shadow-neobrutalism-xl -rotate-1">
+                <blockquote className="text-2xl sm:text-3xl font-black leading-snug text-neobrutalism-sky">
+                  &ldquo;Studios trust you with their crown jewels. Send them back on-brand, accessible, and
+                  impossible to scroll past.&rdquo;
+                </blockquote>
+                <figcaption className="mt-4 text-white font-bold">Creative direction, in one sentence</figcaption>
+              </figure>
+            </div>
+            <p className="text-lg sm:text-xl leading-relaxed font-medium">
+              The storefront is one of the most-seen design surfaces at Amazon, creative that lives or dies in
+              impressions. This system is how one team kept it on-brand in every market it touched.
+            </p>
+          </div>
+        ),
       },
     ],
   },

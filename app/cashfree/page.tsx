@@ -1,4 +1,4 @@
-import { CaseStudyTemplate, type Block } from '@/components/case-study/CaseStudyTemplate';
+import { CaseStudyTemplate, FramedImage, type Block } from '@/components/case-study/CaseStudyTemplate';
 
 export const metadata = {
   title: 'Agentic Ad Creative Engine · Cashfree | Sairam Vendra',
@@ -11,21 +11,33 @@ const IMG = (n: number, ext = 'jpg') => `/projects/cashfree/cf-${String(n).padSt
 const BLOCKS: Block[] = [
   { type: 'heading', text: 'The product', kicker: 'What it is' },
   {
-    type: 'text',
-    body: [
-      'Jade is an agentic creative engine built around the Cashfree brand system. Give it a brief (product, channel, audience, campaign goal, an optional trend hook) and it returns finished, on-brand ad creatives, not moodboards.',
-      'Brand guardrails are enforced in the pipeline itself: locked palette, logo rules, type system, tone. The engine can push hard on the idea because it cannot drift on the brand.',
-    ],
-  },
-  {
-    type: 'twoCol',
-    title: 'One brief in',
-    body: 'The brief panel reads like a media plan, not a prompt box: product, channel, audience, campaign goal, plus live trend hooks pulled from what is currently moving.',
-    image: {
-      src: IMG(2),
-      alt: 'Jade brief panel with product, channel, audience, campaign goal and brand guardrails',
-      caption: 'The brief panel, with brand guardrails pinned to every generation.',
-    },
+    type: 'custom',
+    node: (
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div className="space-y-5">
+          <p className="text-lg sm:text-xl leading-relaxed font-medium">
+            Jade is an agentic creative engine built around the Cashfree brand system. Give it a brief (product,
+            channel, audience, campaign goal, an optional trend hook) and it returns finished, on-brand ad
+            creatives, not moodboards.
+          </p>
+          <p className="text-lg sm:text-xl leading-relaxed font-medium">
+            Brand guardrails are enforced in the pipeline itself: locked palette, logo rules, type system, tone.
+            The engine can push hard on the idea because it cannot drift on the brand.
+          </p>
+          <h3 className="text-2xl sm:text-3xl font-black pt-2">One brief in</h3>
+          <p className="text-lg sm:text-xl leading-relaxed font-medium">
+            The brief panel reads like a media plan, not a prompt box: product, channel, audience, campaign
+            goal, plus live trend hooks pulled from what is currently moving.
+          </p>
+        </div>
+        <FramedImage
+          src={IMG(2)}
+          accent="purple"
+          alt="Jade brief panel with product, channel, audience, campaign goal and brand guardrails"
+          caption="The brief panel, with brand guardrails pinned to every generation."
+        />
+      </div>
+    ),
   },
   {
     type: 'image',
@@ -40,14 +52,30 @@ const BLOCKS: Block[] = [
     blocks: [
       { type: 'heading', text: 'How it works', kicker: 'The loop' },
       {
-        type: 'list',
-        title: 'Four verbs, one loop',
-        items: [
-          'Writes: headlines, hooks, and copy variants tuned to the audience and the channel.',
-          'Renders: full layouts in the brand system, with palette, logo, type, and real product UI.',
-          'Judges: an AI creative director scores each variant against the brief and the brand before a human ever sees it.',
-          'Refines: feedback, human or judged, loops back into the next generation instead of dying in a comment thread.',
-        ],
+        type: 'custom',
+        node: (
+          <div>
+            <p className="text-xl sm:text-2xl font-medium mb-8">Four verbs, one loop.</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
+              {[
+                { verb: 'Writes', body: 'Headlines, hooks, and copy variants tuned to the audience and the channel.' },
+                { verb: 'Renders', body: 'Full layouts in the brand system, with palette, logo, type, and real product UI.' },
+                { verb: 'Judges', body: 'An AI creative director scores each variant against the brief and the brand before a human ever sees it.' },
+                { verb: 'Refines', body: 'Feedback, human or judged, loops back into the next generation instead of dying in a comment thread.' },
+              ].map((v, i) => (
+                <div
+                  key={v.verb}
+                  className={`p-6 bg-neobrutalism-white border-3 border-neobrutalism-black shadow-neobrutalism-md ${i % 2 === 0 ? 'rotate-[0.5deg]' : '-rotate-[0.5deg]'} hover:rotate-0 transition-transform duration-200`}
+                >
+                  <span className="inline-block px-3 py-1 bg-neobrutalism-purple border-3 border-neobrutalism-black shadow-neobrutalism-sm font-black uppercase tracking-widest text-sm">
+                    {v.verb}
+                  </span>
+                  <p className="mt-4 font-medium leading-relaxed">{v.body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        ),
       },
     ],
   },
@@ -56,14 +84,23 @@ const BLOCKS: Block[] = [
 
   { type: 'heading', text: 'The output', kicker: 'Three campaign systems, four formats' },
   {
-    type: 'twoCol',
-    title: 'Every save counts',
-    body: 'Settlements and reconciliation, told through a goalkeeper who never drops a payment. One prompt system, rendered across story, feed, and banner formats.',
-    image: {
-      src: IMG(10),
-      alt: 'Goalkeeper catching a gold coin beside a settled-payments panel',
-    },
-    flip: true,
+    type: 'custom',
+    node: (
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div>
+          <h3 className="text-2xl sm:text-3xl font-black mb-4">Every save counts</h3>
+          <p className="text-lg sm:text-xl leading-relaxed font-medium">
+            Settlements and reconciliation, told through a goalkeeper who never drops a payment. One prompt
+            system, rendered across story, feed, and banner formats.
+          </p>
+        </div>
+        <FramedImage
+          src={IMG(10)}
+          accent="purple"
+          alt="Goalkeeper catching a gold coin beside a settled-payments panel"
+        />
+      </div>
+    ),
   },
   {
     type: 'gallery',
@@ -96,9 +133,16 @@ const BLOCKS: Block[] = [
     bg: 'yellow',
     blocks: [
       {
-        type: 'text',
-        title: 'बस बनाओ (just build)',
-        body: 'Payment links for first-time sellers, drawn in Indian folk-art style. Same brief, two art directions (vibrant and paper-muted), because the engine argues in variants, not opinions.',
+        type: 'custom',
+        node: (
+          <div className="max-w-5xl">
+            <h3 className="text-2xl sm:text-3xl font-black mb-4">बस बनाओ (just build)</h3>
+            <p className="text-xl sm:text-2xl leading-relaxed font-medium">
+              Payment links for first-time sellers, drawn in Indian folk-art style. Same brief, two art
+              directions (vibrant and paper-muted), because the engine argues in variants, not opinions.
+            </p>
+          </div>
+        ),
       },
       {
         type: 'gallery',
@@ -120,9 +164,16 @@ const BLOCKS: Block[] = [
   },
 
   {
-    type: 'text',
-    title: 'Product, stated plainly',
-    body: 'Stat-led product ads pulled straight from real surfaces (payout cards, payment links, UPI volume), rendered as clean feed squares.',
+    type: 'custom',
+    node: (
+      <div className="max-w-5xl">
+        <h3 className="text-2xl sm:text-3xl font-black mb-4">Product, stated plainly</h3>
+        <p className="text-xl sm:text-2xl leading-relaxed font-medium">
+          Stat-led product ads pulled straight from real surfaces (payout cards, payment links, UPI volume),
+          rendered as clean feed squares.
+        </p>
+      </div>
+    ),
   },
   {
     type: 'gallery',
@@ -143,9 +194,16 @@ const BLOCKS: Block[] = [
     bg: 'mint',
     blocks: [
       {
-        type: 'text',
-        title: 'In motion',
-        body: 'The engine renders motion too: eight video creatives in story format, spanning all three campaign systems.',
+        type: 'custom',
+        node: (
+          <div className="max-w-5xl">
+            <h3 className="text-2xl sm:text-3xl font-black mb-4">In motion</h3>
+            <p className="text-xl sm:text-2xl leading-relaxed font-medium">
+              The engine renders motion too: eight video creatives in story format, spanning all three campaign
+              systems.
+            </p>
+          </div>
+        ),
       },
       {
         type: 'gallery',
@@ -174,13 +232,27 @@ const BLOCKS: Block[] = [
         ],
       },
       {
-        type: 'quote',
-        text: 'Designed, engineered, and shipped solo.',
-        attribution: 'Project thesis',
-      },
-      {
-        type: 'text',
-        body: 'The point was never one good ad. It is a system that produces campaign-consistent creatives on demand: taste encoded in the judge, brand encoded in the pipeline.',
+        type: 'custom',
+        node: (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            <div className="relative">
+              <div
+                aria-hidden="true"
+                className="absolute -top-4 -right-4 w-14 h-14 bg-neobrutalism-white border-3 border-neobrutalism-black rotate-12"
+              />
+              <figure className="relative p-8 sm:p-10 bg-neobrutalism-black border-5 border-neobrutalism-black shadow-neobrutalism-xl -rotate-1">
+                <blockquote className="text-2xl sm:text-3xl font-black leading-snug text-neobrutalism-purple">
+                  &ldquo;Designed, engineered, and shipped solo.&rdquo;
+                </blockquote>
+                <figcaption className="mt-4 text-white font-bold">Project thesis</figcaption>
+              </figure>
+            </div>
+            <p className="text-lg sm:text-xl leading-relaxed font-medium">
+              The point was never one good ad. It is a system that produces campaign-consistent creatives on
+              demand: taste encoded in the judge, brand encoded in the pipeline.
+            </p>
+          </div>
+        ),
       },
     ],
   },

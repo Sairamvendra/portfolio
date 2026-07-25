@@ -1,4 +1,4 @@
-import { CaseStudyTemplate, type Block } from '@/components/case-study/CaseStudyTemplate';
+import { CaseStudyTemplate, FramedImage, type Block } from '@/components/case-study/CaseStudyTemplate';
 
 export const metadata = {
   title: 'Imaging Associate · Amazon | Sairam Vendra',
@@ -12,17 +12,33 @@ const IMG = (n: number) => `/projects/amazon/az-${String(n).padStart(2, '0')}.jp
 const BLOCKS: Block[] = [
   { type: 'heading', text: 'The work', kicker: 'What it is' },
   {
-    type: 'text',
-    body: [
-      'Amazon lists a product family once per colorway, but shoots it once, full stop. Catalog imaging turns a single studio sample into every variant the listing needs, each one true to the Amazon style guide: same frame, same crop, same light, colors accurate enough to survive a return policy.',
-      'The craft is invisible when done right. Nobody browsing the catalog should be able to tell which colorway stood in front of the camera and which ones were built in Photoshop.',
-    ],
+    type: 'custom',
+    node: (
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+        <p className="text-lg sm:text-xl leading-relaxed font-medium">
+          Amazon lists a product family once per colorway, but shoots it once, full stop. Catalog imaging turns
+          a single studio sample into every variant the listing needs, each one true to the Amazon style guide:
+          same frame, same crop, same light, colors accurate enough to survive a return policy.
+        </p>
+        <p className="text-lg sm:text-xl leading-relaxed font-medium">
+          The craft is invisible when done right. Nobody browsing the catalog should be able to tell which
+          colorway stood in front of the camera and which ones were built in Photoshop.
+        </p>
+      </div>
+    ),
   },
 
   {
-    type: 'text',
-    title: 'One shirt, two colorways',
-    body: 'The orange top is the studio frame. The navy one never existed on set: same model, same pose, the pattern rebuilt dot by dot in a new palette.',
+    type: 'custom',
+    node: (
+      <div className="max-w-5xl">
+        <h3 className="text-2xl sm:text-3xl font-black mb-4">One shirt, two colorways</h3>
+        <p className="text-xl sm:text-2xl leading-relaxed font-medium">
+          The orange top is the studio frame. The navy one never existed on set: same model, same pose, the
+          pattern rebuilt dot by dot in a new palette.
+        </p>
+      </div>
+    ),
   },
   {
     type: 'gallery',
@@ -39,15 +55,26 @@ const BLOCKS: Block[] = [
     bg: 'sky',
     blocks: [
       {
-        type: 'twoCol',
-        title: 'One shoot, six listings',
-        body: 'Maternity pants, shot front and back in one colorway. Those two frames are the entire photography budget for the product family. Every other colorway on the listing is a manipulation.',
-        image: {
-          src: IMG(4),
-          sticker: 'Studio',
-          alt: 'Studio shots: front and back views of blue maternity pants',
-          caption: 'The studio pair: front and back, one colorway.',
-        },
+        type: 'custom',
+        node: (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            <div>
+              <h3 className="text-2xl sm:text-3xl font-black mb-4">One shoot, six listings</h3>
+              <p className="text-lg sm:text-xl leading-relaxed font-medium">
+                Maternity pants, shot front and back in one colorway. Those two frames are the entire
+                photography budget for the product family. Every other colorway on the listing is a
+                manipulation.
+              </p>
+            </div>
+            <FramedImage
+              src={IMG(4)}
+              accent="orange"
+              sticker="Studio"
+              alt="Studio shots: front and back views of blue maternity pants"
+              caption="The studio pair: front and back, one colorway."
+            />
+          </div>
+        ),
       },
       {
         type: 'gallery',
