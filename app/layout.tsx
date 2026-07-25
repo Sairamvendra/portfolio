@@ -44,6 +44,9 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  verification: {
+    google: '4NWAihtO0yHvKnzPQPO_iu4o9SQS1-F61_3faxAnMdo',
+  },
 };
 
 const personJsonLd = {
