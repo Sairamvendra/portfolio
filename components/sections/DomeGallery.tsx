@@ -43,7 +43,7 @@ const PROJECT_ITEMS = [
   },
   {
     image: '/projects/trippo.jpg',
-    link: 'https://www.behance.net/gallery/106819621/Trippo-Travel-planner-app-Design-UIUX',
+    link: '/trippo',
     title: 'Trippo app design',
     description: 'Product design, Mobile app design',
   },
