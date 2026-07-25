@@ -1,12 +1,10 @@
 import type { ReactNode } from 'react';
 import { CaseStudyTemplate, type Block } from '@/components/case-study/CaseStudyTemplate';
 
-// ponytail: dev-testing page, not linked from prod nav, noindex until approved
 export const metadata = {
   title: 'Nuke Storybook | Sairam Vendra',
   description:
     'An AI pre-production suite that turns a screenplay into a shot-by-shot cinematic storyboard, with consistent characters, scouted locations, and real camera language, in minutes instead of weeks.',
-  robots: { index: false, follow: false },
 };
 
 const IMG = (name: string) => `/projects/nuke/${name}.jpg`;

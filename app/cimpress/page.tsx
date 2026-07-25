@@ -1,11 +1,9 @@
 import { CaseStudyTemplate, FramedImage, type Block } from '@/components/case-study/CaseStudyTemplate';
 
-// ponytail: dev-testing page, not linked from prod nav, noindex until approved
 export const metadata = {
   title: 'Cimpress Vistaprint | Sairam Vendra',
   description:
     'Art direction and custom design for Vistaprint clients worldwide: identity systems carried across print, objects, and digital.',
-  robots: { index: false, follow: false },
 };
 
 const IMG = (n: number) => `/projects/cimpress/ci-${String(n).padStart(2, '0')}.jpg`;

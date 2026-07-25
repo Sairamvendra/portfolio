@@ -1,11 +1,9 @@
 import { CaseStudyTemplate, type Block } from '@/components/case-study/CaseStudyTemplate';
 
-// ponytail: dev-testing page, not linked from prod nav, noindex until approved
 export const metadata = {
   title: 'Imaging Associate · Amazon | Sairam Vendra',
   description:
     'Catalog imaging at Amazon: studio photography retouched and recolored into every listing variant in Photoshop.',
-  robots: { index: false, follow: false },
 };
 
 // ?v=2 busts browser caches from the pre-crop versions of these files

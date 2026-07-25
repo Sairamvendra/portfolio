@@ -1,11 +1,9 @@
 import { CaseStudyTemplate, type Block } from '@/components/case-study/CaseStudyTemplate';
 
-// ponytail: dev-testing page, not linked from prod nav, noindex until approved
 export const metadata = {
   title: 'Agentic Ad Creative Engine · Cashfree | Sairam Vendra',
   description:
     'An agentic AI tool that writes, renders, judges, and refines on-brand marketing creatives for Cashfree Payments.',
-  robots: { index: false, follow: false },
 };
 
 const IMG = (n: number, ext = 'jpg') => `/projects/cashfree/cf-${String(n).padStart(2, '0')}.${ext}`;

@@ -1,11 +1,9 @@
 import { CaseStudyTemplate, type Block } from '@/components/case-study/CaseStudyTemplate';
 
-// ponytail: dev-testing page, not linked from prod nav, noindex until approved
 export const metadata = {
   title: 'Prime Video · Amazon | Sairam Vendra',
   description:
     'Creative leadership for the Prime Video storefront: studio key art turned into on-brand, accessible campaign creative across regions and surfaces.',
-  robots: { index: false, follow: false },
 };
 
 const ART = (n: number) => `/projects/primevideo/art-${String(n).padStart(2, '0')}.jpg`;
