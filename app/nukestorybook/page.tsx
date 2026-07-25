@@ -163,8 +163,13 @@ const BLOCKS: Block[] = [
 
   { type: 'heading', text: 'What it is', kicker: 'Three modules, one spine of data' },
   {
-    type: 'text',
-    body: 'Nuke Storybook is built as a triptych. Write the screenplay, generate the visual breakdown, hold the whole film in your hands before a single frame is shot.',
+    type: 'custom',
+    node: (
+      <p className="text-xl sm:text-2xl leading-relaxed font-medium max-w-5xl">
+        Nuke Storybook is built as a triptych. Write the screenplay, generate the visual breakdown, hold the
+        whole film in your hands before a single frame is shot.
+      </p>
+    ),
   },
   {
     type: 'custom',
@@ -195,12 +200,34 @@ const BLOCKS: Block[] = [
     blocks: [
       { type: 'heading', text: 'The problem', kicker: 'What pre-production actually costs' },
       {
-        type: 'text',
-        body: [
-          'Storyboarding sits in a budget line most people outside the industry never see, and it is not cheap. A mid-level storyboard artist runs $150–350 a day, a senior artist $450–700. Professional frames cost $40–100 each. Full-service previsualization runs $5,000–50,000 over two to six weeks.',
-          'In India, the market this tool was built in, storyboarding and concept development on a regional feature runs ₹2,00,000 to ₹20,00,000. That is 4% of the entire budget of a ₹50 lakh film, spent before a camera turns over.',
-          'The software does not help. Final Draft is $199 one-time, Celtx and StudioBinder are monthly subscriptions, and none of them draw anything. They format text and organise production paperwork. The visual breakdown is still a separate human being with a separate invoice.',
-        ],
+        type: 'custom',
+        node: (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+            <div className="space-y-5">
+              <p className="text-lg sm:text-xl leading-relaxed font-medium">
+                Storyboarding sits in a budget line most people outside the industry never see, and it is not
+                cheap. In India, the market this tool was built in, storyboarding and concept development on a
+                regional feature runs ₹2,00,000 to ₹20,00,000. That is 4% of the entire budget of a ₹50 lakh
+                film, spent before a camera turns over.
+              </p>
+              <p className="text-lg sm:text-xl leading-relaxed font-medium">
+                The software does not help. Final Draft is $199 one-time, Celtx and StudioBinder are monthly
+                subscriptions, and none of them draw anything. They format text and organise production
+                paperwork. The visual breakdown is still a separate human being with a separate invoice.
+              </p>
+            </div>
+            <DataTable
+              head={['What storyboarding costs', '']}
+              rows={[
+                ['Mid-level artist', '$150–350 / day'],
+                ['Senior artist', '$450–700 / day'],
+                ['Professional frames', '$40–100 / frame'],
+                ['Full-service previz', '$5,000–50,000 · 2–6 weeks'],
+                ['India: boards + concept dev', '₹2,00,000 – ₹20,00,000'],
+              ]}
+            />
+          </div>
+        ),
       },
       {
         type: 'custom',
@@ -226,12 +253,13 @@ const BLOCKS: Block[] = [
       {
         type: 'custom',
         node: (
-          <div className="max-w-4xl">
+          <div>
             <h3 className="text-2xl sm:text-3xl font-black mb-2">The measured cost of that friction</h3>
             <p className="font-medium mb-6 max-w-3xl">
               NASA-TLX workload scores from the CineVision evaluation: 24 participants, 7-point scale, lower is
               better. An interactive previz system against two baseline methods.
             </p>
+            <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-6 items-start">
             <div className="border-3 border-neobrutalism-black shadow-neobrutalism-md bg-neobrutalism-white p-6 space-y-5">
               {TLX.map((row) => (
                 <div key={row.label}>
@@ -257,12 +285,18 @@ const BLOCKS: Block[] = [
                 ))}
               </div>
             </div>
-            <p className="mt-4 text-sm font-bold max-w-3xl">
-              Sourced research, not first-party: CineVision (ACM UIST 2025, arXiv:2507.20355), a peer-reviewed
-              previsualization study built on interviews with senior industry professionals and a 24-participant
-              evaluation. Its four identified challenges, C1–C4 above, map almost exactly onto what this tool was
-              built to solve.
-            </p>
+            <div className="p-6 bg-neobrutalism-black border-3 border-neobrutalism-black shadow-neobrutalism-md">
+              <p className="text-xs font-black uppercase tracking-widest text-neobrutalism-mint mb-3">
+                A note on sourcing
+              </p>
+              <p className="text-sm font-bold text-white leading-relaxed">
+                Sourced research, not first-party: CineVision (ACM UIST 2025, arXiv:2507.20355), a peer-reviewed
+                previsualization study built on interviews with senior industry professionals and a
+                24-participant evaluation. Its four identified challenges, C1–C4 above, map almost exactly onto
+                what this tool was built to solve.
+              </p>
+            </div>
+            </div>
           </div>
         ),
       },
@@ -271,33 +305,41 @@ const BLOCKS: Block[] = [
 
   { type: 'heading', text: 'The economics', kicker: 'A real project, auditable numbers' },
   {
-    type: 'text',
-    body: [
-      'Everything below is computed from a real project in the live database, so the numbers are auditable rather than illustrative.',
-      'THE DIVINE CLASH, a mythological action short: 18 shots across 6 scenes, 3 characters with front + 3/4 turnaround reference sheets, 2 scouted environments, 3 min 30 s estimated runtime. Total image generations required: 18 shot frames + 3 character sheets + 2 environment plates = 23 images.',
-    ],
-  },
-  {
     type: 'custom',
     node: (
-      <div className="max-w-4xl">
-        <h3 className="text-2xl sm:text-3xl font-black mb-4">What it cost to make</h3>
-        <DataTable
-          head={['Model tier', 'Rate / image', '23 images']}
-          rows={[
-            ['Flash · 1K', '~$0.039', '$0.90'],
-            ['SeedDream 5 Lite · fal.ai', '~$0.04', '$0.92'],
-            ['Pro2F · 2K', '~$0.10', '$2.30'],
-            ['Pro · 4K', '~$0.24', '$5.52'],
-          ]}
-        />
-        <p className="mt-4 text-lg sm:text-xl font-medium leading-relaxed">
-          Text inference for the breakdown, character, environment, and costume extraction runs under $0.05 for the
-          whole project. Total marginal cost for a complete 18-shot board with cast and location references:{' '}
-          <strong className="font-black">$0.95 at draft quality, $5.60 at 4K delivery quality.</strong> The same board
-          traditionally: 23 plates at professional per-frame rates is $920–$2,300, or two to four days of a senior
-          artist at $450–700 a day.
-        </p>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+        <div className="space-y-5">
+          <p className="text-lg sm:text-xl leading-relaxed font-medium">
+            Everything below is computed from a real project in the live database, so the numbers are auditable
+            rather than illustrative.
+          </p>
+          <p className="text-lg sm:text-xl leading-relaxed font-medium">
+            THE DIVINE CLASH, a mythological action short: 18 shots across 6 scenes, 3 characters with front +
+            3/4 turnaround reference sheets, 2 scouted environments, 3 min 30 s estimated runtime. Total image
+            generations required: 18 shot frames + 3 character sheets + 2 environment plates = 23 images.
+          </p>
+          <p className="text-lg sm:text-xl leading-relaxed font-medium">
+            Text inference for the breakdown, character, environment, and costume extraction runs under $0.05
+            for the whole project. The same board traditionally: 23 plates at professional per-frame rates is
+            $920–$2,300, or two to four days of a senior artist at $450–700 a day.
+          </p>
+        </div>
+        <div>
+          <h3 className="text-2xl sm:text-3xl font-black mb-4">What it cost to make</h3>
+          <DataTable
+            head={['Model tier', 'Rate / image', '23 images']}
+            rows={[
+              ['Flash · 1K', '~$0.039', '$0.90'],
+              ['SeedDream 5 Lite · fal.ai', '~$0.04', '$0.92'],
+              ['Pro2F · 2K', '~$0.10', '$2.30'],
+              ['Pro · 4K', '~$0.24', '$5.52'],
+            ]}
+          />
+          <p className="mt-4 font-bold leading-relaxed">
+            Total marginal cost for a complete 18-shot board with cast and location references:{' '}
+            <strong className="font-black">$0.95 at draft quality, $5.60 at 4K delivery quality.</strong>
+          </p>
+        </div>
       </div>
     ),
   },
@@ -441,34 +483,69 @@ const BLOCKS: Block[] = [
     ],
   },
   {
-    type: 'quote',
-    text: 'Any image model can draw a forest. The difficulty is drawing the same forest eighteen times, with the same people in it, while the camera moves and the light changes.',
-    attribution: 'Why consistency is the whole problem',
-  },
-  {
-    type: 'text',
-    body: 'Nuke Storybook solves it by generating locked reference plates first and re-injecting them, as images and as prompt tokens, into every downstream frame. The prompt composer guarantees the model cannot lose track of who it is drawing.',
+    type: 'custom',
+    node: (
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div className="relative">
+          <div
+            aria-hidden="true"
+            className="absolute -top-4 -right-4 w-14 h-14 bg-neobrutalism-mint border-3 border-neobrutalism-black rotate-12"
+          />
+          <figure className="relative p-8 sm:p-10 bg-neobrutalism-black border-5 border-neobrutalism-black shadow-neobrutalism-xl -rotate-1">
+            <blockquote className="text-2xl sm:text-3xl font-black leading-snug text-neobrutalism-mint">
+              &ldquo;Any image model can draw a forest. The difficulty is drawing the same forest eighteen times,
+              with the same people in it, while the camera moves and the light changes.&rdquo;
+            </blockquote>
+            <figcaption className="mt-4 text-white font-bold">Why consistency is the whole problem</figcaption>
+          </figure>
+        </div>
+        <p className="text-lg sm:text-xl leading-relaxed font-medium">
+          Nuke Storybook solves it by generating locked reference plates first and re-injecting them, as images
+          and as prompt tokens, into every downstream frame. The prompt composer guarantees the model cannot
+          lose track of who it is drawing.
+        </p>
+      </div>
+    ),
   },
 
   { type: 'heading', text: 'The hard problems', kicker: 'Engineering' },
   {
-    type: 'text',
-    body: 'A React 19 SPA on Vercel Edge Functions, Supabase for Postgres, Storage, Auth, and Realtime, and two model providers: Google Gemini and fal.ai. The interesting parts are where those seams meet.',
+    type: 'custom',
+    node: (
+      <p className="text-xl sm:text-2xl leading-relaxed font-medium max-w-5xl">
+        A React 19 SPA on Vercel Edge Functions, Supabase for Postgres, Storage, Auth, and Realtime, and two
+        model providers: Google Gemini and fal.ai. The interesting parts are where those seams meet.
+      </p>
+    ),
   },
   {
-    type: 'text',
-    title: 'A 25-second timeout vs. 4K image generation',
-    body: 'Pro-tier 4K generation exceeds Vercel’s Edge Function wall clock. The naive result is a 504 and a silent downgrade: the user asks for 4K and quietly gets 1K. The fix is a queue that spans two clouds. The Edge Function writes a row to a queue table, a Postgres trigger fires a Supabase Edge Function that calls Gemini with no Vercel timeout in the path, and Supabase Realtime pushes the completion back to the client. Callers never learn the operation was asynchronous. Flash stays on the direct synchronous path where it comfortably fits.',
-  },
-  {
-    type: 'text',
-    title: 'Atomic saves across six tables',
-    body: 'A project is rows across six tables, and saving is delete-and-reinsert, which hands characters fresh UUIDs on every save and breaks every foreign key pointing at them. The solution is a Postgres RPC that wraps the whole save in one transaction and builds a name-to-UUID map server-side: the client sends character names, never IDs. A client-side mutex queues concurrent saves, and the latest state wins.',
-  },
-  {
-    type: 'text',
-    title: 'Security as a design constraint',
-    body: 'Nine AI system prompts, all server-side. Origin validation and CORS whitelisting on every proxy. Stateless rate limiting via HMAC-SHA256 signed cookies. An SSRF guard on the fal proxy. Row-level security on every table. And a Google Cloud referrer restriction so a stolen API key is inert.',
+    type: 'custom',
+    node: (
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+        {[
+          {
+            title: 'A 25-second timeout vs. 4K image generation',
+            body: 'Pro-tier 4K generation exceeds Vercel’s Edge Function wall clock. The naive result is a 504 and a silent downgrade: the user asks for 4K and quietly gets 1K. The fix is a queue that spans two clouds. The Edge Function writes a row to a queue table, a Postgres trigger fires a Supabase Edge Function that calls Gemini with no Vercel timeout in the path, and Supabase Realtime pushes the completion back to the client. Callers never learn the operation was asynchronous. Flash stays on the direct synchronous path where it comfortably fits.',
+          },
+          {
+            title: 'Atomic saves across six tables',
+            body: 'A project is rows across six tables, and saving is delete-and-reinsert, which hands characters fresh UUIDs on every save and breaks every foreign key pointing at them. The solution is a Postgres RPC that wraps the whole save in one transaction and builds a name-to-UUID map server-side: the client sends character names, never IDs. A client-side mutex queues concurrent saves, and the latest state wins.',
+          },
+          {
+            title: 'Security as a design constraint',
+            body: 'Nine AI system prompts, all server-side. Origin validation and CORS whitelisting on every proxy. Stateless rate limiting via HMAC-SHA256 signed cookies. An SSRF guard on the fal proxy. Row-level security on every table. And a Google Cloud referrer restriction so a stolen API key is inert.',
+          },
+        ].map((p, i) => (
+          <div
+            key={p.title}
+            className={`p-6 bg-neobrutalism-white border-3 border-neobrutalism-black shadow-neobrutalism-md ${i % 2 === 0 ? 'rotate-[0.5deg]' : '-rotate-[0.5deg]'} hover:rotate-0 transition-transform duration-200`}
+          >
+            <h3 className="text-xl font-black leading-tight">{p.title}</h3>
+            <p className="mt-3 font-medium leading-relaxed">{p.body}</p>
+          </div>
+        ))}
+      </div>
+    ),
   },
   {
     type: 'stats',
@@ -486,28 +563,36 @@ const BLOCKS: Block[] = [
     blocks: [
       { type: 'heading', text: 'The Write module', kicker: 'A full application, not a text box' },
       {
-        type: 'text',
+        type: 'twoCol',
         body: [
           'A TipTap/ProseMirror editor with a custom screenplay schema, industry-standard element cycling on Ctrl+1–7, autocomplete on character names, and a live page count and runtime estimate in the status bar. Version history with the nine-colour WGA revision cycle and a side-by-side diff view. Eleven production breakdown categories as editor marks, with an AI auto-tagger you review as checkboxes and apply in a single transaction.',
           'Analytics that read the script back to you: dialogue distribution per character, scene pacing, estimated runtime, and a built-in Bechdel test.',
           'AI assistance throughout: scene generation from a beat or logline, dialogue polish, a script-aware chat, a four-pass reformat pipeline that takes an unformatted document and returns industry-standard screenplay format, translation, and continuity checking with severity filters and scene jump links.',
         ],
+        image: {
+          src: IMG('14-script-editor'),
+          sticker: 'Fountain editor',
+          alt: 'Script editor with scene navigator and character panel',
+        },
       },
       {
-        type: 'text',
+        type: 'twoCol',
         title: 'Type namaskaram, get నమస్కారం',
         body: 'Latin keystrokes buffer, flush on space or punctuation, and resolve through a rate-limited transliteration proxy, with a candidate popup offering five alternatives selectable by number key. Telugu, Hindi, Tamil, and Malayalam. Every competitor in this category is built for English-language screenwriters. Indic input is not a feature bolted on: it is the difference between a tool a Telugu screenwriter can use and one they cannot.',
+        image: {
+          src: IMG('18-transliteration-languages'),
+          sticker: '4 languages',
+          alt: 'Indic transliteration language selector: Telugu, Hindi, Tamil, Malayalam',
+        },
       },
       {
         type: 'gallery',
         aspect: 'natural',
         cols: 2,
         images: [
-          { src: IMG('14-script-editor'), sticker: 'Fountain editor', alt: 'Script editor with scene navigator and character panel' },
-          { src: IMG('15-script-ai-panel'), alt: 'AI assistant sidebar in the script editor' },
+          { src: IMG('15-script-ai-panel'), sticker: 'Script-aware AI', alt: 'AI assistant sidebar in the script editor' },
           { src: IMG('16-analytics-characters'), alt: 'Dialogue distribution analytics per character' },
           { src: IMG('17-analytics-structure'), sticker: 'Bechdel test built in', alt: 'Script structure analytics including a built-in Bechdel test' },
-          { src: IMG('18-transliteration-languages'), sticker: '4 languages', alt: 'Indic transliteration language selector: Telugu, Hindi, Tamil, Malayalam' },
           { src: IMG('13-script-gallery'), alt: 'Script gallery with saved screenplay drafts' },
         ],
       },
@@ -531,16 +616,42 @@ const BLOCKS: Block[] = [
     ),
   },
   {
-    type: 'text',
-    body: [
-      'The project was built spec-first. Every significant feature has a design document and an implementation plan committed to the repo before the code: 26 planning documents covering the scriptwriting module phases, the costume system, FDX export, script translation, the adaptive PDF importer, the webhook orchestration layer, and the prompt-injection hardening pass. The Write module shipped as three explicitly-scoped phases, each planned, then executed, then verified against the plan.',
-      'The story here is not "I prompted an AI and got an app." It is a solo developer running a disciplined spec-driven process at high velocity, with an explicit production-safety boundary, and the artifacts are in the repo to prove it.',
-    ],
-  },
-  {
-    type: 'quote',
-    text: 'The Storyboard module is production. Never modify its internals. Scriptwriting is additive only.',
-    attribution: 'The one architectural rule, written into project memory. It is why a 3,000-line production component survived a five-month feature expansion without a rewrite.',
+    type: 'custom',
+    node: (
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div className="space-y-5">
+          <p className="text-lg sm:text-xl leading-relaxed font-medium">
+            The project was built spec-first. Every significant feature has a design document and an
+            implementation plan committed to the repo before the code: 26 planning documents covering the
+            scriptwriting module phases, the costume system, FDX export, script translation, the adaptive PDF
+            importer, the webhook orchestration layer, and the prompt-injection hardening pass. The Write module
+            shipped as three explicitly-scoped phases, each planned, then executed, then verified against the
+            plan.
+          </p>
+          <p className="text-lg sm:text-xl leading-relaxed font-medium">
+            The story here is not &ldquo;I prompted an AI and got an app.&rdquo; It is a solo developer running a
+            disciplined spec-driven process at high velocity, with an explicit production-safety boundary, and
+            the artifacts are in the repo to prove it.
+          </p>
+        </div>
+        <div className="relative">
+          <div
+            aria-hidden="true"
+            className="absolute -top-4 -right-4 w-14 h-14 bg-neobrutalism-mint border-3 border-neobrutalism-black rotate-12"
+          />
+          <figure className="relative p-8 sm:p-10 bg-neobrutalism-black border-5 border-neobrutalism-black shadow-neobrutalism-xl -rotate-1">
+            <blockquote className="text-2xl sm:text-3xl font-black leading-snug text-neobrutalism-mint">
+              &ldquo;The Storyboard module is production. Never modify its internals. Scriptwriting is additive
+              only.&rdquo;
+            </blockquote>
+            <figcaption className="mt-4 text-white font-bold text-sm">
+              The one architectural rule, written into project memory. It is why a 3,000-line production
+              component survived a five-month feature expansion without a rewrite.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    ),
   },
   {
     type: 'twoCol',
@@ -593,11 +704,23 @@ const BLOCKS: Block[] = [
     blocks: [
       { type: 'heading', text: 'One person, five months, a pre-production department', kicker: 'Closing' },
       {
-        type: 'text',
-        body: [
-          'Nuke Storybook started as a question about whether a director could see their film before shooting it, without spending two weeks and two lakh rupees finding out. The answer turned out to be yes. And the interesting part was never the image generation. It was the plumbing: keeping a character’s face stable across eighteen frames, routing a 4K request around a serverless timeout, making a Telugu screenwriter’s keyboard work, and holding a 3,000-line production module still while building a second application beside it.',
-          'Two modules are live. The third is designed. The frames above were generated by the tool, from a script written in the tool, in about the time it takes to read this page.',
-        ],
+        type: 'custom',
+        node: (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+            <p className="text-lg sm:text-xl leading-relaxed font-medium">
+              Nuke Storybook started as a question about whether a director could see their film before shooting
+              it, without spending two weeks and two lakh rupees finding out. The answer turned out to be yes.
+              And the interesting part was never the image generation. It was the plumbing: keeping a
+              character&rsquo;s face stable across eighteen frames, routing a 4K request around a serverless
+              timeout, making a Telugu screenwriter&rsquo;s keyboard work, and holding a 3,000-line production
+              module still while building a second application beside it.
+            </p>
+            <p className="text-lg sm:text-xl leading-relaxed font-bold">
+              Two modules are live. The third is designed. The frames above were generated by the tool, from a
+              script written in the tool, in about the time it takes to read this page.
+            </p>
+          </div>
+        ),
       },
       {
         type: 'stats',
