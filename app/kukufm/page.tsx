@@ -10,7 +10,7 @@ export const metadata = {
 const IMG = (name: string) => `/projects/kukufm/${name}`;
 
 const DRIVE = 'https://drive.google.com/drive/folders/11wSLFydyzVOu7jozFvYH-rfI_cMeWmlB';
-const SHOWREEL = 'https://drive.google.com/file/d/1VIrNS6vLkngvOCXltjO8lQ9I8K-t0BgQ/view';
+const SHOWREEL = 'https://www.youtube.com/watch?v=wuv-b1FWMhY';
 const MINT = 'https://drive.google.com/file/d/1XNPfhtgMvZq78ZmLuEsNjuw0SnK6wieM/view';
 
 // The thumbnail engine, stage by stage (from the pipeline deck)
@@ -51,6 +51,34 @@ const BLOCKS: Block[] = [
           moved first, then the machines we built, thumbnails, micro dramas, an ad engine, comics and
           promos, all the way to the front page of Mint.
         </p>
+      </div>
+    ),
+  },
+
+  {
+    type: 'custom',
+    node: (
+      <div className="relative">
+        <div className="h-0">
+          <div className="relative z-10 w-fit -rotate-3 -translate-y-4 -translate-x-4 px-4 py-1.5 bg-neobrutalism-pink border-3 border-neobrutalism-black shadow-neobrutalism-sm">
+            <span className="font-black uppercase tracking-widest whitespace-nowrap text-sm">Showreel 2025</span>
+          </div>
+        </div>
+        <div
+          aria-hidden="true"
+          className="absolute -bottom-3 -right-3 w-10 h-10 bg-neobrutalism-black rotate-12"
+        />
+        <div className="relative border-5 border-neobrutalism-black shadow-neobrutalism-xl bg-neobrutalism-black">
+          <iframe
+            src="https://www.youtube.com/embed/wuv-b1FWMhY?autoplay=1&mute=1&playsinline=1&vq=hd1080"
+            title="Sairam Showreel 2025"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+            className="w-full aspect-video block border-0"
+          />
+        </div>
       </div>
     ),
   },
