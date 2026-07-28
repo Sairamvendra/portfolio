@@ -515,11 +515,11 @@ const BLOCKS: Block[] = [
               </figure>
             </div>
             <p className="text-lg sm:text-xl leading-relaxed font-medium">
-              When Mint ran its Long Story on AI in Indian audio, the section on making it actually work
-              quoted me as Kuku FM&rsquo;s head of design and AI product manager. The numbers the piece
-              reports are the pipeline above at company scale: the catalogue now 100% AI-assisted but
-              human-crafted, and monthly output up from 50,000&ndash;60,000 minutes of stories to more than
-              150,000.
+              Mint&rsquo;s Long Story looked at how India&rsquo;s audio platforms were rebuilding
+              themselves around AI, and Kuku FM&rsquo;s production line sat at the centre of the piece.
+              The numbers it reports are the pipelines on this page at company scale: a catalogue now
+              100% AI-assisted but human-crafted, and monthly output up from 50,000&ndash;60,000 minutes
+              of stories to more than 150,000.
             </p>
           </div>
         ),
