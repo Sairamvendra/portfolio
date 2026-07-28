@@ -4,7 +4,7 @@ import { ComicScroller } from '@/components/case-study/ComicScroller';
 export const metadata = {
   title: 'Kuku FM · Head of Design & AI Products | Sairam Vendra',
   description:
-    'What I built at Kuku FM: GPT-powered thumbnail engines, AI content pipelines for video, audio and comics, a 12-member design team, and the AI transformation that made the front page of Mint.',
+    'What I built at Kuku FM: GPT-powered thumbnail engines, AI content pipelines for video, audio and comics, a 20-member design team, and the AI transformation that made the front page of Mint.',
 };
 
 const IMG = (name: string) => `/projects/kukufm/${name}`;
@@ -55,20 +55,23 @@ const BLOCKS: Block[] = [
     ),
   },
 
-  { type: 'heading', text: 'The role, in numbers', kicker: 'Leadership · Team · Brand' },
+  { type: 'heading', text: 'Leading through the AI shift', kicker: 'Leadership · Operating model' },
   {
     type: 'custom',
     node: (
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
         <div className="space-y-5">
           <p className="text-lg sm:text-xl leading-relaxed font-medium">
-            I mentored a 12-member multidisciplinary design team and introduced OKRs aligned with AI
-            adoption KPIs, which grew design-led growth experiments by 30%. Co-developing AI-first feature
-            rollouts with Product, Growth and Marketing cut campaign go-to-market time by 40%.
+            The 20-member team was a deliberate mix: designers, visual artists, and Gen-AI management
+            trainees straight out of IIT. And the uncomfortable truth of this role is that the craft the
+            team was hired for was being automated in front of them, by us. Protecting the old workflow
+            was not an option, so I changed what the team was for.
           </p>
           <p className="text-lg sm:text-xl leading-relaxed font-medium">
-            Outside the building, I worked with AT Labs on their product funnel touchpoints through user
-            research and feedback, improving user flow efficiency 18% on priority landing pages.
+            The new job: hunt problems, not tickets. The team scouts problem statements across the
+            company, from growth to content to retention, then thinks like a group product manager: pick
+            one statement, design the full end-to-end solution, ship it to production, and move to the
+            next. Day-to-day production and operations never stopped running alongside.
           </p>
         </div>
         <FramedImage
@@ -78,6 +81,44 @@ const BLOCKS: Block[] = [
           alt="Kuku FM's AI transformation journey: founder's initiative, Gen AI pod, weekly townhall, all-team execution"
           caption="From founder's initiative to all-team execution: the pod that ran the transformation."
         />
+      </div>
+    ),
+  },
+  {
+    type: 'custom',
+    node: (
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div className="space-y-5">
+          <p className="text-lg sm:text-xl leading-relaxed font-medium">
+            That operating model has a shipping record: one problem statement at a time, solved end to
+            end, then on to the next. It is also what kept the team growing instead of shrinking while
+            its output multiplied.
+          </p>
+          <p className="text-lg sm:text-xl leading-relaxed font-medium">
+            OKRs aligned with AI adoption KPIs grew design-led growth experiments by 30%, and
+            co-developing AI-first rollouts with Product, Growth and Marketing cut campaign go-to-market
+            time by 40%. Outside the building, funnel work with AT Labs through user research lifted flow
+            efficiency 18% on priority landing pages.
+          </p>
+        </div>
+        <div className="space-y-6">
+          {[
+            { n: '01', title: 'Thumbnail pipeline', body: '20 assets a day became 200.' },
+            { n: '02', title: 'AI video ads', body: 'One week per ad became 4 hours.' },
+            { n: '03', title: 'Traditional ad production', body: 'Cuts now land on emotional cues and hook points, automatically.' },
+          ].map((c) => (
+            <div
+              key={c.n}
+              className="flex items-start gap-5 bg-neobrutalism-white border-3 border-neobrutalism-black shadow-neobrutalism-md p-6"
+            >
+              <span className="font-heading font-black text-3xl text-neobrutalism-pink leading-none">{c.n}</span>
+              <div>
+                <h3 className="text-xl font-black mb-1">{c.title}</h3>
+                <p className="font-medium leading-relaxed">{c.body}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     ),
   },
@@ -603,11 +644,11 @@ export default function KukuFMPage() {
       heroTicker={['Thumbnail engine', 'Micro dramas', 'Ad engine', 'GPT bots', 'AI comics', 'Motion posters', '10 languages']}
       eyebrow="Company page · Kuku FM"
       title="Kuku FM"
-      summary="Head of Design and AI Product Manager at India's audio-series giant. Led a 12-member design team across four verticals, built the GPT and image-gen pipelines that took thumbnails from 4 hours to 12 minutes, and shipped the AI transformation that Mint put on its front page."
+      summary="Head of Design and AI Product Manager at India's microdrama & audio-series giant. Led a 20-member design team across four verticals, built the GPT and image-gen pipelines that took thumbnails from 4 hours to 12 minutes, and shipped the AI transformation that Mint put on its front page."
       facts={[
         { label: 'Company', value: 'Kuku FM · Bengaluru' },
         { label: 'Role', value: 'Head of Design · AI Product Manager' },
-        { label: 'Team', value: '12-member multidisciplinary design team' },
+        { label: 'Team', value: '20-member multidisciplinary design team' },
         { label: 'Scope', value: 'Marketing · Content · App · Retention' },
       ]}
       blocks={BLOCKS}
