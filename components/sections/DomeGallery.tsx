@@ -13,7 +13,7 @@ const GALLERY_IMAGES = Array.from(
 const PROJECT_ITEMS = [
   {
     image: '/projects/kukufm.jpg',
-    link: 'https://drive.google.com/drive/folders/11wSLFydyzVOu7jozFvYH-rfI_cMeWmlB',
+    link: '/kukufm',
     title: 'KukuFM',
     description: 'AI workflows, Product manager, Art direction, Creative direction',
   },
