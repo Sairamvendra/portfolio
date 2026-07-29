@@ -1,6 +1,9 @@
 import type { ReactNode } from 'react';
-import { CaseStudyTemplate, type Block } from '@/components/case-study/CaseStudyTemplate';
+import { CaseStudyTemplate, FramedImage, type Block } from '@/components/case-study/CaseStudyTemplate';
+import { WriteFeatureWall } from '@/components/case-study/WriteFeatureWall';
 import { PipelineAnimatic } from '@/components/case-study/PipelineAnimatic';
+import { HardProblemsAnimatic } from '@/components/case-study/HardProblemsAnimatic';
+import { FrictionBoard } from '@/components/case-study/FrictionBoard';
 
 export const metadata = {
   title: 'Nuke Storybook | Sairam Vendra',
@@ -62,29 +65,6 @@ const MODULES = [
     img: IMG('12-cut-module-coming-soon'),
     alt: 'Nuke Storybook Cut module panel in its coming-soon state, violet accent',
     body: 'Assemble shots into animated sequences with transitions, timing, and preview export. In design: the provider landscape is mapped and the integration architecture is specified below.',
-  },
-];
-
-const CHALLENGES = [
-  {
-    code: 'C1',
-    title: 'Text-to-shot translation is lossy',
-    body: 'Directors reported difficulty precisely conveying visual details like shot composition and lighting through text, "leading to increased communication costs and frequent misunderstandings across departments."',
-  },
-  {
-    code: 'C2',
-    title: 'Consistency does not hold',
-    body: '"Inconsistencies in character styles and environment style, especially in complex narratives or multi-character dialogues, required significant additional communications and adjustments."',
-  },
-  {
-    code: 'C3',
-    title: 'Confirmation cycles are the real cost',
-    body: 'Hand-drawn sketches and verbal description "frequently caused ineffective communication, prolonged confirmation processes, and misunderstandings," with high time costs and a rising risk of misinterpretation.',
-  },
-  {
-    code: 'C4',
-    title: 'Traditional tools throttle iteration',
-    body: 'Professionals indicated traditional tools "offer limited flexibility, hindering rapid creative iteration and restricting visual diversity."',
   },
 ];
 
@@ -195,27 +175,7 @@ const BLOCKS: Block[] = [
           </div>
         ),
       },
-      {
-        type: 'custom',
-        node: (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {CHALLENGES.map((c, i) => (
-              <div
-                key={c.code}
-                className={`p-6 bg-neobrutalism-white border-3 border-neobrutalism-black shadow-neobrutalism-md ${i % 2 === 0 ? 'rotate-[0.5deg]' : '-rotate-[0.5deg]'} hover:rotate-0 transition-transform duration-200`}
-              >
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="px-2.5 py-1 bg-neobrutalism-black text-neobrutalism-mint font-black text-sm">
-                    {c.code}
-                  </span>
-                  <h3 className="text-lg sm:text-xl font-black leading-tight">{c.title}</h3>
-                </div>
-                <p className="font-medium leading-relaxed">{c.body}</p>
-              </div>
-            ))}
-          </div>
-        ),
-      },
+      { type: 'custom', node: <FrictionBoard /> },
       {
         type: 'custom',
         node: (
@@ -468,35 +428,7 @@ const BLOCKS: Block[] = [
       </p>
     ),
   },
-  {
-    type: 'custom',
-    node: (
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
-        {[
-          {
-            title: 'A 25-second timeout vs. 4K image generation',
-            body: 'Pro-tier 4K generation exceeds Vercel’s Edge Function wall clock. The naive result is a 504 and a silent downgrade: the user asks for 4K and quietly gets 1K. The fix is a queue that spans two clouds. The Edge Function writes a row to a queue table, a Postgres trigger fires a Supabase Edge Function that calls Gemini with no Vercel timeout in the path, and Supabase Realtime pushes the completion back to the client. Callers never learn the operation was asynchronous. Flash stays on the direct synchronous path where it comfortably fits.',
-          },
-          {
-            title: 'Atomic saves across six tables',
-            body: 'A project is rows across six tables, and saving is delete-and-reinsert, which hands characters fresh UUIDs on every save and breaks every foreign key pointing at them. The solution is a Postgres RPC that wraps the whole save in one transaction and builds a name-to-UUID map server-side: the client sends character names, never IDs. A client-side mutex queues concurrent saves, and the latest state wins.',
-          },
-          {
-            title: 'Security as a design constraint',
-            body: 'Nine AI system prompts, all server-side. Origin validation and CORS whitelisting on every proxy. Stateless rate limiting via HMAC-SHA256 signed cookies. An SSRF guard on the fal proxy. Row-level security on every table. And a Google Cloud referrer restriction so a stolen API key is inert.',
-          },
-        ].map((p, i) => (
-          <div
-            key={p.title}
-            className={`p-6 bg-neobrutalism-white border-3 border-neobrutalism-black shadow-neobrutalism-md ${i % 2 === 0 ? 'rotate-[0.5deg]' : '-rotate-[0.5deg]'} hover:rotate-0 transition-transform duration-200`}
-          >
-            <h3 className="text-xl font-black leading-tight">{p.title}</h3>
-            <p className="mt-3 font-medium leading-relaxed">{p.body}</p>
-          </div>
-        ))}
-      </div>
-    ),
-  },
+  { type: 'custom', node: <HardProblemsAnimatic /> },
   {
     type: 'stats',
     items: [
@@ -513,17 +445,18 @@ const BLOCKS: Block[] = [
     blocks: [
       { type: 'heading', text: 'The Write module', kicker: 'A full application, not a text box' },
       {
-        type: 'twoCol',
-        body: [
-          'A TipTap/ProseMirror editor with a custom screenplay schema, industry-standard element cycling on Ctrl+1–7, autocomplete on character names, and a live page count and runtime estimate in the status bar. Version history with the nine-colour WGA revision cycle and a side-by-side diff view. Eleven production breakdown categories as editor marks, with an AI auto-tagger you review as checkboxes and apply in a single transaction.',
-          'Analytics that read the script back to you: dialogue distribution per character, scene pacing, estimated runtime, and a built-in Bechdel test.',
-          'AI assistance throughout: scene generation from a beat or logline, dialogue polish, a script-aware chat, a four-pass reformat pipeline that takes an unformatted document and returns industry-standard screenplay format, translation, and continuity checking with severity filters and scene jump links.',
-        ],
-        image: {
-          src: IMG('14-script-editor'),
-          sticker: 'Fountain editor',
-          alt: 'Script editor with scene navigator and character panel',
-        },
+        type: 'custom',
+        node: (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            <WriteFeatureWall />
+            <FramedImage
+              src={IMG('14-script-editor')}
+              sticker="Fountain editor"
+              alt="Script editor with scene navigator and character panel"
+              accent="mint"
+            />
+          </div>
+        ),
       },
       {
         type: 'twoCol',
