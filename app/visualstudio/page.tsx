@@ -206,7 +206,7 @@ const STUDIO_TABS = [
     label: 'Annotate',
     content: (
       <div>
-        <div className="space-y-4 max-w-4xl">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8">
           <P>
             Draw on the image itself: box, lasso, arrow, point, colour swatch, each mark carrying a note like
             &ldquo;remove this cable&rdquo; or &ldquo;make this wall #2E5A87&rdquo;. The marks compile into a
@@ -649,7 +649,7 @@ const BLOCKS: Block[] = [
                 </p>
               </div>
             </div>
-            <p className="mt-8 text-lg sm:text-xl font-bold max-w-3xl">
+            <p className="mt-8 text-lg sm:text-xl font-bold">
               And the ceiling runs lower still: on the Remotion Studio tier, where every cutaway is
               code-authored motion, the whole reel costs the price of the LLM tokens that wrote it.
             </p>
@@ -659,25 +659,81 @@ const BLOCKS: Block[] = [
     ],
   },
 
-  { type: 'heading', text: 'The Studio', kicker: 'Nine tools, one canvas — pick a tab' },
   {
     type: 'custom',
     node: (
-      <p className="text-xl sm:text-2xl leading-relaxed font-medium max-w-5xl">
-        Everything on the image side shares one canvas, one project library, and one prompt-composition brain.
-        Each tool below is a full module in the live app, with its own economics against the specialist it
-        stands in for.
-      </p>
+      <div>
+        <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-8 lg:gap-14 items-center">
+          <div className="relative w-fit">
+            <div className="absolute -top-4 left-0 z-10 px-3 py-1.5 bg-neobrutalism-white border-3 border-neobrutalism-black shadow-neobrutalism-sm rotate-1">
+              <p className="text-xs font-black uppercase tracking-widest whitespace-nowrap">Nine tools, one canvas — pick a tab</p>
+            </div>
+            <div className="block w-fit px-6 py-4 bg-neobrutalism-black border-5 border-neobrutalism-black shadow-neobrutalism-lg -rotate-1">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neobrutalism-cyan">The Studio</h2>
+            </div>
+          </div>
+          <p className="text-xl sm:text-2xl leading-relaxed font-medium">
+            Everything on the image side shares one canvas, one project library, and one prompt-composition
+            brain. Each tool below is a full module in the live app, with its own economics against the
+            specialist it stands in for.
+          </p>
+        </div>
+        <div className="mt-10">
+          <FeatureTabs tabs={STUDIO_TABS} />
+        </div>
+      </div>
     ),
   },
   {
     type: 'custom',
-    node: <FeatureTabs tabs={STUDIO_TABS} />,
-  },
-  {
-    type: 'quote',
-    text: 'Sixteen models is a curation decision: the seventeenth shipped on a Tuesday and was deleted on Wednesday.',
-    attribution: 'SD 3.5 Medium: integrated with full schema and tests on July 21, judged against real generations, removed July 22.',
+    node: (
+      <div className="relative p-8 lg:p-10 bg-neobrutalism-black border-5 border-neobrutalism-black shadow-neobrutalism-xl rotate-[0.5deg]">
+        <div
+          aria-hidden="true"
+          className="absolute -top-3 -right-3 w-12 h-12 bg-neobrutalism-cyan border-3 border-neobrutalism-black rotate-12"
+        />
+        <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-8 lg:gap-14 items-center">
+          <div className="shrink-0">
+            <div className="font-heading font-black leading-none text-8xl lg:text-9xl text-neobrutalism-cyan">16</div>
+            <p className="mt-3 text-sm font-black uppercase tracking-widest text-white">Models</p>
+            <p className="text-sm font-black uppercase tracking-widest text-white/50">Seven families</p>
+            <div className="mt-4 inline-block px-3 py-1.5 bg-neobrutalism-cyan border-3 border-neobrutalism-black shadow-neobrutalism-sm -rotate-2">
+              <p className="text-xs font-black uppercase tracking-widest text-neobrutalism-black whitespace-nowrap">One prompt box</p>
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-4">
+            {[
+              { family: 'Nano Banana', color: 'bg-neobrutalism-yellow', models: ['Nano Banana 2', 'NB 2 Lite'] },
+              { family: 'Flux', color: 'bg-neobrutalism-cyan', models: ['Flux 2 Flex', 'Flux 2 Max', 'Klein 4B', 'Klein 9B', 'Klein 9B LoRA'] },
+              { family: 'Qwen', color: 'bg-neobrutalism-purple', models: ['Qwen Image 2 Pro', 'Qwen Image Layered'] },
+              { family: 'Seedream', color: 'bg-neobrutalism-lime', models: ['Seedream 4.5', 'Seedream 5 Lite', 'Seedream 5 Pro'] },
+              { family: 'GPT Image', color: 'bg-neobrutalism-orange', models: ['GPT Image 2'] },
+              { family: 'Grok', color: 'bg-neobrutalism-white', models: ['Grok Imagine', 'Imagine Quality'] },
+              { family: 'Hunyuan', color: 'bg-neobrutalism-pink', models: ['Hunyuan Image 3'] },
+            ].map((f, i) => (
+              <div
+                key={f.family}
+                className={`${f.color} p-4 border-3 border-neobrutalism-black shadow-neobrutalism-md ${
+                  i % 2 === 0 ? 'rotate-1' : '-rotate-1'
+                } hover:rotate-0 hover:-translate-y-1 transition-transform duration-200`}
+              >
+                <p className="text-xs font-black uppercase tracking-widest text-neobrutalism-black mb-2">{f.family}</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {f.models.map((m) => (
+                    <span
+                      key={m}
+                      className="px-2 py-1 bg-neobrutalism-black text-white font-mono text-xs font-bold whitespace-nowrap"
+                    >
+                      {m}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    ),
   },
 
   {
@@ -687,12 +743,14 @@ const BLOCKS: Block[] = [
       {
         type: 'custom',
         node: (
-          <div>
-            <div className="inline-block px-3 py-1.5 bg-neobrutalism-white text-neobrutalism-black border-3 border-neobrutalism-black mb-4 rotate-1">
-              <p className="text-xs font-black uppercase tracking-widest">The flagship</p>
+          <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-8 lg:gap-14 items-center">
+            <div>
+              <div className="inline-block px-3 py-1.5 bg-neobrutalism-white text-neobrutalism-black border-3 border-neobrutalism-black mb-3 rotate-1">
+                <p className="text-xs font-black uppercase tracking-widest whitespace-nowrap">The flagship</p>
+              </div>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neobrutalism-cyan">Reel Flow</h2>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neobrutalism-cyan">Reel Flow</h2>
-            <p className="mt-4 text-lg sm:text-xl font-medium leading-relaxed max-w-3xl text-white/90">
+            <p className="text-lg sm:text-xl font-medium leading-relaxed max-w-4xl text-white/90">
               Making a talking-head reel is a pipeline problem: script, voice, presenter, B-roll, sync,
               captions, music, grade, export. Reel Flow runs the whole pipeline with a director-trained
               planner, and lets you enter at any stage.
@@ -987,15 +1045,42 @@ const BLOCKS: Block[] = [
             aria-hidden="true"
             className="absolute -top-4 -right-4 w-14 h-14 bg-neobrutalism-cyan border-3 border-neobrutalism-black rotate-12"
           />
-          <figure className="relative p-8 sm:p-10 bg-neobrutalism-black border-5 border-neobrutalism-black shadow-neobrutalism-xl -rotate-1">
-            <blockquote className="text-2xl sm:text-3xl font-black leading-snug text-neobrutalism-cyan">
-              &ldquo;Half of the 304 commits landed in the final month. By the end, the tool was making its own
-              demo reels.&rdquo;
-            </blockquote>
-            <figcaption className="mt-4 text-white font-bold text-sm">
-              The reels demoing Reel Flow are made in Reel Flow.
-            </figcaption>
-          </figure>
+          <div className="relative p-8 bg-neobrutalism-black border-5 border-neobrutalism-black shadow-neobrutalism-xl -rotate-1">
+            <div className="flex items-baseline justify-between gap-4 flex-wrap">
+              <p className="text-xs font-black uppercase tracking-widest text-neobrutalism-cyan">Commit velocity</p>
+              <p className="text-xs font-black uppercase tracking-widest text-white/50">304 commits · 8 months</p>
+            </div>
+            <div className="mt-6 flex items-end gap-2 sm:gap-3">
+              {[
+                { m: 'Dec', n: 26 },
+                { m: 'Jan', n: 63 },
+                { m: 'Feb', n: 10 },
+                { m: 'Mar–Apr', n: 13 },
+                { m: 'May', n: 38 },
+                { m: 'Jun', n: 4 },
+                { m: 'Jul', n: 150 },
+              ].map((b) => (
+                <div key={b.m} className="flex-1 flex flex-col items-center gap-1.5">
+                  <span className={`font-mono text-xs font-bold ${b.n === 150 ? 'text-neobrutalism-cyan' : 'text-white'}`}>
+                    {b.n}
+                  </span>
+                  <div className="w-full h-36 flex items-end">
+                    <div
+                      className={`w-full ${b.n === 150 ? 'bg-neobrutalism-cyan' : 'bg-white/80'}`}
+                      style={{ height: `${Math.max((b.n / 150) * 100, 4)}%` }}
+                    />
+                  </div>
+                  <span className="text-[10px] font-black uppercase tracking-widest text-white/50 whitespace-nowrap">
+                    {b.m}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <p className="mt-6 pt-4 border-t-3 border-white/20 text-sm font-bold text-white">
+              By the end, the tool was making its own demos:{' '}
+              <span className="text-neobrutalism-cyan">the reels demoing Reel Flow are made in Reel Flow.</span>
+            </p>
+          </div>
         </div>
       </div>
     ),
@@ -1075,11 +1160,19 @@ const BLOCKS: Block[] = [
               that turns pointing into edit instructions, and an export engine that survived serverless ffmpeg
               in production.
             </p>
-            <p className="text-lg sm:text-xl leading-relaxed font-bold">
-              It is live, multi-user, and in production, with auth, quotas, abuse handling, and an admin
-              dashboard, all built solo. Every generation is captured with its exact settings. Nothing you make
-              is ever a one-off.
-            </p>
+            <div className="relative">
+              <div
+                aria-hidden="true"
+                className="absolute -bottom-3 -right-3 w-10 h-10 bg-neobrutalism-white border-3 border-neobrutalism-black rotate-12"
+              />
+              <figure className="relative p-8 bg-neobrutalism-black border-5 border-neobrutalism-black shadow-neobrutalism-xl rotate-1">
+                <p className="text-xl sm:text-2xl font-black leading-snug text-white">
+                  It is live, multi-user, and in production, with auth, quotas, abuse handling, and an admin
+                  dashboard, all built solo. Every generation is captured with its exact settings.{' '}
+                  <span className="text-neobrutalism-cyan">Nothing you make is ever a one-off.</span>
+                </p>
+              </figure>
+            </div>
           </div>
         ),
       },
