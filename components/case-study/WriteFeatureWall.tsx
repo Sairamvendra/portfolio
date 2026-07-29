@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
  */
 
 const POP = { type: 'spring' as const, stiffness: 280, damping: 18 };
-const VIEW = { once: true, margin: '-80px' } as const;
+const VIEW = { once: true, margin: '-80px 0px' } as const;
 
 const GROUPS = [
   {
