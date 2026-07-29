@@ -10,7 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 1,
     },
-    ...['/cashfree', '/amazon', '/primevideo', '/cimpress', '/nukestorybook', '/trippo', '/kukufm'].map((path) => ({
+    ...['/cashfree', '/amazon', '/primevideo', '/cimpress', '/nukestorybook', '/trippo', '/kukufm', '/visualstudio'].map((path) => ({
       url: `${BASE}${path}`,
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,

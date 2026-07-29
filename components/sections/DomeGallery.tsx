@@ -31,7 +31,7 @@ const PROJECT_ITEMS = [
   },
   {
     image: '/projects/visualstudio.jpg',
-    link: 'https://visualstudioprox.vercel.app/',
+    link: '/visualstudio',
     title: 'Visual design studio',
     description: 'Agentic design, Product design, AI Product management',
   },
