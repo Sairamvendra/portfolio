@@ -104,21 +104,25 @@ const REEL_SOURCES = [
     n: '01',
     title: 'Topic',
     body: 'It writes the script: genre playbooks, hook-first structure, then plans the shoot.',
+    color: 'bg-neobrutalism-yellow',
   },
   {
     n: '02',
     title: 'Script',
     body: 'Bring your own words; the planner breaks them into talking-head windows and B-roll beats.',
+    color: 'bg-neobrutalism-cyan',
   },
   {
     n: '03',
     title: 'Your audio',
     body: 'Upload or record a voice note. The planner listens to the actual audio, matching presenter gender to your voice and cutting on your emotional beats, while Scribe aligns every word.',
+    color: 'bg-neobrutalism-purple',
   },
   {
     n: '04',
     title: 'Your video',
     body: 'Upload raw phone footage. It reframes to 9:16, auto-detects silences, filler words, and repeated takes into reviewable trims, then plans B-roll over your own footage.',
+    color: 'bg-neobrutalism-lime',
   },
 ];
 
@@ -719,11 +723,20 @@ const BLOCKS: Block[] = [
             {REEL_SOURCES.map((s, i) => (
               <div
                 key={s.n}
-                className={`p-6 bg-neobrutalism-white text-neobrutalism-black border-3 border-neobrutalism-black shadow-neobrutalism-md ${i % 2 === 0 ? 'rotate-[0.5deg]' : '-rotate-[0.5deg]'} hover:rotate-0 transition-transform duration-200`}
+                className={`relative mt-5 p-6 bg-neobrutalism-white text-neobrutalism-black border-3 border-neobrutalism-black shadow-neobrutalism-lg ${i % 2 === 0 ? 'rotate-[0.75deg]' : '-rotate-[0.75deg]'} hover:rotate-0 hover:-translate-y-1 transition-transform duration-200`}
               >
-                <div className="font-heading font-black text-4xl text-neobrutalism-black/20 leading-none">{s.n}</div>
-                <h3 className="mt-2 text-xl font-black">{s.title}</h3>
+                <div
+                  className={`absolute -top-5 left-4 w-12 h-12 flex items-center justify-center ${s.color} border-3 border-neobrutalism-black shadow-neobrutalism-sm -rotate-3 font-heading font-black text-xl`}
+                >
+                  {s.n}
+                </div>
+                <h3 className="mt-5 text-xl font-black uppercase">{s.title}</h3>
+                <div aria-hidden="true" className={`mt-2 h-2 w-12 ${s.color} border-2 border-neobrutalism-black`} />
                 <p className="mt-3 font-medium leading-relaxed">{s.body}</p>
+                <div
+                  aria-hidden="true"
+                  className={`absolute bottom-3 right-3 w-3.5 h-3.5 rotate-45 ${s.color} border-2 border-neobrutalism-black`}
+                />
               </div>
             ))}
           </div>

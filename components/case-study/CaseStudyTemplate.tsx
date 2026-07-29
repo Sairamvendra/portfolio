@@ -62,7 +62,7 @@ function Sticker({ text, accent, small }: { text: string; accent: Accent; small?
       <div
         className={`relative z-10 w-fit -rotate-3 ${small ? '-translate-y-3 -translate-x-2 px-3 py-1' : '-translate-y-4 -translate-x-4 px-4 py-1.5'} ${ACCENT_BG[accent]} border-3 border-neobrutalism-black shadow-neobrutalism-sm`}
       >
-        <span className={`font-black uppercase tracking-widest whitespace-nowrap ${small ? 'text-xs' : 'text-sm'}`}>
+        <span className={`font-black uppercase tracking-widest whitespace-nowrap text-neobrutalism-black ${small ? 'text-xs' : 'text-sm'}`}>
           {text}
         </span>
       </div>
