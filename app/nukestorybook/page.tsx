@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { CaseStudyTemplate, type Block } from '@/components/case-study/CaseStudyTemplate';
+import { PipelineAnimatic } from '@/components/case-study/PipelineAnimatic';
 
 export const metadata = {
   title: 'Nuke Storybook | Sairam Vendra',
@@ -97,39 +98,6 @@ const TLX_SERIES = [
   { name: 'Interactive previz system', fill: 'bg-neobrutalism-mint' },
   { name: 'Baseline B', fill: 'bg-neutral-300' },
   { name: 'Baseline C', fill: 'bg-neutral-400' },
-];
-
-const STAGES = [
-  {
-    n: '01',
-    title: 'Ingest',
-    body: 'Paste a script, or upload PDF, DOCX, TXT, or Fountain. PDFs are parsed by X-coordinate element classification: screenplay elements are identified by their horizontal position on the page, which is how the format actually encodes meaning. Scanned Indian-language scripts fall through to local OCR, zero API calls.',
-  },
-  {
-    n: '02',
-    title: 'Break down',
-    body: 'The breakdown returns scenes, shots, framing, focal length, lens type, lighting, duration, dialogue, and action. No cap on shot density, a 4-shot minimum per scene: the model is instructed to extrapolate the coverage a director would actually shoot, not to transcribe what is on the page.',
-  },
-  {
-    n: '03',
-    title: 'Cast and scout',
-    body: 'Characters, environments, and costumes are extracted from the story, and each gets a generated reference plate: characters as front + 3/4 turnarounds, costumes as flat-lays on white, environments as establishing plates. These are the consistency anchors.',
-  },
-  {
-    n: '04',
-    title: 'Compose the frame prompt',
-    body: 'The prompt composer fuses each shot into one directive, then guarantees the referential scaffolding survives: it re-injects every location tag and character mention that got dropped, deduplicates novelty language, and layers in colour science, director style, film texture, and camera sensor signature.',
-  },
-  {
-    n: '05',
-    title: 'Generate',
-    body: 'Four image models, user-selectable, with live speed estimates in the UI: Flash at ~3 s and 1K, Pro2F at ~2 s up to 4K, Pro and SeedDream up to 4K. A full 23-image board is one to five minutes of generation.',
-  },
-  {
-    n: '06',
-    title: 'Deliver',
-    body: 'Production-ready PDF with cover page, one shot per page, cast and location grids, and costume plates. CSV shot list. FDX and Fountain export. Fullscreen Presentation Mode. Public share links that need no login.',
-  },
 ];
 
 const TIMELINE = [
@@ -404,23 +372,7 @@ const BLOCKS: Block[] = [
   },
 
   { type: 'heading', text: 'How it works', kicker: 'Six stages, all real code paths' },
-  {
-    type: 'custom',
-    node: (
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {STAGES.map((s, i) => (
-          <div
-            key={s.n}
-            className={`p-6 bg-neobrutalism-white border-3 border-neobrutalism-black shadow-neobrutalism-md ${i % 2 === 0 ? 'rotate-[0.5deg]' : '-rotate-[0.5deg]'} hover:rotate-0 transition-transform duration-200`}
-          >
-            <div className="font-heading font-black text-4xl text-neobrutalism-black/20 leading-none">{s.n}</div>
-            <h3 className="mt-2 text-xl font-black">{s.title}</h3>
-            <p className="mt-3 font-medium leading-relaxed">{s.body}</p>
-          </div>
-        ))}
-      </div>
-    ),
-  },
+  { type: 'custom', node: <PipelineAnimatic /> },
   {
     type: 'gallery',
     aspect: 'natural',
