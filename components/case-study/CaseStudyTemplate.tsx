@@ -168,10 +168,11 @@ function renderBlock(block: Block, accent: Accent, index: number) {
   switch (block.type) {
     case 'heading':
       return (
-        <div>
+        <div className="relative w-fit">
           {block.kicker && (
-            <div className="inline-block px-3 py-1.5 bg-neobrutalism-white border-3 border-neobrutalism-black shadow-neobrutalism-sm mb-4 rotate-1">
-              <p className="text-xs font-black uppercase tracking-widest">{block.kicker}</p>
+            // hugs the plate's top edge instead of floating above it
+            <div className="absolute -top-4 left-0 z-10 px-3 py-1.5 bg-neobrutalism-white border-3 border-neobrutalism-black shadow-neobrutalism-sm rotate-1">
+              <p className="text-xs font-black uppercase tracking-widest text-neobrutalism-black whitespace-nowrap">{block.kicker}</p>
             </div>
           )}
           <div className={`block w-fit px-6 py-3 bg-neobrutalism-black border-5 border-neobrutalism-black shadow-neobrutalism-lg ${tilt}`}>
@@ -338,6 +339,8 @@ function BlockList({ blocks, accent }: { blocks: Block[]; accent: Accent }) {
   return (
     <>
       {blocks.map((block, i) => {
+        // a heading and its content belong together: half-gap after any heading block
+        const gap = i > 0 && blocks[i - 1].type === 'heading' ? 'mt-8 sm:mt-10' : 'mt-12 sm:mt-16';
         if (block.type === 'ticker') {
           return (
             <div key={i} className="my-14 sm:my-20">
@@ -357,7 +360,7 @@ function BlockList({ blocks, accent }: { blocks: Block[]; accent: Accent }) {
           );
         }
         return (
-          <Container key={i} className="mt-14 sm:mt-20">
+          <Container key={i} className={gap}>
             <FadeIn>{renderBlock(block, accent, i)}</FadeIn>
           </Container>
         );

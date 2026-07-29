@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { CaseStudyTemplate, FramedImage, type Block } from '@/components/case-study/CaseStudyTemplate';
 import { FeatureTabs } from '@/components/case-study/FeatureTabs';
 import { GhostsInNumbers } from '@/components/case-study/GhostsInNumbers';
+import { HardProblemsSlider } from '@/components/case-study/HardProblemsSlider';
 
 export const metadata = {
   title: 'Visual Studio Pro | Sairam Vendra',
@@ -552,11 +553,13 @@ const BLOCKS: Block[] = [
     node: (
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
         <div>
-          <div className="inline-block px-3 py-1.5 bg-neobrutalism-white border-3 border-neobrutalism-black shadow-neobrutalism-sm mb-4 rotate-1">
-            <p className="text-xs font-black uppercase tracking-widest">Computed from the app&rsquo;s own cost model</p>
-          </div>
-          <div className="block w-fit px-6 py-3 bg-neobrutalism-black border-5 border-neobrutalism-black shadow-neobrutalism-lg -rotate-1">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neobrutalism-cyan">The economics</h2>
+          <div className="relative w-fit">
+            <div className="absolute -top-4 left-0 z-10 px-3 py-1.5 bg-neobrutalism-white border-3 border-neobrutalism-black shadow-neobrutalism-sm rotate-1">
+              <p className="text-xs font-black uppercase tracking-widest whitespace-nowrap">Computed from the app&rsquo;s own cost model</p>
+            </div>
+            <div className="block w-fit px-6 py-4 bg-neobrutalism-black border-5 border-neobrutalism-black shadow-neobrutalism-lg -rotate-1">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neobrutalism-cyan">The economics</h2>
+            </div>
           </div>
           <div className="mt-10 space-y-5">
           <p className="text-lg sm:text-xl leading-relaxed font-medium">
@@ -622,9 +625,9 @@ const BLOCKS: Block[] = [
       {
         type: 'custom',
         node: (
-          <div>
-            <div className="inline-block px-3 py-1.5 bg-neobrutalism-white border-3 border-neobrutalism-black shadow-neobrutalism-sm mb-8 rotate-1">
-              <p className="text-xs font-black uppercase tracking-widest">The number that matters here</p>
+          <div className="relative">
+            <div className="absolute -top-4 left-0 z-10 px-3 py-1.5 bg-neobrutalism-white border-3 border-neobrutalism-black shadow-neobrutalism-sm rotate-1">
+              <p className="text-xs font-black uppercase tracking-widest text-neobrutalism-black whitespace-nowrap">The number that matters here</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-stretch">
               <div className="p-8 bg-neobrutalism-black border-5 border-neobrutalism-black shadow-neobrutalism-xl -rotate-1">
@@ -801,13 +804,15 @@ const BLOCKS: Block[] = [
     node: (
       <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-8 lg:gap-12 items-center">
         <div>
-          <div className="inline-block px-3 py-1.5 bg-neobrutalism-white border-3 border-neobrutalism-black shadow-neobrutalism-sm mb-4 rotate-1">
-            <p className="text-xs font-black uppercase tracking-widest">Premiere Pro handoff</p>
-          </div>
-          <div className="block w-fit px-6 py-3 bg-neobrutalism-black border-5 border-neobrutalism-black shadow-neobrutalism-lg -rotate-1">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neobrutalism-cyan">
-              The tool doesn&rsquo;t trap you
-            </h2>
+          <div className="relative w-fit">
+            <div className="absolute -top-4 left-0 z-10 px-3 py-1.5 bg-neobrutalism-white border-3 border-neobrutalism-black shadow-neobrutalism-sm rotate-1">
+              <p className="text-xs font-black uppercase tracking-widest whitespace-nowrap">Premiere Pro handoff</p>
+            </div>
+            <div className="block w-fit px-6 py-4 bg-neobrutalism-black border-5 border-neobrutalism-black shadow-neobrutalism-lg -rotate-1">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neobrutalism-cyan">
+                The tool doesn&rsquo;t trap you
+              </h2>
+            </div>
           </div>
           <div className="mt-10 space-y-5">
             <p className="text-lg sm:text-xl leading-relaxed font-medium">
@@ -879,43 +884,28 @@ const BLOCKS: Block[] = [
     ],
   },
 
-  { type: 'heading', text: 'The hard problems', kicker: 'Engineering' },
   {
     type: 'custom',
     node: (
-      <p className="text-xl sm:text-2xl leading-relaxed font-medium max-w-5xl">
-        A React + TypeScript SPA with Replicate as the single AI gateway for every model, Cloudflare R2 for
-        media bytes, Supabase for Postgres and auth, ffmpeg on serverless for export, and WebCodecs in the
-        browser for code-authored motion. The interesting parts are where those seams meet.
-      </p>
-    ),
-  },
-  {
-    type: 'custom',
-    node: (
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
-        {[
-          {
-            title: 'The ffmpeg that lied',
-            body: 'Production exports silently lost every B-roll crossfade while local exports were perfect. Root cause: the ffmpeg-static package resolves to ffmpeg 6.0 on macOS but 7.0 on Linux, and the 7.0 build silently dropped all xfade B-roll. Found by building opt-in export diagnostics that capture per-input probes and the full filter graph into job state; fixed by pinning 5.2.0. Bonus find from the same saga: an unconstrained encode rode CRF 20 to a 232 MB file, and a bitrate cap brought the same export to 69 MB.',
-          },
-          {
-            title: 'Rendering video in a browser that fights back',
-            body: 'The Remotion tier renders with WebCodecs inside a sandboxed iframe, and Chrome throttles offscreen iframes, so the render hangs forever if the iframe does not intersect the viewport. The fix is a deliberately viewport-intersecting hidden iframe, a render serialization queue, byte-shipping media into the sandbox to dodge CORS, and one automatic repair pass where the LLM fixes scenes that fail the probe.',
-          },
-          {
-            title: 'The 57.8 MB save button',
-            body: 'Layered compositions shipped the full RGBA layer stack on every create call: 57.8 MB of payload per save. A canonical shrunk-composite and settings-sanitizer pipeline cut the request body to 43 KB, about 1,300× smaller, and as a side effect revived "reuse exact settings" for every generation in the project library.',
-          },
-        ].map((p, i) => (
-          <div
-            key={p.title}
-            className={`p-6 bg-neobrutalism-white border-3 border-neobrutalism-black shadow-neobrutalism-md ${i % 2 === 0 ? 'rotate-[0.5deg]' : '-rotate-[0.5deg]'} hover:rotate-0 transition-transform duration-200`}
-          >
-            <h3 className="text-xl font-black leading-tight">{p.title}</h3>
-            <p className="mt-3 font-medium leading-relaxed">{p.body}</p>
+      <div>
+        <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-8 lg:gap-12 items-center">
+          <div className="relative w-fit">
+            <div className="absolute -top-4 left-0 z-10 px-3 py-1.5 bg-neobrutalism-white border-3 border-neobrutalism-black shadow-neobrutalism-sm rotate-1">
+              <p className="text-xs font-black uppercase tracking-widest">Engineering</p>
+            </div>
+            <div className="block w-fit px-6 py-4 bg-neobrutalism-black border-5 border-neobrutalism-black shadow-neobrutalism-lg -rotate-1">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neobrutalism-cyan">The hard problems</h2>
+            </div>
           </div>
-        ))}
+          <p className="text-xl sm:text-2xl leading-relaxed font-medium">
+            A React + TypeScript SPA with Replicate as the single AI gateway for every model, Cloudflare R2 for
+            media bytes, Supabase for Postgres and auth, ffmpeg on serverless for export, and WebCodecs in the
+            browser for code-authored motion. The interesting parts are where those seams meet.
+          </p>
+        </div>
+        <div className="mt-10">
+          <HardProblemsSlider />
+        </div>
       </div>
     ),
   },
@@ -1020,11 +1010,13 @@ const BLOCKS: Block[] = [
         node: (
           <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-8 lg:gap-12 items-center">
             <div>
-              <div className="inline-block px-3 py-1.5 bg-neobrutalism-white border-3 border-neobrutalism-black shadow-neobrutalism-sm mb-4 rotate-1">
-                <p className="text-xs font-black uppercase tracking-widest">Researched, parked, ready</p>
-              </div>
-              <div className="block w-fit px-6 py-3 bg-neobrutalism-black border-5 border-neobrutalism-black shadow-neobrutalism-lg -rotate-1">
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neobrutalism-cyan">What’s next</h2>
+              <div className="relative w-fit">
+                <div className="absolute -top-4 left-0 z-10 px-3 py-1.5 bg-neobrutalism-white border-3 border-neobrutalism-black shadow-neobrutalism-sm rotate-1">
+                  <p className="text-xs font-black uppercase tracking-widest whitespace-nowrap">Researched, parked, ready</p>
+                </div>
+                <div className="block w-fit px-6 py-4 bg-neobrutalism-black border-5 border-neobrutalism-black shadow-neobrutalism-lg -rotate-1">
+                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neobrutalism-cyan">What’s next</h2>
+                </div>
               </div>
               <ul className="mt-10 space-y-4">
                 {[

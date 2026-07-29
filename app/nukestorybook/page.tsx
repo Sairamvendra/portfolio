@@ -370,9 +370,9 @@ const BLOCKS: Block[] = [
       {
         type: 'custom',
         node: (
-          <div>
-            <div className="inline-block px-3 py-1.5 bg-neobrutalism-white border-3 border-neobrutalism-black shadow-neobrutalism-sm mb-8 rotate-1">
-              <p className="text-xs font-black uppercase tracking-widest">The number that matters here</p>
+          <div className="relative">
+            <div className="absolute -top-4 left-0 z-10 px-3 py-1.5 bg-neobrutalism-white border-3 border-neobrutalism-black shadow-neobrutalism-sm rotate-1">
+              <p className="text-xs font-black uppercase tracking-widest text-neobrutalism-black whitespace-nowrap">The number that matters here</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-stretch">
               <div className="p-8 bg-neobrutalism-black border-5 border-neobrutalism-black shadow-neobrutalism-xl -rotate-1">
