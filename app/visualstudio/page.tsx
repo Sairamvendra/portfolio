@@ -849,7 +849,7 @@ const BLOCKS: Block[] = [
         aspect: 'story',
         cols: 3,
         images: [
-          { src: ASSET('reel-final.mp4'), sticker: 'Finished reel', alt: 'A finished Reel Flow vertical reel with word-synced captions and a music bed' },
+          { src: ASSET('influencer-final-word-captions.mp4'), sticker: 'Finished reel', alt: 'A finished Reel Flow vertical reel with word-synced captions and a music bed' },
           { src: ASSET('reel-broll.mp4'), sticker: 'Planned B-roll', alt: 'A Reel Flow reel segment showing director-planned B-roll cutaways over a talking head' },
           { src: ASSET('remotion-motion.mp4'), sticker: 'Code-authored motion', alt: 'A Remotion Studio tier reel whose cutaways are code-authored branded motion graphics' },
         ],
