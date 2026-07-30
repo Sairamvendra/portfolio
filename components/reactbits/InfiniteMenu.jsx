@@ -626,12 +626,13 @@ class InfiniteGridMenu {
   movementActive = false;
   disposed = false;
 
-  constructor(canvas, items, onActiveItemChange, onMovementChange, onInit = null, scale = 1.0) {
+  constructor(canvas, items, onActiveItemChange, onMovementChange, onInit = null, scale = 1.0, initialIndex = null) {
     this.canvas = canvas;
     this.items = items || [];
     this.onActiveItemChange = onActiveItemChange || (() => {});
     this.onMovementChange = onMovementChange || (() => {});
     this.scaleFactor = scale;
+    this.initialIndex = initialIndex;
     this.camera.position[2] = 3 * scale;
     this.#init(onInit);
   }
@@ -720,6 +721,15 @@ class InfiniteGridMenu {
     this.#initTexture();
 
     this.control = new ArcballControl(this.canvas, deltaTime => this.#onControlUpdate(deltaTime));
+
+    // Slot i shows item i, so pre-rotate that slot's position onto the snap
+    // direction — the same alignment the snap logic converges to — so the
+    // requested item faces the camera on load instead of whichever slot the
+    // spread geometry happens to leave in front.
+    if (this.initialIndex != null && this.initialIndex < this.instancePositions.length) {
+      const p = vec3.normalize(vec3.create(), this.instancePositions[this.initialIndex]);
+      quat.rotationTo(this.control.orientation, p, this.control.snapDirection);
+    }
 
     this.#updateCameraMatrix();
     this.#updateProjectionMatrix(gl);
@@ -1055,7 +1065,7 @@ const defaultItems = [
   }
 ];
 
-export default function InfiniteMenu({ items = [], scale = 1.0 }) {
+export default function InfiniteMenu({ items = [], scale = 1.0, initialIndex = null }) {
   const canvasRef = useRef(null);
   const menuRef = useRef(null);
   const pressRef = useRef(null);
@@ -1083,7 +1093,8 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
           menuRef.current = sk;
           sk.run();
         },
-        scale
+        scale,
+        initialIndex
       );
     }
 
@@ -1100,7 +1111,7 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
       window.removeEventListener('resize', handleResize);
       if (sketch) sketch.disposed = true;
     };
-  }, [items, scale]);
+  }, [items, scale, initialIndex]);
 
   const openLink = link => {
     if (!link) return;

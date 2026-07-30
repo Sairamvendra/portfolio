@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import ReactBitsDomeGallery from '@/components/reactbits/DomeGallery';
 import InfiniteMenu from '@/components/reactbits/InfiniteMenu';
@@ -61,7 +62,16 @@ const PROJECT_ITEMS = [
   },
 ];
 
+// Sphere opens on one of these two projects (random per visit) instead of
+// whichever chip the geometry happens to leave facing the camera
+const OPENING_LINKS = ['/nukestorybook', '/visualstudio'];
+
 export function DomeGallery() {
+  const [initialIndex] = useState(() => {
+    const link = OPENING_LINKS[Math.floor(Math.random() * OPENING_LINKS.length)];
+    return PROJECT_ITEMS.findIndex(item => item.link === link);
+  });
+
   return (
     <section
       id="showcase"
@@ -96,7 +106,7 @@ export function DomeGallery() {
           className="container-custom mb-12"
         >
           <div className="relative h-[420px] sm:h-[520px] lg:h-[600px] bg-neobrutalism-white border-5 border-neobrutalism-black shadow-neobrutalism-xl overflow-hidden">
-            <InfiniteMenu items={PROJECT_ITEMS} />
+            <InfiniteMenu items={PROJECT_ITEMS} initialIndex={initialIndex} />
           </div>
         </motion.div>
 

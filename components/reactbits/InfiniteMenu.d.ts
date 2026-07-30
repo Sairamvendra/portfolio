@@ -9,4 +9,5 @@ export interface InfiniteMenuItem {
 export default function InfiniteMenu(props: {
   items?: InfiniteMenuItem[];
   scale?: number;
+  initialIndex?: number;
 }): React.JSX.Element;
