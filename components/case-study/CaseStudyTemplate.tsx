@@ -128,8 +128,13 @@ export function FramedImage({ src, alt, caption, sticker, accent }: ImageData & 
         className="absolute -bottom-3 -right-3 w-10 h-10 bg-neobrutalism-black rotate-12"
       />
       <figure className="relative border-5 border-neobrutalism-black shadow-neobrutalism-xl bg-neobrutalism-white">
-        {/* eslint-disable-next-line @next/next/no-img-element -- ponytail: plain img, swap to next/image before prod */}
-        <img src={src} alt={alt} loading="lazy" decoding="async" className="max-w-full max-h-[640px] w-auto h-auto block" />
+        {src.endsWith('.mp4') ? (
+          // ponytail: autoplaying muted loop, same treatment as gallery video tiles
+          <video src={src} className="max-w-full max-h-[640px] w-auto h-auto block" autoPlay muted loop playsInline aria-label={alt} />
+        ) : (
+          // eslint-disable-next-line @next/next/no-img-element -- ponytail: plain img, swap to next/image before prod
+          <img src={src} alt={alt} loading="lazy" decoding="async" className="max-w-full max-h-[640px] w-auto h-auto block" />
+        )}
         {caption && (
           // w-0 min-w-full: caption wraps to the image's width instead of widening the frame
           <figcaption className="w-0 min-w-full border-t-3 border-neobrutalism-black px-4 py-3 text-sm font-bold bg-neobrutalism-white">

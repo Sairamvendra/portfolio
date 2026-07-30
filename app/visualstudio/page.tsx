@@ -394,8 +394,8 @@ const STUDIO_TABS = [
     content: (
       <Pane
         img={{
-          src: ASSET('app-story.jpg'),
-          alt: 'Story Flow module with storyboard upload and story context input',
+          src: ASSET('app-story.mp4'),
+          alt: 'Story Flow module generating sequential scenes from a storyboard, screen recording',
           sticker: 'Story Flow',
           caption: 'Upload a board, describe the flow, and generate scene-by-scene with continuity.',
         }}
