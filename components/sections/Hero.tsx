@@ -3,7 +3,7 @@
 import { Container } from '@/components/layout/Container';
 import { Button } from '@/components/ui/Button';
 import { PERSONAL_INFO } from '@/lib/constants';
-import { Download, Mail } from 'lucide-react';
+import { Download, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { scrollToSection } from '@/lib/utils';
 import { ProfileTiltCard } from '@/components/ui/ProfileTiltCard';
@@ -56,11 +56,11 @@ export function Hero() {
               <Button
                 variant="primary"
                 size="lg"
-                onClick={() => scrollToSection('contact')}
-                aria-label="Contact Sairam Vendra"
+                onClick={() => scrollToSection('showcase')}
+                aria-label="Jump to the work showcase"
               >
-                <Mail className="h-5 w-5" aria-hidden="true" />
-                Get in Touch
+                <Sparkles className="h-5 w-5" aria-hidden="true" />
+                Work Showcase
               </Button>
               <Button
                 variant="outline"

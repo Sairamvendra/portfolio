@@ -64,6 +64,7 @@ const PROJECT_ITEMS = [
 export function DomeGallery() {
   return (
     <section
+      id="showcase"
       className="section relative overflow-hidden py-16"
       style={{ backgroundColor: '#FF6B6B' }}
       aria-label="Work showcase gallery"
