@@ -62,10 +62,10 @@ export const EXPERIENCES: Experience[] = [
     startDate: '2026-04',
     endDate: '2026-06',
     achievements: [
-      'Built web designs for the product, redefining the UI experience to feel simple and intentional — not like a vibe-coded app.',
       'Performed user interviews with production users to identify gaps, map behavioral patterns, and shape new features.',
       'Streamlined asset management and designed the org-level access system.',
       'Developed custom AI pipelines to streamline creative workflows and enhance production efficiency.',
+      'Built web designs for the product, redefining the UI experience to feel simple and intentional — not like a vibe-coded app.',
     ],
     technologies: ['Figma', 'Claude Code', 'User Interviews', 'UX Design', 'System Design', 'AI Pipelines'],
   },

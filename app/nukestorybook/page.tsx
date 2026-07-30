@@ -491,7 +491,7 @@ const BLOCKS: Block[] = [
           head={['Period', 'Commits', 'What shipped']}
           rows={TIMELINE.map((t) => [t.period, t.commits, t.shipped])}
         />
-        <p className="mt-4 text-lg sm:text-xl font-medium leading-relaxed max-w-3xl">
+        <p className="mt-4 text-lg sm:text-xl font-medium leading-relaxed">
           First commit 9 February 2026. <strong className="font-black">374 of 377 commits land in a nine-week window</strong>{' '}
           across February and March.
         </p>
