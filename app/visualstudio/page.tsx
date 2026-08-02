@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { CaseStudyTemplate, FramedImage, type Block } from '@/components/case-study/CaseStudyTemplate';
 import { FeatureTabs } from '@/components/case-study/FeatureTabs';
+import { CompareSlider } from '@/components/case-study/CompareSlider';
 import { SceneBuilderViewer } from '@/components/case-study/SceneBuilderViewer';
 import { WhoItsForAnimatic } from '@/components/case-study/WhoItsForAnimatic';
 import { GhostsInNumbers } from '@/components/case-study/GhostsInNumbers';
@@ -469,21 +470,22 @@ const SCENE_TABS = [
       <div className="space-y-12">
         <P>
           Reposition your camera and build your comp. Block the shot in 3D first, then the generative pass
-          paints the blocking into a finished frame with the composition intact.
+          paints the blocking into a finished frame with the composition intact. Drag the handle to scrub
+          between the two.
         </P>
-        <FramedImage
-          src={ASSET('3d-1.webp')}
-          sticker="The 3D blocking"
-          alt="Low-poly 3D blockout of a city street at eye level, grey towers and simple grass tufts"
-          caption="Street-level camera, blocked out in the 3D scene."
-          accent="cyan"
-        />
-        <FramedImage
-          src={ASSET('3d-1sc.webp')}
-          sticker="The generated frame"
-          alt="Generated cinematic frame of the same street: cracked asphalt, overgrown ruined buildings, sunrise haze"
-          caption="The same camera after the generative pass: composition intact, world rendered."
-          accent="cyan"
+        <CompareSlider
+          before={{
+            src: ASSET('3d-1.webp'),
+            alt: 'Low-poly 3D blockout of a city street at eye level, grey towers and simple grass tufts',
+            sticker: 'The 3D blocking',
+            caption: 'Street-level camera, blocked out in the 3D scene.',
+          }}
+          after={{
+            src: ASSET('3d-1sc.webp'),
+            alt: 'Generated cinematic frame of the same street: cracked asphalt, overgrown ruined buildings, sunrise haze',
+            sticker: 'The generated frame',
+            caption: 'The same camera after the generative pass.',
+          }}
         />
       </div>
     ),
@@ -495,45 +497,55 @@ const SCENE_TABS = [
       <div className="space-y-12">
         <P>
           An aerial camera straight from the Blender viewport, and four generated looks from that one
-          blocking: same towers, same streets, four different moods.
+          blocking: same towers, same streets, four different moods. Pick a look, then drag the handle to
+          scrub it against the blocking.
         </P>
-        <FramedImage
-          src={ASSET('3d-2.webp')}
-          sticker="The 3D blocking"
-          alt="Blender viewport screenshot: aerial user-perspective view over the low-poly city blockout"
-          caption="The working viewport, camera repositioned overhead."
-          accent="cyan"
+        <CompareSlider
+          before={{
+            src: ASSET('3d-2.webp'),
+            alt: 'Blender viewport screenshot: aerial user-perspective view over the low-poly city blockout',
+            sticker: 'The 3D blocking',
+            caption: 'The working viewport, camera repositioned overhead.',
+          }}
+          variants={[
+            {
+              label: 'Look 01',
+              side: {
+                src: ASSET('3d-2sc.webp'),
+                alt: 'Generated aerial of the ruined city at dusk with scattered fires burning in the streets',
+                sticker: 'Look 01',
+                caption: 'Dusk, fires still burning.',
+              },
+            },
+            {
+              label: 'Look 02',
+              side: {
+                src: ASSET('3d-2sc1.webp'),
+                alt: 'Generated aerial of the ruined city swallowed in white morning fog',
+                sticker: 'Look 02',
+                caption: 'Morning fog.',
+              },
+            },
+            {
+              label: 'Look 03',
+              side: {
+                src: ASSET('3d-2sc2.webp'),
+                alt: 'Generated aerial of mossy overgrown towers in warm sunlit haze',
+                sticker: 'Look 03',
+                caption: 'Sunlit overgrowth.',
+              },
+            },
+            {
+              label: 'Look 04',
+              side: {
+                src: ASSET('3d-2sc3.webp'),
+                alt: 'Generated aerial of the ruined city under cold blue storm light',
+                sticker: 'Look 04',
+                caption: 'Cold front.',
+              },
+            },
+          ]}
         />
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
-          <FramedImage
-            src={ASSET('3d-2sc.webp')}
-            sticker="Look 01"
-            alt="Generated aerial of the ruined city at dusk with scattered fires burning in the streets"
-            caption="Dusk, fires still burning."
-            accent="cyan"
-          />
-          <FramedImage
-            src={ASSET('3d-2sc1.webp')}
-            sticker="Look 02"
-            alt="Generated aerial of the ruined city swallowed in white morning fog"
-            caption="Morning fog."
-            accent="cyan"
-          />
-          <FramedImage
-            src={ASSET('3d-2sc2.webp')}
-            sticker="Look 03"
-            alt="Generated aerial of mossy overgrown towers in warm sunlit haze"
-            caption="Sunlit overgrowth."
-            accent="cyan"
-          />
-          <FramedImage
-            src={ASSET('3d-2sc3.webp')}
-            sticker="Look 04"
-            alt="Generated aerial of the ruined city under cold blue storm light"
-            caption="Cold front."
-            accent="cyan"
-          />
-        </div>
       </div>
     ),
   },
@@ -544,21 +556,21 @@ const SCENE_TABS = [
       <div className="space-y-12">
         <P>
           The wide: the whole island block against the ocean. One camera move in the scene, one generative
-          pass, and the blockout becomes golden-hour ruin.
+          pass, and the blockout becomes golden-hour ruin. Drag the handle to scrub between the two.
         </P>
-        <FramedImage
-          src={ASSET('3d-3.webp')}
-          sticker="The 3D blocking"
-          alt="Low-poly white and green city blockout on an island against a deep blue ocean"
-          caption="The wide, blocked out against the ocean."
-          accent="cyan"
-        />
-        <FramedImage
-          src={ASSET('3d-3sc.webp')}
-          sticker="The generated frame"
-          alt="Generated golden-hour frame of ruined overgrown towers on the same island coastline"
-          caption="The same wide after the generative pass."
-          accent="cyan"
+        <CompareSlider
+          before={{
+            src: ASSET('3d-3.webp'),
+            alt: 'Low-poly white and green city blockout on an island against a deep blue ocean',
+            sticker: 'The 3D blocking',
+            caption: 'The wide, blocked out against the ocean.',
+          }}
+          after={{
+            src: ASSET('3d-3sc.webp'),
+            alt: 'Generated golden-hour frame of ruined overgrown towers on the same island coastline',
+            sticker: 'The generated frame',
+            caption: 'The same wide after the generative pass.',
+          }}
         />
       </div>
     ),
