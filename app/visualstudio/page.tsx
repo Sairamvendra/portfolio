@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { CaseStudyTemplate, FramedImage, type Block } from '@/components/case-study/CaseStudyTemplate';
 import { FeatureTabs } from '@/components/case-study/FeatureTabs';
 import { SceneBuilderViewer } from '@/components/case-study/SceneBuilderViewer';
+import { WhoItsForAnimatic } from '@/components/case-study/WhoItsForAnimatic';
 import { GhostsInNumbers } from '@/components/case-study/GhostsInNumbers';
 import { HardProblemsSlider } from '@/components/case-study/HardProblemsSlider';
 
@@ -996,17 +997,8 @@ const BLOCKS: Block[] = [
                 bed, looped at export.
               </p>
             </div>
-            <figure className="relative w-fit max-w-full mx-auto border-3 border-white shadow-neobrutalism-md bg-neobrutalism-black rotate-[0.5deg]">
-              {/* ponytail: autoplaying muted loop, same treatment as the What's next Remotion video */}
-              <video
-                src={ASSET('who-its-for.mp4')}
-                className="w-full max-w-[560px] block"
-                autoPlay
-                muted
-                loop
-                playsInline
-                aria-label="Animated slides of who Reel Flow is for: founders and solo creators shipping daily shorts, marketing teams localising one reel into ten languages, podcasters turning episodes into clip reels, UGC-style ads without a UGC agency, and a ten-variant hook test costing less than one revision note"
-              />
+            <figure className="relative w-full max-w-[560px] mx-auto border-3 border-white shadow-neobrutalism-md bg-neobrutalism-black rotate-[0.5deg]">
+              <WhoItsForAnimatic />
             </figure>
           </div>
         ),
