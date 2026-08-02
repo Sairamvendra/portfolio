@@ -471,14 +471,14 @@ const SCENE_TABS = [
           paints the blocking into a finished frame with the composition intact.
         </P>
         <FramedImage
-          src={ASSET('3d-1.jpg')}
+          src={ASSET('3d-1.webp')}
           sticker="The 3D blocking"
           alt="Low-poly 3D blockout of a city street at eye level, grey towers and simple grass tufts"
           caption="Street-level camera, blocked out in the 3D scene."
           accent="cyan"
         />
         <FramedImage
-          src={ASSET('3d-1sc.jpg')}
+          src={ASSET('3d-1sc.webp')}
           sticker="The generated frame"
           alt="Generated cinematic frame of the same street: cracked asphalt, overgrown ruined buildings, sunrise haze"
           caption="The same camera after the generative pass: composition intact, world rendered."
@@ -497,7 +497,7 @@ const SCENE_TABS = [
           blocking: same towers, same streets, four different moods.
         </P>
         <FramedImage
-          src={ASSET('3d-2.jpg')}
+          src={ASSET('3d-2.webp')}
           sticker="The 3D blocking"
           alt="Blender viewport screenshot: aerial user-perspective view over the low-poly city blockout"
           caption="The working viewport, camera repositioned overhead."
@@ -505,28 +505,28 @@ const SCENE_TABS = [
         />
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
           <FramedImage
-            src={ASSET('3d-2sc.jpg')}
+            src={ASSET('3d-2sc.webp')}
             sticker="Look 01"
             alt="Generated aerial of the ruined city at dusk with scattered fires burning in the streets"
             caption="Dusk, fires still burning."
             accent="cyan"
           />
           <FramedImage
-            src={ASSET('3d-2sc1.jpg')}
+            src={ASSET('3d-2sc1.webp')}
             sticker="Look 02"
             alt="Generated aerial of the ruined city swallowed in white morning fog"
             caption="Morning fog."
             accent="cyan"
           />
           <FramedImage
-            src={ASSET('3d-2sc2.jpg')}
+            src={ASSET('3d-2sc2.webp')}
             sticker="Look 03"
             alt="Generated aerial of mossy overgrown towers in warm sunlit haze"
             caption="Sunlit overgrowth."
             accent="cyan"
           />
           <FramedImage
-            src={ASSET('3d-2sc3.jpg')}
+            src={ASSET('3d-2sc3.webp')}
             sticker="Look 04"
             alt="Generated aerial of the ruined city under cold blue storm light"
             caption="Cold front."
@@ -546,14 +546,14 @@ const SCENE_TABS = [
           pass, and the blockout becomes golden-hour ruin.
         </P>
         <FramedImage
-          src={ASSET('3d-3.jpg')}
+          src={ASSET('3d-3.webp')}
           sticker="The 3D blocking"
           alt="Low-poly white and green city blockout on an island against a deep blue ocean"
           caption="The wide, blocked out against the ocean."
           accent="cyan"
         />
         <FramedImage
-          src={ASSET('3d-3sc.jpg')}
+          src={ASSET('3d-3sc.webp')}
           sticker="The generated frame"
           alt="Generated golden-hour frame of ruined overgrown towers on the same island coastline"
           caption="The same wide after the generative pass."

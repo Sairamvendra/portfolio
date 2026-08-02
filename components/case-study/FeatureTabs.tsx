@@ -47,7 +47,8 @@ export function FeatureTabs({ tabs, accentBg = 'bg-neobrutalism-cyan', dark = fa
           hidden={i !== active}
           className={`mt-6 border-3 border-neobrutalism-black shadow-neobrutalism-lg p-6 sm:p-8 ${dark ? 'bg-neobrutalism-black text-white border-white/40' : 'bg-neobrutalism-white text-neobrutalism-black'}`}
         >
-          {t.content}
+          {/* mount only the active panel: hidden panels' images/videos otherwise download on page load */}
+          {i === active && t.content}
         </div>
       ))}
     </div>
