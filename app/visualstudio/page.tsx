@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { CaseStudyTemplate, FramedImage, type Block } from '@/components/case-study/CaseStudyTemplate';
 import { FeatureTabs } from '@/components/case-study/FeatureTabs';
+import { SceneBuilderViewer } from '@/components/case-study/SceneBuilderViewer';
 import { GhostsInNumbers } from '@/components/case-study/GhostsInNumbers';
 import { HardProblemsSlider } from '@/components/case-study/HardProblemsSlider';
 
@@ -441,6 +442,147 @@ const STUDIO_TABS = [
   },
 ];
 
+/* --------------------- the 3D Scene Builder slides --------------------- */
+
+const SCENE_TABS = [
+  {
+    id: 'build',
+    label: 'Build',
+    content: (
+      <div>
+        <P>
+          Build your scene with generative 3D, or with traditional tools like Blender. This is the real
+          showpiece: the city blockout, exported straight from its .blend and rendered live on this page.
+          Drag to orbit, scroll to zoom.
+        </P>
+        <div className="mt-8 border-3 border-neobrutalism-black shadow-neobrutalism-lg bg-neobrutalism-black">
+          <SceneBuilderViewer />
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: 'shot1',
+    label: 'Shot 01',
+    content: (
+      <div className="space-y-12">
+        <P>
+          Reposition your camera and build your comp. Block the shot in 3D first, then the generative pass
+          paints the blocking into a finished frame with the composition intact.
+        </P>
+        <FramedImage
+          src={ASSET('3d-1.jpg')}
+          sticker="The 3D blocking"
+          alt="Low-poly 3D blockout of a city street at eye level, grey towers and simple grass tufts"
+          caption="Street-level camera, blocked out in the 3D scene."
+          accent="cyan"
+        />
+        <FramedImage
+          src={ASSET('3d-1sc.jpg')}
+          sticker="The generated frame"
+          alt="Generated cinematic frame of the same street: cracked asphalt, overgrown ruined buildings, sunrise haze"
+          caption="The same camera after the generative pass: composition intact, world rendered."
+          accent="cyan"
+        />
+      </div>
+    ),
+  },
+  {
+    id: 'shot2',
+    label: 'Shot 02',
+    content: (
+      <div className="space-y-12">
+        <P>
+          An aerial camera straight from the Blender viewport, and four generated looks from that one
+          blocking: same towers, same streets, four different moods.
+        </P>
+        <FramedImage
+          src={ASSET('3d-2.jpg')}
+          sticker="The 3D blocking"
+          alt="Blender viewport screenshot: aerial user-perspective view over the low-poly city blockout"
+          caption="The working viewport, camera repositioned overhead."
+          accent="cyan"
+        />
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
+          <FramedImage
+            src={ASSET('3d-2sc.jpg')}
+            sticker="Look 01"
+            alt="Generated aerial of the ruined city at dusk with scattered fires burning in the streets"
+            caption="Dusk, fires still burning."
+            accent="cyan"
+          />
+          <FramedImage
+            src={ASSET('3d-2sc1.jpg')}
+            sticker="Look 02"
+            alt="Generated aerial of the ruined city swallowed in white morning fog"
+            caption="Morning fog."
+            accent="cyan"
+          />
+          <FramedImage
+            src={ASSET('3d-2sc2.jpg')}
+            sticker="Look 03"
+            alt="Generated aerial of mossy overgrown towers in warm sunlit haze"
+            caption="Sunlit overgrowth."
+            accent="cyan"
+          />
+          <FramedImage
+            src={ASSET('3d-2sc3.jpg')}
+            sticker="Look 04"
+            alt="Generated aerial of the ruined city under cold blue storm light"
+            caption="Cold front."
+            accent="cyan"
+          />
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: 'shot3',
+    label: 'Shot 03',
+    content: (
+      <div className="space-y-12">
+        <P>
+          The wide: the whole island block against the ocean. One camera move in the scene, one generative
+          pass, and the blockout becomes golden-hour ruin.
+        </P>
+        <FramedImage
+          src={ASSET('3d-3.jpg')}
+          sticker="The 3D blocking"
+          alt="Low-poly white and green city blockout on an island against a deep blue ocean"
+          caption="The wide, blocked out against the ocean."
+          accent="cyan"
+        />
+        <FramedImage
+          src={ASSET('3d-3sc.jpg')}
+          sticker="The generated frame"
+          alt="Generated golden-hour frame of ruined overgrown towers on the same island coastline"
+          caption="The same wide after the generative pass."
+          accent="cyan"
+        />
+      </div>
+    ),
+  },
+  {
+    id: 'motion',
+    label: 'Motion',
+    content: (
+      <div className="space-y-8">
+        <P>
+          Finally, give motion to your creations: the generated frames go through the video pass and the
+          still city starts to breathe.
+        </P>
+        <FramedImage
+          src={ASSET('3d-motion.mp4')}
+          sticker="The motion pass"
+          alt="Generated video flythrough of the ruined city built from the 3D scene"
+          caption="From .blend to blocking to frame to motion, one pipeline."
+          accent="cyan"
+        />
+      </div>
+    ),
+  },
+];
+
 /* ------------------------------- the page ------------------------------- */
 
 const BLOCKS: Block[] = [
@@ -684,6 +826,31 @@ const BLOCKS: Block[] = [
       </div>
     ),
   },
+
+  {
+    type: 'section',
+    bg: 'pink',
+    blocks: [
+      { type: 'heading', text: '3D Scene Builder', kicker: 'Coming soon' },
+      {
+        type: 'custom',
+        node: (
+          <div>
+            <p className="text-xl sm:text-2xl leading-relaxed font-medium max-w-5xl">
+              The next module on the canvas: build your scene with generative 3D or with traditional tools
+              like Blender, reposition the camera until the comp is right, then let the generative pass
+              paint the frame and the video pass set it moving. The slides below are a real run: one
+              Blender city, start to finish.
+            </p>
+            <div className="mt-10">
+              <FeatureTabs tabs={SCENE_TABS} />
+            </div>
+          </div>
+        ),
+      },
+    ],
+  },
+
   {
     type: 'custom',
     node: (
