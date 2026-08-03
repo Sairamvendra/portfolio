@@ -227,7 +227,7 @@ export default function PrimeVideoPage() {
     <CaseStudyTemplate
       accent="sky"
       heroTicker={['Key art in', 'On-brand out', 'Every region', 'Every surface']}
-      eyebrow="Case study · Prime Video"
+      eyebrow="Work experience"
       title="Prime Video"
       summary="Creative leadership for the Prime Video storefront. Studio key art turned into on-brand, accessible campaign creative by art director teams across the US, UK, Australia and beyond."
       facts={[

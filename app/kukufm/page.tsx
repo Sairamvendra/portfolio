@@ -670,7 +670,7 @@ export default function KukuFMPage() {
     <CaseStudyTemplate
       accent="pink"
       heroTicker={['Thumbnail engine', 'Micro dramas', 'Ad engine', 'GPT bots', 'AI comics', 'Motion posters', '10 languages']}
-      eyebrow="Company page · Kuku FM"
+      eyebrow="Work experience"
       title="Kuku FM"
       summary="Head of Design and AI Product Manager at India's microdrama & audio-series giant. Led a 20-member design team across four verticals, built the GPT and image-gen pipelines that took thumbnails from 4 hours to 12 minutes, and shipped the AI transformation that Mint put on its front page."
       facts={[

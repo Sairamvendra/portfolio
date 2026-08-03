@@ -171,7 +171,7 @@ export default function CimpressPage() {
     <CaseStudyTemplate
       accent="cyan"
       heroTicker={['Business cards', 'Banners', 'Car magnets', 'Door hangers', 'Invitations', 'Logos']}
-      eyebrow="Case study · Print & digital"
+      eyebrow="Work experience"
       title="Cimpress Vistaprint"
       summary="Art direction and custom design for Vistaprint clients around the world. Complete identity systems for small businesses, designed once and carried across everything they print, hang, wear, or drive."
       facts={[

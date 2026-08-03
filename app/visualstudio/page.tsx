@@ -1373,7 +1373,7 @@ export default function VisualStudioPage() {
     <CaseStudyTemplate
       accent="cyan"
       heroTicker={['16 image models', 'One canvas', 'Annotate-to-edit', 'Reel factory', '4 cost tiers', 'Code-authored motion', 'Premiere handoff', '87 languages']}
-      eyebrow="Case study · AI product · Solo build"
+      eyebrow="AI product · Solo build"
       title="Visual Studio Pro"
       summary="A full AI creative studio in the browser. One canvas that speaks to sixteen image models, a cinematography brain that turns camera gear into prompt language, and a reel factory that takes a topic, a script, a voice note, or raw phone footage and hands back an edited, captioned, music-backed vertical video, plus the Premiere project to keep cutting it. Built solo: product, design, engineering, prompt architecture."
       facts={[

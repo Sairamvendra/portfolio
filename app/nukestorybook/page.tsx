@@ -631,7 +631,7 @@ export default function NukeStorybookPage() {
     <CaseStudyTemplate
       accent="mint"
       heroTicker={['Screenplay in', 'Shot list out', 'Consistent characters', 'Scouted locations', 'Real camera language', 'Minutes, not weeks']}
-      eyebrow="Case study · AI product · Solo build"
+      eyebrow="AI product · Solo build"
       title="Nuke Storybook"
       summary="Script to shot-list to screen. An AI pre-production suite that turns a screenplay into a shot-by-shot cinematic storyboard, with consistent characters, scouted locations, and real camera language, in minutes instead of weeks. Built solo: product, design, engineering, and prompt architecture."
       facts={[

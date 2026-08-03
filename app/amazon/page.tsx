@@ -129,7 +129,7 @@ export default function AmazonPage() {
     <CaseStudyTemplate
       accent="orange"
       heroTicker={['Shoot once', 'Retouch', 'Recolor', 'Ship the catalog']}
-      eyebrow="Case study · Amazon"
+      eyebrow="Work experience"
       title="Imaging Associate"
       summary="Catalog imaging at Amazon: studio photography retouched and recolored into every listing variant, to a style guide that leaves no room for interpretation."
       facts={[
