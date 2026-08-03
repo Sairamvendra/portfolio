@@ -67,7 +67,7 @@ export const EXPERIENCES: Experience[] = [
       'Developed custom AI pipelines to streamline creative workflows and enhance production efficiency.',
       'Built web designs for the product, redefining the UI experience to feel simple and intentional — not like a vibe-coded app.',
     ],
-    technologies: ['Figma', 'Claude Code', 'User Interviews', 'UX Design', 'System Design', 'AI Pipelines'],
+    technologies: ['Product design and development', 'Claude Code', 'User Interviews', 'System Design', 'AI Pipelines'],
   },
   {
     id: 'consulting',
@@ -102,7 +102,7 @@ export const EXPERIENCES: Experience[] = [
       'Set end-to-end creative strategy for local and Chinese content portfolios, aligning output to market demand and audience insights.',
       'Drove cross-functional alignment with Product, Marketing, and Content; partnered with creators and AI Labs to refine their product funnel, UX, and visual identity.',
     ],
-    technologies: ['Figma', 'Claude Code', 'Sora', 'Midjourney', 'Runway ML', 'Google Veo', 'Google AI studio', 'Eleven labs'],
+    technologies: ['Claude Code', 'Micro AI products', 'Figma', 'Midjourney', 'Runway ML', 'Google Veo', 'Google AI studio', 'Eleven labs'],
   },
   {
     id: '2',
@@ -119,7 +119,7 @@ export const EXPERIENCES: Experience[] = [
       'Led High-Profile Event Designs: Directed design sprints for Prime Day, Holiday Sale, and DEI events, delivering impactful creative assets.',
       'Managed Brand Onboarding and Refresh: Supported external partners with brand updates and onboarding, to ensure alignment with Amazon\'s high standards.',
     ],
-    technologies: ['Figma', 'Jira', 'Confluence', 'Photoshop', 'Illustrator', 'After Effects', 'Amazon Brand Guidelines'],
+    technologies: ['Photoshop', 'Jira', 'Confluence', 'Figma', 'Illustrator', 'After Effects', 'Amazon Brand Guidelines'],
   },
   {
     id: '3',
