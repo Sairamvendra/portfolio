@@ -5,6 +5,7 @@ import { Banner } from '@/components/sections/Banner';
 import { About } from '@/components/sections/About';
 import { Showreel } from '@/components/sections/Showreel';
 import { Skills } from '@/components/sections/Skills';
+import { GitHubActivity } from '@/components/sections/GitHubActivity';
 import { DomeGallery } from '@/components/sections/DomeGallery';
 import { ProfileSummary } from '@/components/sections/ProfileSummary';
 import { Experience } from '@/components/sections/Experience';
@@ -22,6 +23,7 @@ export default function Home() {
         <About />
         <Showreel />
         <Skills />
+        <GitHubActivity />
         <DomeGallery />
         <ProfileSummary />
         <Experience />
