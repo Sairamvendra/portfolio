@@ -3,8 +3,8 @@ import { Card } from '@/components/ui/Card';
 import { FadeIn } from '@/components/animations/FadeIn';
 
 const USERNAME = 'Sairamvendra';
-// ponytail: third-party mirror of GitHub's contribution graph, no key needed.
-// If it ever dies, swap getContributions() for the GitHub GraphQL API + PAT.
+// Primary source: third-party mirror (clean JSON, no key). Falls back to
+// parsing GitHub's own public HTML fragment if the mirror is unreachable.
 const API_BASE = `https://github-contributions-api.jogruber.de/v4/${USERNAME}`;
 
 // index = contribution level 0–4, dark → bright mint (drawn on the black panel)
@@ -20,7 +20,7 @@ interface Day {
   level: number;
 }
 
-async function getContributions(year: number): Promise<Day[] | null> {
+async function fromMirror(year: number): Promise<Day[] | null> {
   try {
     const res = await fetch(`${API_BASE}?y=${year}`, { next: { revalidate: 3600 } });
     if (!res.ok) return null;
@@ -33,9 +33,41 @@ async function getContributions(year: number): Promise<Day[] | null> {
   }
 }
 
+// GitHub serves the calendar first-party as an HTML fragment: each day is a
+// <td data-date data-level id> with its count in a <tool-tip for={id}> label.
+async function fromGitHub(year: number): Promise<Day[] | null> {
+  try {
+    const res = await fetch(
+      `https://github.com/users/${USERNAME}/contributions?from=${year}-01-01&to=${year}-12-31`,
+      { next: { revalidate: 3600 } }
+    );
+    if (!res.ok) return null;
+    const html = await res.text();
+
+    const counts = new Map<string, number>();
+    for (const m of html.matchAll(/<tool-tip[^>]*for="([^"]+)"[^>]*>(\d+|No) contributions? on/g)) {
+      counts.set(m[1], m[2] === 'No' ? 0 : parseInt(m[2], 10));
+    }
+
+    const days: Day[] = [];
+    for (const m of html.matchAll(/<td[^>]*data-date="[^"]+"[^>]*>/g)) {
+      const tag = m[0];
+      const date = tag.match(/data-date="([^"]+)"/)?.[1];
+      const id = tag.match(/id="([^"]+)"/)?.[1];
+      const level = tag.match(/data-level="(\d)"/)?.[1];
+      if (!date || !level) continue;
+      days.push({ date, count: id ? counts.get(id) ?? 0 : 0, level: Number(level) });
+    }
+    days.sort((a, b) => a.date.localeCompare(b.date));
+    return days.length > 0 ? days : null;
+  } catch {
+    return null;
+  }
+}
+
 export async function GitHubActivity() {
   const year = new Date().getFullYear();
-  const fetched = await getContributions(year);
+  const fetched = (await fromMirror(year)) ?? (await fromGitHub(year));
   if (!fetched) return null; // API down → strip disappears, homepage unaffected
 
   const total = fetched.reduce((sum, d) => sum + d.count, 0);
