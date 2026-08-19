@@ -43,6 +43,12 @@ const PROJECT_ITEMS = [
     description: 'Agentic design, AI movie production, AI Product management',
   },
   {
+    image: '/projects/ruinrunner.jpg',
+    link: '/ruinrunner',
+    title: 'Ruin Runner',
+    description: 'Game design, 3D asset pipeline, AI-orchestrated build',
+  },
+  {
     image: '/projects/trippo.jpg',
     link: '/trippo',
     title: 'Trippo app design',
@@ -64,7 +70,7 @@ const PROJECT_ITEMS = [
 
 // Sphere opens on one of these two projects (random per visit) instead of
 // whichever chip the geometry happens to leave facing the camera
-const OPENING_LINKS = ['/nukestorybook', '/visualstudio'];
+const OPENING_LINKS = ['/nukestorybook', '/visualstudio', '/ruinrunner'];
 
 export function DomeGallery() {
   const [initialIndex] = useState(() => {
