@@ -7,9 +7,10 @@ import { HangarFlyby } from '@/components/case-study/HangarFlyby';
 import { LiveLeaderboard } from '@/components/case-study/LiveLeaderboard';
 import { RunLoopAnimatic } from '@/components/case-study/RunLoopAnimatic';
 import { SaltDealAnimatic } from '@/components/case-study/SaltDealAnimatic';
-import DriftWall from '@/components/reactbits/DriftWall';
+import { VoidWall } from '@/components/case-study/VoidWall';
 import AccordionGallery from '@/components/reactbits/AccordionGallery';
 import { TiltShineCard } from '@/components/ui/ProfileTiltCard';
+import { HoverCarViewer } from '@/components/case-study/HoverCarViewer';
 
 export const metadata = {
   title: 'Ruin Runner | Sairam Vendra',
@@ -330,8 +331,8 @@ const blocks: Block[] = [
                   Portals to deep space
                 </p>
               </div>
-              <div className="block w-fit px-6 py-3 bg-neobrutalism-black border-5 border-neobrutalism-black shadow-neobrutalism-lg -rotate-1">
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neobrutalism-yellow whitespace-nowrap">
+              <div className="block w-fit px-6 py-3 bg-neobrutalism-yellow border-5 border-neobrutalism-black shadow-neobrutalism-lg -rotate-1">
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neobrutalism-black whitespace-nowrap">
                   The void
                 </h2>
               </div>
@@ -347,26 +348,10 @@ const blocks: Block[] = [
       {
         type: 'custom',
         node: (
-          <div className="h-[520px] sm:h-[620px]">
-            <DriftWall
-              items={SKIES.map(s => ({ image: s.src, title: s.sticker }))}
-              columns={5}
-              tileWidth={250}
-              tileHeight={156}
-              gap={18}
-              tilt={16}
-              turn={-14}
-              perspective={1200}
-              depth={120}
-              speed={42}
-              direction="up"
-              variance={0.45}
-              parallax={0.6}
-              lift={64}
-              fade={0.72}
-              dim={0.55}
-              overlayColor="#000000"
-            />
+          // full-bleed wall: the closest-side vignette scales with the box, so the
+          // side fades land on the viewport edges at any size
+          <div className="relative left-1/2 -translate-x-1/2 w-screen h-[55vh] min-h-[440px] max-h-[680px]">
+            <VoidWall items={[...SKIES, ...SKIES].map(s => ({ image: s.src, title: s.sticker }))} />
           </div>
         ),
       },
@@ -616,15 +601,9 @@ export default function RuinRunnerPage() {
             <h2 className="text-4xl sm:text-5xl font-black uppercase leading-none text-neobrutalism-yellow">
               Ready to fly?
             </h2>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={ASSET('objects/hover-car.png')}
-              alt=""
-              aria-hidden="true"
-              loading="lazy"
-              decoding="async"
-              className="h-28 w-auto -rotate-6 drop-shadow-[8px_10px_0_rgba(255,215,0,0.35)]"
-            />
+            <div className="w-full">
+              <HoverCarViewer />
+            </div>
             <p className="text-base font-bold text-white">
               One link. No install. The dead city is waiting.
             </p>
