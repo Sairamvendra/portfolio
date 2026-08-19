@@ -70,7 +70,7 @@ const PROJECT_ITEMS = [
 
 // Sphere opens on one of these two projects (random per visit) instead of
 // whichever chip the geometry happens to leave facing the camera
-const OPENING_LINKS = ['/nukestorybook', '/visualstudio', '/ruinrunner'];
+const OPENING_LINKS = ['/nukestorybook', '/visualstudio'];
 
 export function DomeGallery() {
   const [initialIndex] = useState(() => {
