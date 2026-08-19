@@ -105,7 +105,7 @@ const SKIES = [
 
 function PromoPlayer() {
   return (
-    <div className="relative w-fit max-w-full mx-auto">
+    <div className="relative w-full">
       <div className="h-0">
         <div className="relative z-10 w-fit -rotate-3 -translate-y-4 -translate-x-4 px-4 py-1.5 bg-neobrutalism-yellow border-3 border-neobrutalism-black shadow-neobrutalism-sm">
           <span className="font-black uppercase tracking-widest whitespace-nowrap text-neobrutalism-black text-sm">
@@ -115,17 +115,14 @@ function PromoPlayer() {
       </div>
       <div aria-hidden="true" className="absolute -bottom-3 -right-3 w-10 h-10 bg-neobrutalism-black rotate-12" />
       <figure className="relative border-5 border-neobrutalism-black shadow-neobrutalism-xl bg-neobrutalism-white">
-        <video
-          src={ASSET('promo.mp4')}
-          poster={ASSET('promo-poster.jpg')}
-          className="max-w-full max-h-[640px] w-auto h-auto block"
-          controls
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          aria-label="Ruin Runner promotional trailer"
+        <iframe
+          src="https://www.youtube.com/embed/afsxkXkfUPE?autoplay=1&mute=1&playsinline=1&vq=hd1080"
+          title="Ruin Runner promotional trailer"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+          className="w-full aspect-video block border-0 bg-neobrutalism-black"
         />
         <figcaption className="w-0 min-w-full border-t-3 border-neobrutalism-black px-4 py-3 text-sm font-bold bg-neobrutalism-white">
           30 seconds of raw gameplay, cut into a trailer. Sound on. 🔊
