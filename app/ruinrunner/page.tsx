@@ -8,6 +8,7 @@ import { LiveLeaderboard } from '@/components/case-study/LiveLeaderboard';
 import { RunLoopAnimatic } from '@/components/case-study/RunLoopAnimatic';
 import { SaltDealAnimatic } from '@/components/case-study/SaltDealAnimatic';
 import DriftWall from '@/components/reactbits/DriftWall';
+import AccordionGallery from '@/components/reactbits/AccordionGallery';
 
 export const metadata = {
   title: 'Ruin Runner | Sairam Vendra',
@@ -282,15 +283,26 @@ const blocks: Block[] = [
   },
   { type: 'custom', node: <BiomeVelocity biomes={BIOMES} /> },
   {
-    type: 'gallery',
-    cols: 2,
-    aspect: 'wide',
-    images: [
-      { src: ASSET('shots/title.jpg'), alt: 'Ruin Runner title screen over the dusk city', sticker: 'Title deck' },
-      { src: ASSET('shots/flight-boneyard.jpg'), alt: 'Flying over giant ribcages with a portal ahead', sticker: 'Titan Boneyard' },
-      { src: ASSET('shots/flight-caldera.jpg'), alt: 'Flying over glowing lava vents in haze', sticker: 'Volcanic Caldera' },
-      { src: ASSET('shots/flight-peaks.jpg'), alt: 'Daytime flight through snowy peaks, saucer in pursuit', sticker: 'Sacred Peaks' },
-    ],
+    type: 'custom',
+    node: (
+      <AccordionGallery
+        items={[
+          { image: ASSET('shots/flight-peaks.jpg'), label: 'Sacred Peaks', alt: 'Daytime flight through snowy peaks, saucer in pursuit' },
+          { image: ASSET('shots/dusk-skyline.jpg'), label: 'Ruin City', alt: 'Gliding between broken towers under a pink dusk skyline' },
+          { image: ASSET('shots/canyon-chase.jpg'), label: 'Slot Canyon', alt: 'Threading a narrow canyon as a saucer closes in' },
+          { image: ASSET('shots/flight-caldera.jpg'), label: 'Volcanic Caldera', alt: 'Flying over glowing lava vents in haze' },
+          { image: ASSET('shots/forest-portal.jpg'), label: 'Deep Forest', alt: 'A purple portal glowing between low-poly trees' },
+          { image: ASSET('shots/flight-boneyard.jpg'), label: 'Titan Boneyard', alt: 'Flying over giant ribcages with a portal ahead' },
+          { image: ASSET('shots/sky-isles.jpg'), label: 'Floating Isles', alt: 'Hopping between floating grass islands above the clouds' },
+          { image: ASSET('shots/void-nebula.jpg'), label: 'The Void', alt: 'Deep-space run through a star-dense NASA nebula' },
+        ]}
+        defaultIndex={2}
+        expandRatio={0.52}
+        trigger="hover"
+        height={520}
+        autoAdvanceInterval={8}
+      />
+    ),
   },
 
   { type: 'heading', text: 'Know your enemy', kicker: 'The threat ladder' },
@@ -566,7 +578,7 @@ const blocks: Block[] = [
             </div>
           </div>
         </div>
-        <div className="mt-10 text-center">
+        <div className="mt-10">
           <a href="/" className="btn-outline">← Back to portfolio</a>
         </div>
       </div>
@@ -587,6 +599,44 @@ export default function RuinRunnerPage() {
         { label: 'Status', value: 'v1 · playable · deployed' },
         { label: 'Stack', value: 'Three.js · Rapier WASM · zero build' },
       ]}
+      heroExtra={
+        <div className="relative w-full max-w-sm justify-self-center border-5 border-neobrutalism-black shadow-neobrutalism-xl bg-neobrutalism-black p-8 overflow-hidden rotate-1">
+          <div
+            aria-hidden="true"
+            className="absolute -right-6 -top-6 w-20 h-20 bg-neobrutalism-yellow rotate-12 border-3 border-neobrutalism-black"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute -left-5 -bottom-5 w-14 h-14 bg-neobrutalism-yellow -rotate-6 border-3 border-neobrutalism-black"
+          />
+          <div className="relative flex flex-col items-center text-center gap-4">
+            <p className="text-xs font-black uppercase tracking-widest text-white/60">Boarding now · RR-09</p>
+            <h2 className="text-4xl sm:text-5xl font-black uppercase leading-none text-neobrutalism-yellow">
+              Ready to fly?
+            </h2>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={ASSET('objects/hover-car.png')}
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              decoding="async"
+              className="h-28 w-auto -rotate-6 drop-shadow-[8px_10px_0_rgba(255,215,0,0.35)]"
+            />
+            <p className="text-base font-bold text-white">
+              One link. No install. The dead city is waiting.
+            </p>
+            <a
+              href="https://ruin-runner.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary text-base sm:text-lg px-8 py-3"
+            >
+              ▶ Play Ruin Runner
+            </a>
+          </div>
+        </div>
+      }
       heroTicker={[
         '11 procedural biomes',
         '9 real NASA skies',

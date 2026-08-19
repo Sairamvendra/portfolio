@@ -95,6 +95,8 @@ export interface CaseStudyTemplateProps {
   facts?: { label: string; value: string }[];
   /** Marquee pinned to the bottom of the first viewport, like the home hero */
   heroTicker?: string[];
+  /** Optional extra hero content rendered after the fact cards (e.g. a CTA poster) */
+  heroExtra?: React.ReactNode;
   blocks: Block[];
 }
 
@@ -374,7 +376,7 @@ function BlockList({ blocks, accent }: { blocks: Block[]; accent: Accent }) {
   );
 }
 
-export function CaseStudyTemplate({ accent = 'yellow', eyebrow, title, summary, facts, heroTicker, blocks }: CaseStudyTemplateProps) {
+export function CaseStudyTemplate({ accent = 'yellow', eyebrow, title, summary, facts, heroTicker, heroExtra, blocks }: CaseStudyTemplateProps) {
   return (
     <main className="min-h-screen bg-neobrutalism-white text-neobrutalism-black">
       {/* First viewport = hero field + ticker pinned at the fold, like the home hero */}
@@ -405,6 +407,8 @@ export function CaseStudyTemplate({ accent = 'yellow', eyebrow, title, summary, 
           {/* flex-1 + justify-center: extra viewport height becomes accent field, not white void */}
           <Container className="relative z-10 w-full flex-1 flex flex-col justify-center py-12 sm:py-14">
             <FadeIn>
+            <div className={heroExtra ? 'grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto] gap-10 lg:gap-16 items-center' : undefined}>
+            <div>
             {eyebrow && (
               // block w-fit: never share a line with the title plate, whatever the title length
               <div className="block w-fit px-4 py-2 bg-neobrutalism-white border-3 border-neobrutalism-black shadow-neobrutalism-sm mb-8 -rotate-1">
@@ -434,6 +438,9 @@ export function CaseStudyTemplate({ accent = 'yellow', eyebrow, title, summary, 
                 ))}
               </dl>
             )}
+            </div>
+            {heroExtra}
+            </div>
           </FadeIn>
           </Container>
         </header>

@@ -46,7 +46,7 @@ const PROJECT_ITEMS = [
     image: '/projects/ruinrunner.jpg',
     link: '/ruinrunner',
     title: 'Ruin Runner',
-    description: 'Game design, 3D asset pipeline, AI-orchestrated build',
+    description: 'Game Design & Dev, 3D asset pipeline, AI Product management',
   },
   {
     image: '/projects/trippo.jpg',
