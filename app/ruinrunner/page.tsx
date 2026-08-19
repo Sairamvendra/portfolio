@@ -5,8 +5,11 @@ import { EnemyRoster } from '@/components/case-study/EnemyRoster';
 import { FuzzyTitle } from '@/components/case-study/FuzzyTitle';
 import { HangarFlyby } from '@/components/case-study/HangarFlyby';
 import { LiveLeaderboard } from '@/components/case-study/LiveLeaderboard';
+import { DevLog } from '@/components/case-study/DevLog';
+import { FlightPlanAnimatic } from '@/components/case-study/FlightPlanAnimatic';
 import { RunLoopAnimatic } from '@/components/case-study/RunLoopAnimatic';
 import { SaltDealAnimatic } from '@/components/case-study/SaltDealAnimatic';
+import MorphSlider from '@/components/reactbits/MorphSlider';
 import { VoidWall } from '@/components/case-study/VoidWall';
 import AccordionGallery from '@/components/reactbits/AccordionGallery';
 import { TiltShineCard } from '@/components/ui/ProfileTiltCard';
@@ -135,59 +138,6 @@ function PromoPlayer() {
   );
 }
 
-const DEVLOG = [
-  {
-    date: 'Aug 6 · Ignition',
-    title: 'From Blender scene to playable game in a day',
-    body: 'A cinematic 3D city exploration became a flying-car arcade game: real physics, instanced city detail, SSAO, endless procedural streets.',
-  },
-  {
-    date: 'Aug 7 · Systems',
-    title: 'Scoring, hostiles, and a global leaderboard',
-    body: 'Combo multipliers and near-miss bonuses, the hostile wave ladder, and a Vercel Blob leaderboard with arcade initials.',
-  },
-  {
-    date: 'Aug 8 · Identity',
-    title: 'NEO-brutal look and the first new worlds',
-    body: 'Ink-outline rendering and a live sky; deep-space portals with see-through previews; touch and gyro controls.',
-  },
-  {
-    date: 'Aug 9–10 · Expansion',
-    title: 'Eleven biomes and the flight-deck redesign',
-    body: 'Seven new biomes, full menu redesign from approved mockups, difficulty decks, the Devil, PWA packaging.',
-  },
-  {
-    date: 'Aug 11 · Polish',
-    title: 'Nine universes and the warp',
-    body: 'Photographic NASA skies, the warp-crystal hyperburn with pursuit falloff, social link cards.',
-  },
-  {
-    date: 'Aug 18–19 · Hardening',
-    title: 'Variety, fairness, and closed exploits',
-    body: 'Fluid morph-target boss animation, per-run world re-rolls, animated bird flocks, the deep-void invulnerability exploit closed.',
-  },
-];
-
-function DevLog() {
-  return (
-    <div className="max-w-3xl border-l-5 border-neobrutalism-black ml-2 pl-8 space-y-10">
-      {DEVLOG.map((e, i) => (
-        <div key={i} className="relative">
-          <div
-            aria-hidden="true"
-            className="absolute -left-[46px] top-1 w-5 h-5 bg-neobrutalism-yellow border-3 border-neobrutalism-black rotate-45"
-          />
-          <div className="inline-block px-3 py-1 bg-neobrutalism-black text-neobrutalism-yellow text-xs font-black uppercase tracking-widest -rotate-1">
-            {e.date}
-          </div>
-          <h4 className="mt-2 text-xl sm:text-2xl font-black">{e.title}</h4>
-          <p className="mt-1 text-base sm:text-lg font-medium leading-relaxed">{e.body}</p>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 /* ---------- blocks ---------- */
 
 const blocks: Block[] = [
@@ -209,9 +159,9 @@ const blocks: Block[] = [
   {
     type: 'custom',
     node: (
-      // Heading, copy, and CTAs fill the left column so the square animatic on
-      // the right reads 1:1 against them (same treatment as the asset pipeline).
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+      // Heading, copy, and CTAs fill the left column; the animatic stretches to
+      // match their height exactly (same treatment as the asset pipeline).
+      <div className="grid lg:grid-cols-[1fr_minmax(320px,420px)] gap-10 lg:gap-14 items-stretch">
         <div className="flex flex-col h-full">
           <div className="relative w-fit">
             <div className="absolute -top-4 left-0 z-10 px-3 py-1.5 bg-neobrutalism-white border-3 border-neobrutalism-black shadow-neobrutalism-sm rotate-1">
@@ -238,9 +188,6 @@ const blocks: Block[] = [
           <div className="mt-8 lg:mt-auto lg:pt-8 flex flex-wrap gap-4">
             <a href="https://ruin-runner.vercel.app" target="_blank" rel="noopener noreferrer" className="btn-primary">
               Play Ruin Runner
-            </a>
-            <a href="https://github.com/Sairamvendra/ruin-runner" target="_blank" rel="noopener noreferrer" className="btn-outline">
-              View the source
             </a>
           </div>
         </div>
@@ -457,33 +404,71 @@ const blocks: Block[] = [
         body: 'Death comes fast and always feels like your fault: the classic arcade contract. The death screen is an incident report in the game’s flight-deck design language: score, distance, and one button that matters.',
       },
       {
-        type: 'gallery',
-        cols: 2,
-        aspect: 'wide',
-        images: [
-          { src: ASSET('shots/wrecked-forest.jpg'), alt: 'Incident report over the misty deep forest', sticker: 'Deep Forest · 2.6 km' },
-          { src: ASSET('shots/wrecked-boneyard.jpg'), alt: 'Incident report in the titan boneyard', sticker: 'Titan Boneyard' },
-        ],
+        type: 'custom',
+        node: (
+          // one incident report at a time, auto-melting into the next
+          <div className="relative h-[420px] sm:h-[540px] border-3 border-neobrutalism-black shadow-neobrutalism-lg">
+            <MorphSlider
+              items={[
+                { image: ASSET('shots/wrecked-forest.jpg'), caption: 'Deep Forest · 2.6 km' },
+                { image: ASSET('shots/wrecked-boneyard.jpg'), caption: 'Titan Boneyard' },
+              ]}
+              transition="melt"
+              intensity={0.55}
+              aberration={0.35}
+              drift={0.4}
+              autoplay
+              autoplayDelay={4.5}
+              showControls={false}
+            />
+          </div>
+        ),
       },
     ],
   },
 
   { type: 'heading', text: 'The board to beat', kicker: 'Live from the game' },
-  {
-    type: 'text',
-    body: 'Not a mockup: the actual top ten, fetched from the game’s leaderboard API when this page builds: one serverless function, Blob storage, arcade initials and all.',
-  },
   { type: 'custom', node: <LiveLeaderboard /> },
 
-  { type: 'heading', text: 'Flight plan', kicker: 'Engagement & virality, four phases' },
   {
-    type: 'list',
-    items: [
-      'P1 · Instruments: see what players actually do: anonymous gameplay telemetry, real run reports, a balance dashboard.',
-      'P2 · Return flights: a reason to come back tomorrow: the daily world on one shared salt, missions earning pilot wings, streaks, hull liveries.',
-      'P3 · Wingmen: players recruiting players: “fly my world” challenge links, incident-report death cards, ghost runs.',
-      'P4 · New airspace: distribution: Google Play via TWA (parked at the Bubblewrap step) and web-game portals like Poki and CrazyGames.',
-    ],
+    type: 'custom',
+    node: (
+      // Heading, list, and animatic in one grid: the card's top edge sits level
+      // with the heading and its bottom edge lands on the last list line.
+      <div className="grid lg:grid-cols-[1fr_minmax(320px,420px)] gap-10 lg:gap-14 items-stretch">
+        <div>
+          <div className="relative w-fit">
+            <div className="absolute -top-4 left-0 z-10 px-3 py-1.5 bg-neobrutalism-white border-3 border-neobrutalism-black shadow-neobrutalism-sm rotate-1">
+              <p className="text-xs font-black uppercase tracking-widest text-neobrutalism-black whitespace-nowrap">
+                Engagement & virality, four phases
+              </p>
+            </div>
+            <div className="block w-fit px-6 py-3 bg-neobrutalism-black border-5 border-neobrutalism-black shadow-neobrutalism-lg -rotate-1">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neobrutalism-yellow">
+                Flight plan
+              </h2>
+            </div>
+          </div>
+          <ul className="mt-8 sm:mt-10 space-y-4">
+          {[
+            'P1 · Instruments: see what players actually do: anonymous gameplay telemetry, real run reports, a balance dashboard.',
+            'P2 · Return flights: a reason to come back tomorrow: the daily world on one shared salt, missions earning pilot wings, streaks, hull liveries.',
+            'P3 · Wingmen: players recruiting players: “fly my world” challenge links, incident-report death cards, ghost runs.',
+            'P4 · New airspace: distribution: Google Play via TWA (parked at the Bubblewrap step) and web-game portals like Poki and CrazyGames.',
+          ].map((item, i) => (
+            <li key={i} className="flex items-start gap-4">
+              <span
+                aria-hidden="true"
+                className="mt-1.5 w-4 h-4 shrink-0 rotate-45 border-3 border-neobrutalism-black bg-neobrutalism-yellow"
+              />
+              <span className="text-lg sm:text-xl font-medium leading-relaxed">{item}</span>
+            </li>
+          ))}
+          </ul>
+        </div>
+        <FlightPlanAnimatic />
+      </div>
+    ),
   },
 
   {
@@ -583,7 +568,7 @@ export default function RuinRunnerPage() {
         { label: 'Role', value: 'Solo: product, code, 3D, audio' },
         { label: 'Timeline', value: 'Aug 6–19, 2026 · 14 days' },
         { label: 'Status', value: 'v1 · playable · deployed' },
-        { label: 'Stack', value: 'Three.js · Rapier WASM · zero build' },
+        { label: 'Stack', value: 'Three.js · Rapier WASM' },
       ]}
       heroExtra={
         <div className="relative w-full max-w-sm justify-self-center rotate-1">

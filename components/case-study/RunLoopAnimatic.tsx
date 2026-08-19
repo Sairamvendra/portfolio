@@ -186,7 +186,7 @@ export function RunLoopAnimatic() {
   const s = SLIDES[idx];
 
   return (
-    <div className="w-full aspect-square relative overflow-hidden border-3 border-neobrutalism-black shadow-neobrutalism-lg">
+    <div className="w-full h-full min-h-[420px] relative overflow-hidden border-3 border-neobrutalism-black shadow-neobrutalism-lg">
       {/* no AnimatePresence: looping child animations block its exit handshake (see WhoItsForAnimatic) */}
       <motion.div
         key={idx}
@@ -201,7 +201,7 @@ export function RunLoopAnimatic() {
           </span>
           <span className={`font-mono font-bold ${s.counter}`}>0{idx + 1} / 05</span>
         </div>
-        <h3 className={`mt-4 font-heading font-black uppercase leading-none text-4xl sm:text-6xl ${s.titleClass ?? ''}`}>
+        <h3 className={`mt-4 font-heading font-black uppercase leading-none text-3xl sm:text-5xl ${s.titleClass ?? ''}`}>
           {s.title.map(line => (
             <span key={line} className="block">{line}</span>
           ))}
