@@ -348,6 +348,21 @@ function BlockList({ blocks, accent }: { blocks: Block[]; accent: Accent }) {
       {blocks.map((block, i) => {
         // a heading and its content belong together: half-gap after any heading block
         const gap = i > 0 && blocks[i - 1].type === 'heading' ? 'mt-8 sm:mt-10' : 'mt-12 sm:mt-16';
+        // heading + its text pair into one full-width row (heading left, copy right)
+        // instead of both stacking in the left corner of a wide viewport
+        if (block.type === 'heading' && blocks[i + 1]?.type === 'text') {
+          return (
+            <Container key={i} className="mt-12 sm:mt-16">
+              <FadeIn>
+                <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-8 lg:gap-14 items-center">
+                  {renderBlock(block, accent, i)}
+                  {renderBlock(blocks[i + 1], accent, i + 1)}
+                </div>
+              </FadeIn>
+            </Container>
+          );
+        }
+        if (block.type === 'text' && blocks[i - 1]?.type === 'heading') return null; // rendered with its heading above
         if (block.type === 'ticker') {
           // a ticker right before a section band glues to it: two black full-bleeds read as one stage
           const glued = blocks[i + 1]?.type === 'section';

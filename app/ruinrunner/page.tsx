@@ -379,9 +379,24 @@ const blocks: Block[] = [
   },
   { type: 'custom', node: <DevLog /> },
   {
-    type: 'quote',
-    text: 'The velocity is the demo. Every system, from procedural worldgen and physics to enemy AI, audio synthesis, and the live-ops-ready leaderboard, was designed, shipped, and play-tested by one person orchestrating AI agents, on infrastructure that costs nothing.',
-    attribution: 'Sairam Vendra · pilot in command',
+    type: 'custom',
+    node: (
+      // the template quote caps at max-w-4xl; this one spans the row (page feedback: use the space fully)
+      <div className="relative w-full">
+        <div
+          aria-hidden="true"
+          className="absolute -top-4 -right-4 w-14 h-14 bg-neobrutalism-yellow border-3 border-neobrutalism-black rotate-12"
+        />
+        <figure className="relative p-8 sm:p-10 bg-neobrutalism-black border-5 border-neobrutalism-black shadow-neobrutalism-xl -rotate-1">
+          <blockquote className="text-2xl sm:text-3xl font-black leading-snug text-neobrutalism-yellow">
+            &ldquo;The velocity is the demo. Every system, from procedural worldgen and physics to enemy AI, audio
+            synthesis, and the live-ops-ready leaderboard, was designed, shipped, and play-tested by one person
+            orchestrating AI agents, on infrastructure that costs nothing.&rdquo;
+          </blockquote>
+          <figcaption className="mt-4 text-white font-bold">Sairam Vendra · pilot in command</figcaption>
+        </figure>
+      </div>
+    ),
   },
 
   {
@@ -391,17 +406,20 @@ const blocks: Block[] = [
       {
         type: 'custom',
         node: (
-          <div>
-            <div className="inline-block px-3 py-1.5 mb-4 bg-neobrutalism-white border-3 border-neobrutalism-black shadow-neobrutalism-sm rotate-1">
-              <p className="text-xs font-black uppercase tracking-widest text-neobrutalism-black">Incident report</p>
+          // title and copy share one full-width row instead of stacking in the left corner
+          <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-8 lg:gap-14 items-center">
+            <div>
+              <div className="inline-block px-3 py-1.5 mb-4 bg-neobrutalism-white border-3 border-neobrutalism-black shadow-neobrutalism-sm rotate-1">
+                <p className="text-xs font-black uppercase tracking-widest text-neobrutalism-black">Incident report</p>
+              </div>
+              <FuzzyTitle text="WRECKED" color="#FF4911" />
             </div>
-            <FuzzyTitle text="WRECKED" color="#FF4911" />
+            <p className="text-lg sm:text-xl leading-relaxed font-medium max-w-3xl">
+              Death comes fast and always feels like your fault: the classic arcade contract. The death screen is an
+              incident report in the game’s flight-deck design language: score, distance, and one button that matters.
+            </p>
           </div>
         ),
-      },
-      {
-        type: 'text',
-        body: 'Death comes fast and always feels like your fault: the classic arcade contract. The death screen is an incident report in the game’s flight-deck design language: score, distance, and one button that matters.',
       },
       {
         type: 'custom',

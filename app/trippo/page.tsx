@@ -8,6 +8,50 @@ export const metadata = {
 
 const IMG = (name: string) => `/projects/trippo/${name}.jpg`;
 
+/* ---------- page data (mirrors the /visualstudio card patterns) ---------- */
+
+const DELIVERABLES = [
+  {
+    name: 'The Brand',
+    chip: 'bg-neobrutalism-yellow',
+    body: 'An identity from a simple equation: Trips + location pin. Bulu blue and Ocean teal split the palette 50/30 over light and dark surfaces, Poppins carries headings, Sofia Pro carries body text, and the logo survives ocean, blue, dark, and light backgrounds.',
+  },
+  {
+    name: 'The App',
+    chip: 'bg-neobrutalism-cyan',
+    body: 'Five bottom tabs: Home, Gallery, Explore, Chats, Notifications. Search, suggestions, and trip planning sit one step from Home, and the full planner runs calendar, members, checklists, and agendas, shipped in light and dark from the same components.',
+  },
+  {
+    name: 'The Website',
+    chip: 'bg-neobrutalism-purple',
+    body: 'The marketing face: landing, splash intro, about, trips, stories, and footer, wireframed grey-first and finished in the same design system as the app, so the brand reads identically across both platforms.',
+  },
+];
+
+const PAIN_POINTS = [
+  { n: '01', title: 'Unprepared', body: 'Travellers end up rescheduling or cancelling the trip outright.', color: 'bg-neobrutalism-yellow' },
+  { n: '02', title: 'Accommodation', body: 'Booking problems surface mid-trip, when they cost the most.', color: 'bg-neobrutalism-cyan' },
+  { n: '03', title: 'Drop-outs', body: 'People abandon trips because planning is simply hard work.', color: 'bg-neobrutalism-purple' },
+  { n: '04', title: 'No suggestions', body: 'Nothing answers the question: where should we go next?', color: 'bg-neobrutalism-lime' },
+  { n: '05', title: 'Lost memories', body: 'No shared place keeps the photos and stories of a trip together.', color: 'bg-neobrutalism-pink' },
+];
+
+const TEST_FINDINGS = [
+  { n: '01', title: 'Clumsy', body: 'The first design read as cluttered: too much competing for one screen.', color: 'bg-neobrutalism-yellow' },
+  { n: '02', title: 'Hidden gems', body: 'Suggestions, the product’s core promise, were too hard to find.', color: 'bg-neobrutalism-cyan' },
+  { n: '03', title: 'No search', body: 'Users reached for a search bar that was not there.', color: 'bg-neobrutalism-purple' },
+  { n: '04', title: 'Wrong buckets', body: 'Trip categorization did not match how travellers actually think.', color: 'bg-neobrutalism-lime' },
+];
+
+const BRAND_KEYWORDS = ['Peace of mind', 'Travel', 'Vacation', 'Explore'];
+
+const PALETTE = [
+  { name: 'Bulu', hex: '#2699FB', share: '50%', dark: false },
+  { name: 'Ocean', hex: '#25E6D0', share: '30%', dark: false },
+  { name: 'Light', hex: '#FFFFFF', share: '10%', dark: false },
+  { name: 'Dark', hex: '#181826', share: '10%', dark: true },
+];
+
 const BLOCKS: Block[] = [
   {
     type: 'image',
@@ -17,19 +61,42 @@ const BLOCKS: Block[] = [
     caption: 'Trippo: wide-range trip suggestions, less worry, the whole trip planned before you leave.',
   },
   {
+    type: 'stats',
+    items: [
+      { value: '7', label: 'Disciplines, one designer' },
+      { value: '2', label: 'Platforms: app + website' },
+      { value: '2', label: 'Modes: light and dark' },
+      { value: '5', label: 'Pain points, straight from travellers' },
+    ],
+  },
+
+  { type: 'heading', text: 'What it is', kicker: 'One trip, planned before you leave' },
+  {
     type: 'custom',
     node: (
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-        <p className="text-lg sm:text-xl leading-relaxed font-medium">
-          Trippo is an app-based platform that gives travellers a wide range of trip suggestions, encouraging
-          them to travel more while worrying less about planning and accommodation. The whole trip is planned
-          in advance, so the traveller keeps their peace of mind.
-        </p>
-        <p className="text-lg sm:text-xl leading-relaxed font-medium">
-          The client&rsquo;s ask covered branding, a mobile app, and a web presence. I ran the full arc solo:
-          research, branding, information architecture, wireframes, visual design, prototype, and user
-          testing.
-        </p>
+      <p className="text-xl sm:text-2xl leading-relaxed font-medium max-w-5xl">
+        Most travel apps assume the trip is already planned. Trippo is designed so the whole trip is planned
+        before you leave: research, brand, information architecture, wireframes, high-fidelity UI in light and
+        dark, and a marketing website, one designer running the full arc from stakeholder interview to user
+        testing.
+      </p>
+    ),
+  },
+  {
+    type: 'custom',
+    node: (
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+        {DELIVERABLES.map((m, i) => (
+          <div
+            key={m.name}
+            className={`p-6 bg-neobrutalism-white border-3 border-neobrutalism-black shadow-neobrutalism-lg ${i % 2 === 0 ? 'rotate-[0.5deg]' : '-rotate-[0.5deg]'} hover:rotate-0 transition-transform duration-200`}
+          >
+            <span className={`inline-block px-3 py-1 ${m.chip} border-3 border-neobrutalism-black shadow-neobrutalism-sm font-black uppercase tracking-widest text-sm`}>
+              {m.name}
+            </span>
+            <p className="mt-4 font-medium leading-relaxed">{m.body}</p>
+          </div>
+        ))}
       </div>
     ),
   },
@@ -38,79 +105,131 @@ const BLOCKS: Block[] = [
     type: 'section',
     bg: 'yellow',
     blocks: [
-      { type: 'heading', text: 'Research', kicker: 'Stakeholders, keywords, pain points' },
+      { type: 'heading', text: 'The problem', kicker: 'Why trip planning fails' },
       {
         type: 'custom',
         node: (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div>
+          <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-8 lg:gap-12 items-center">
+            <div className="space-y-5">
               <p className="text-lg sm:text-xl leading-relaxed font-medium">
-                It started with a stakeholder interview: the client wants users to find trip planning so easy
-                that they can enjoy the trip itself without worries. Keyword and mind mapping pulled out the
+                It started with a stakeholder interview, then keyword and mind mapping to pull out the
                 product&rsquo;s gravity centres: trip planner, travel journal, reminders, suggestions, peace of
-                mind. Then the pain points, straight from travellers:
+                mind. Then the pain points, straight from travellers, five ways a trip dies before it starts.
               </p>
-              <ul className="mt-6 space-y-3">
-                {[
-                  'Unprepared, and end up rescheduling or cancelling',
-                  'Problems with accommodation',
-                  'People dropping out because planning is hard',
-                  'No suggestions on where to go next',
-                  'Nowhere to keep shared memories',
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-4">
-                    <span
-                      aria-hidden="true"
-                      className="mt-1.5 w-4 h-4 shrink-0 rotate-45 border-3 border-neobrutalism-black bg-neobrutalism-cyan"
-                    />
-                    <span className="text-lg font-medium leading-relaxed">{item}</span>
-                  </li>
-                ))}
-              </ul>
+              <p className="text-lg sm:text-xl leading-relaxed font-black">
+                The design bet: put planning one step from Home, and the traveller keeps their peace of mind.
+              </p>
             </div>
-            <FramedImage
-              src={IMG('tr-research')}
-              accent="cyan"
-              alt="Research mind map with keyword bubbles, stakeholder requirements and user pain points"
-            />
+            <div className="p-6 bg-neobrutalism-black border-3 border-neobrutalism-black shadow-neobrutalism-md">
+              <p className="text-xs font-black uppercase tracking-widest text-neobrutalism-cyan mb-3">
+                The client&rsquo;s ask
+              </p>
+              <p className="text-sm font-bold text-white leading-relaxed">
+                Users should find trip planning so easy that they can enjoy the trip itself without worries:
+                branding, a mobile app, and a web presence, for working people, students, and travel
+                enthusiasts.
+              </p>
+            </div>
           </div>
         ),
+      },
+      {
+        type: 'custom',
+        node: (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+            {PAIN_POINTS.map((s, i) => (
+              <div
+                key={s.n}
+                className={`relative mt-5 p-5 bg-neobrutalism-white text-neobrutalism-black border-3 border-neobrutalism-black shadow-neobrutalism-lg ${i % 2 === 0 ? 'rotate-[0.75deg]' : '-rotate-[0.75deg]'} hover:rotate-0 hover:-translate-y-1 transition-transform duration-200`}
+              >
+                <div
+                  className={`absolute -top-5 left-4 w-11 h-11 flex items-center justify-center ${s.color} border-3 border-neobrutalism-black shadow-neobrutalism-sm -rotate-3 font-heading font-black text-lg`}
+                >
+                  {s.n}
+                </div>
+                <h3 className="mt-4 text-lg font-black uppercase">{s.title}</h3>
+                <div aria-hidden="true" className={`mt-2 h-2 w-10 ${s.color} border-2 border-neobrutalism-black`} />
+                <p className="mt-3 text-sm font-medium leading-relaxed">{s.body}</p>
+              </div>
+            ))}
+          </div>
+        ),
+      },
+      {
+        type: 'image',
+        src: IMG('tr-research'),
+        sticker: 'The mind map',
+        alt: 'Research mind map with keyword bubbles, stakeholder requirements and user pain points',
+        caption: 'One interview, thirteen keywords, five pain points: the map every later decision traces back to.',
       },
     ],
   },
 
-  { type: 'heading', text: 'Branding', kicker: 'Peace of mind, as a system' },
   {
     type: 'custom',
     node: (
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-        <div className="space-y-5">
-          <p className="text-lg sm:text-xl leading-relaxed font-medium">
-            The mission: an experience that encourages people to go out and explore more with no worries. The
-            vision: a painless, simple planning platform that lifts the whole travel experience. The audience:
-            working class, students, travel enthusiasts.
-          </p>
-          <p className="text-lg sm:text-xl leading-relaxed font-medium">
-            Four keywords steer every decision on the board: peace of mind, travel, vacation, explore.
-          </p>
+      <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-8 lg:gap-14 items-center">
+        <div className="relative w-fit">
+          <div className="absolute -top-4 left-0 z-10 px-3 py-1.5 bg-neobrutalism-white border-3 border-neobrutalism-black shadow-neobrutalism-sm rotate-1">
+            <p className="text-xs font-black uppercase tracking-widest whitespace-nowrap">Peace of mind, as a system</p>
+          </div>
+          <div className="block w-fit px-6 py-4 bg-neobrutalism-black border-5 border-neobrutalism-black shadow-neobrutalism-lg -rotate-1">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neobrutalism-cyan">The brand</h2>
+          </div>
         </div>
-        <FramedImage
-          src={IMG('tr-brand-analysis')}
-          accent="cyan"
-          sticker="Brand analysis"
-          alt="Brand mission, vision, value and target audience cards with the four brand keywords"
-        />
+        <p className="text-xl sm:text-2xl leading-relaxed font-medium">
+          The mission: an experience that encourages people to go out and explore more with no worries. Four
+          keywords steer every decision on the board, and the identity comes from a simple equation: Trips +
+          location pin.
+        </p>
       </div>
     ),
   },
   {
     type: 'custom',
     node: (
-      <div className="max-w-5xl">
-        <p className="text-xl sm:text-2xl leading-relaxed font-medium">
-          The identity comes from a simple equation: Trips + location pin. Bulu blue and Ocean teal split the
-          palette 50/30 over light and dark, Poppins carries headings, Sofia Pro carries body text.
-        </p>
+      <div className="relative p-8 lg:p-10 bg-neobrutalism-black border-5 border-neobrutalism-black shadow-neobrutalism-xl rotate-[0.5deg]">
+        <div
+          aria-hidden="true"
+          className="absolute -top-3 -right-3 w-12 h-12 bg-neobrutalism-cyan border-3 border-neobrutalism-black rotate-12"
+        />
+        <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-8 lg:gap-14 items-center">
+          <div className="shrink-0">
+            <div className="font-heading font-black leading-none text-8xl lg:text-9xl text-neobrutalism-cyan">4</div>
+            <p className="mt-3 text-sm font-black uppercase tracking-widest text-white">Keywords</p>
+            <p className="text-sm font-black uppercase tracking-widest text-white/50">One equation</p>
+            <div className="mt-4 inline-block px-3 py-1.5 bg-neobrutalism-cyan border-3 border-neobrutalism-black shadow-neobrutalism-sm -rotate-2">
+              <p className="text-xs font-black uppercase tracking-widest text-neobrutalism-black whitespace-nowrap">Trips + pin</p>
+            </div>
+          </div>
+          <div>
+            <div className="flex flex-wrap gap-2">
+              {BRAND_KEYWORDS.map((k) => (
+                <span key={k} className="px-3 py-1.5 bg-neobrutalism-white border-3 border-neobrutalism-black font-black uppercase tracking-widest text-xs">
+                  {k}
+                </span>
+              ))}
+            </div>
+            <div className="mt-6 flex flex-wrap gap-4">
+              {PALETTE.map((c, i) => (
+                <div
+                  key={c.name}
+                  className={`p-4 border-3 border-neobrutalism-black shadow-neobrutalism-md ${i % 2 === 0 ? 'rotate-1' : '-rotate-1'} hover:rotate-0 hover:-translate-y-1 transition-transform duration-200`}
+                  style={{ backgroundColor: c.hex }}
+                >
+                  <p className={`text-xs font-black uppercase tracking-widest ${c.dark ? 'text-white' : 'text-neobrutalism-black'}`}>
+                    {c.name} · {c.share}
+                  </p>
+                  <p className={`mt-1 font-mono text-xs font-bold ${c.dark ? 'text-white/70' : 'text-neobrutalism-black/70'}`}>{c.hex}</p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 flex flex-wrap gap-2">
+              <span className="px-2 py-1 bg-neobrutalism-black border-3 border-white/40 text-white font-mono text-xs font-bold">Poppins — headings</span>
+              <span className="px-2 py-1 bg-neobrutalism-black border-3 border-white/40 text-white font-mono text-xs font-bold">Sofia Pro — body</span>
+            </div>
+          </div>
+        </div>
       </div>
     ),
   },
@@ -164,11 +283,18 @@ const BLOCKS: Block[] = [
     ],
   },
 
-  { type: 'heading', text: 'Wireframes', kicker: 'Grey first' },
   {
     type: 'custom',
     node: (
-      <div className="max-w-5xl">
+      <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-8 lg:gap-14 items-center">
+        <div className="relative w-fit">
+          <div className="absolute -top-4 left-0 z-10 px-3 py-1.5 bg-neobrutalism-white border-3 border-neobrutalism-black shadow-neobrutalism-sm rotate-1">
+            <p className="text-xs font-black uppercase tracking-widest whitespace-nowrap">Grey first</p>
+          </div>
+          <div className="block w-fit px-6 py-4 bg-neobrutalism-black border-5 border-neobrutalism-black shadow-neobrutalism-lg -rotate-1">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neobrutalism-cyan">Wireframes</h2>
+          </div>
+        </div>
         <p className="text-xl sm:text-2xl leading-relaxed font-medium">
           Every screen started grey. Signup, home and navigation, plans, checklists, contact persons, and
           locations for the app; landing, about, trips, stories, and footer for the website.
@@ -186,52 +312,87 @@ const BLOCKS: Block[] = [
     ],
   },
 
-  { type: 'heading', text: 'Visual design', kicker: 'Atoms to organisms' },
+  { type: 'ticker', words: ['Research', 'Branding', 'Information architecture', 'Wireframes', 'Visual design', 'Prototype', 'User testing'] },
   {
-    type: 'custom',
-    node: (
-      <div className="max-w-5xl">
-        <p className="text-xl sm:text-2xl leading-relaxed font-medium">
-          A proper UI anatomy before any screens: atoms, molecules, organisms, and a two-weight icon set, line
-          for navigation, fill for actions.
-        </p>
-      </div>
-    ),
-  },
-  {
-    type: 'image',
-    src: IMG('tr-ui-anatomy'),
-    sticker: 'UI anatomy',
-    alt: 'UI anatomy board: atoms, molecules, organisms and the line and fill icon sets',
-  },
-  {
-    type: 'image',
-    src: IMG('tr-hifi-mobile'),
-    sticker: 'Light + dark',
-    alt: 'High fidelity mobile app designs in light and dark mode: home, explore, place details and trip timeline',
-    caption: 'The app ships both modes: same hierarchy, same components, two palettes.',
-  },
-  {
-    type: 'image',
-    src: IMG('tr-hifi-web'),
-    sticker: 'The website',
-    alt: 'High fidelity website designs: landing page, splash intro, about, trips, stories and footer',
+    type: 'section',
+    bg: 'black',
+    blocks: [
+      {
+        type: 'custom',
+        node: (
+          <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-8 lg:gap-14 items-center">
+            <div>
+              <div className="inline-block px-3 py-1.5 bg-neobrutalism-white text-neobrutalism-black border-3 border-neobrutalism-black mb-3 rotate-1">
+                <p className="text-xs font-black uppercase tracking-widest whitespace-nowrap">Atoms to organisms</p>
+              </div>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neobrutalism-cyan">Visual design</h2>
+            </div>
+            <p className="text-lg sm:text-xl font-medium leading-relaxed max-w-4xl text-white/90">
+              A proper UI anatomy before any screens: atoms, molecules, organisms, and a two-weight icon set,
+              line for navigation, fill for actions. Then the high-fidelity pass, in both modes: same
+              hierarchy, same components, two palettes.
+            </p>
+          </div>
+        ),
+      },
+      {
+        type: 'image',
+        src: IMG('tr-ui-anatomy'),
+        sticker: 'UI anatomy',
+        alt: 'UI anatomy board: atoms, molecules, organisms and the line and fill icon sets',
+      },
+      {
+        type: 'image',
+        src: IMG('tr-hifi-mobile'),
+        sticker: 'Light + dark',
+        alt: 'High fidelity mobile app designs in light and dark mode: home, explore, place details and trip timeline',
+        caption: 'The app ships both modes: same hierarchy, same components, two palettes.',
+      },
+      {
+        type: 'image',
+        src: IMG('tr-hifi-web'),
+        sticker: 'The website',
+        alt: 'High fidelity website designs: landing page, splash intro, about, trips, stories and footer',
+      },
+    ],
   },
 
   {
     type: 'section',
     bg: 'cyan',
     blocks: [
-      { type: 'heading', text: 'User testing', kicker: 'A/B tested, then redesigned' },
+      { type: 'heading', text: 'What testing said', kicker: 'A/B tested, then redesigned' },
       {
         type: 'custom',
         node: (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {TEST_FINDINGS.map((s, i) => (
+              <div
+                key={s.n}
+                className={`relative mt-5 p-6 bg-neobrutalism-white text-neobrutalism-black border-3 border-neobrutalism-black shadow-neobrutalism-lg ${i % 2 === 0 ? 'rotate-[0.75deg]' : '-rotate-[0.75deg]'} hover:rotate-0 hover:-translate-y-1 transition-transform duration-200`}
+              >
+                <div
+                  className={`absolute -top-5 left-4 w-12 h-12 flex items-center justify-center ${s.color} border-3 border-neobrutalism-black shadow-neobrutalism-sm -rotate-3 font-heading font-black text-xl`}
+                >
+                  {s.n}
+                </div>
+                <h3 className="mt-5 text-xl font-black uppercase">{s.title}</h3>
+                <div aria-hidden="true" className={`mt-2 h-2 w-12 ${s.color} border-2 border-neobrutalism-black`} />
+                <p className="mt-3 font-medium leading-relaxed">{s.body}</p>
+              </div>
+            ))}
+          </div>
+        ),
+      },
+      {
+        type: 'custom',
+        node: (
+          <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-8 lg:gap-12 items-center">
             <p className="text-lg sm:text-xl leading-relaxed font-medium">
-              A/B testing brought blunt feedback: the design looked clumsy, suggestions were hard to find,
-              search was missing, and trip categorization was off. The initial wireframes were redesigned into
-              the final home: search front and centre, suggestions one scroll away, trips categorized the way
-              travellers actually think.
+              Blunt feedback, taken straight: the initial wireframes were redesigned into the final home with
+              search front and centre, suggestions one scroll away, and trips categorized the way travellers
+              actually think. Testing did not decorate the process at the end; it sent the design back to the
+              board and made the shipped screens.
             </p>
             <FramedImage
               src={IMG('tr-user-testing')}
@@ -242,13 +403,47 @@ const BLOCKS: Block[] = [
           </div>
         ),
       },
+    ],
+  },
+
+  {
+    type: 'section',
+    bg: 'lime',
+    blocks: [
+      { type: 'heading', text: 'Peace of mind, shipped', kicker: 'Closing' },
+      {
+        type: 'custom',
+        node: (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            <p className="text-lg sm:text-xl leading-relaxed font-medium">
+              Trippo started as a client brief and became a full design system: one interview mapped into
+              thirteen keywords, five pain points turned into an information architecture, grey wireframes
+              carried into high fidelity twice over, light and dark, and an A/B round that rewrote the home
+              screen before anything shipped. Every screen traces back to the same four words on the brand
+              board.
+            </p>
+            <div className="relative">
+              <div
+                aria-hidden="true"
+                className="absolute -bottom-3 -right-3 w-10 h-10 bg-neobrutalism-white border-3 border-neobrutalism-black rotate-12"
+              />
+              <figure className="relative p-8 bg-neobrutalism-black border-5 border-neobrutalism-black shadow-neobrutalism-xl rotate-1">
+                <p className="text-xl sm:text-2xl font-black leading-snug text-white">
+                  The whole trip is planned before you leave, and the traveller keeps their{' '}
+                  <span className="text-neobrutalism-cyan">peace of mind.</span>
+                </p>
+              </figure>
+            </div>
+          </div>
+        ),
+      },
       {
         type: 'stats',
         items: [
+          { value: '13', label: 'Keywords mapped from one interview' },
           { value: '4', label: 'Pain points fixed in the redesign' },
-          { value: '2', label: 'Platforms: app + website' },
-          { value: '2', label: 'Modes: light and dark' },
-          { value: '7', label: 'Disciplines, one designer' },
+          { value: '5', label: 'Tabs, one critical path' },
+          { value: '2×2', label: 'Platforms × modes, one system' },
         ],
       },
     ],
