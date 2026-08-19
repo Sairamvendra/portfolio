@@ -4,7 +4,9 @@ import { useEffect, useRef } from 'react';
 
 // React Bits ProfileCard, translated to neobrutalism: 3D cursor tilt, glare
 // and holo rainbow shine, with hard borders and offset shadows instead of glass.
-export function ProfileTiltCard({ src, alt }: { src: string; alt: string }) {
+// TiltShineCard is the reusable effect shell; ProfileTiltCard is the homepage
+// profile image wrapped in it.
+export function TiltShineCard({ className = '', children }: { className?: string; children: React.ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
 
   const setVars = (rx: number, ry: number, px: number, py: number) => {
@@ -57,13 +59,13 @@ export function ProfileTiltCard({ src, alt }: { src: string; alt: string }) {
         onPointerMove={onPointerMove}
         onPointerDown={enableGyro}
         onPointerLeave={() => setVars(0, 0, 50, 50)}
-        className="group relative z-10 w-full h-full border-5 border-neobrutalism-black shadow-neobrutalism-xl bg-neobrutalism-white overflow-hidden transition-transform duration-150 ease-out"
+        className={`group relative z-10 overflow-hidden transition-transform duration-150 ease-out ${className}`}
         style={{
           transform: 'rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg))',
           transformStyle: 'preserve-3d',
         }}
       >
-        <img src={src} alt={alt} className="w-full h-full object-cover" />
+        {children}
 
         {/* Holo rainbow shine (sunpillars + diagonal streaks, from the ProfileCard) */}
         <div
@@ -95,5 +97,13 @@ export function ProfileTiltCard({ src, alt }: { src: string; alt: string }) {
 
       </div>
     </div>
+  );
+}
+
+export function ProfileTiltCard({ src, alt }: { src: string; alt: string }) {
+  return (
+    <TiltShineCard className="w-full h-full border-5 border-neobrutalism-black shadow-neobrutalism-xl bg-neobrutalism-white">
+      <img src={src} alt={alt} className="w-full h-full object-cover" />
+    </TiltShineCard>
   );
 }

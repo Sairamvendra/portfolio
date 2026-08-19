@@ -349,18 +349,21 @@ function BlockList({ blocks, accent }: { blocks: Block[]; accent: Accent }) {
         // a heading and its content belong together: half-gap after any heading block
         const gap = i > 0 && blocks[i - 1].type === 'heading' ? 'mt-8 sm:mt-10' : 'mt-12 sm:mt-16';
         if (block.type === 'ticker') {
+          // a ticker right before a section band glues to it: two black full-bleeds read as one stage
+          const glued = blocks[i + 1]?.type === 'section';
           return (
-            <div key={i} className="my-14 sm:my-20">
+            <div key={i} className={glued ? 'mt-14 sm:mt-20' : 'my-14 sm:my-20'}>
               <Ticker words={block.words} accent={accent} />
             </div>
           );
         }
         if (block.type === 'section') {
+          const afterTicker = i > 0 && blocks[i - 1].type === 'ticker';
           return (
             <div
               key={i}
               // 'black' band: a dark stage for imagery that carries its own framing (e.g. app mockups)
-              className={`${block.bg === 'black' ? 'bg-neobrutalism-black text-white' : ACCENT_BG[block.bg]} border-y-5 border-neobrutalism-black my-14 sm:my-20 pb-14 sm:pb-20`}
+              className={`${block.bg === 'black' ? 'bg-neobrutalism-black text-white' : ACCENT_BG[block.bg]} border-y-5 border-neobrutalism-black ${afterTicker ? 'mb-14 sm:mb-20' : 'my-14 sm:my-20'} pb-14 sm:pb-20`}
             >
               <BlockList blocks={block.blocks} accent={accent} />
             </div>

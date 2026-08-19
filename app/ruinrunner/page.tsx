@@ -9,11 +9,12 @@ import { RunLoopAnimatic } from '@/components/case-study/RunLoopAnimatic';
 import { SaltDealAnimatic } from '@/components/case-study/SaltDealAnimatic';
 import DriftWall from '@/components/reactbits/DriftWall';
 import AccordionGallery from '@/components/reactbits/AccordionGallery';
+import { TiltShineCard } from '@/components/ui/ProfileTiltCard';
 
 export const metadata = {
   title: 'Ruin Runner | Sairam Vendra',
   description:
-    'A browser-native 3D endless arcade flyer: eleven procedurally dealt ruined worlds, a boulder-hurling devil, deep-space runs under real NASA skies, and a global leaderboard — built solo with an AI pair-programming workflow in 14 days, on infrastructure that costs nothing.',
+    'A browser-native 3D endless arcade flyer: eleven procedurally dealt ruined worlds, a boulder-hurling devil, deep-space runs under real NASA skies, and a global leaderboard, built solo with an AI pair-programming workflow in 14 days, on infrastructure that costs nothing.',
   openGraph: {
     images: ['/projects/ruinrunner.jpg'],
   },
@@ -40,7 +41,7 @@ const SHIPS = [
     img: ASSET('objects/enemy-saucer.png'),
     name: 'Armoured Saucer',
     tier: 'Threat I',
-    blurb: 'Slow, shielded, and everywhere. The first rung of the ladder — it soaks a full cannon burst before it pops.',
+    blurb: 'Slow, shielded, and everywhere. The first rung of the ladder: it soaks a full cannon burst before it pops.',
   },
   {
     img: ASSET('objects/enemy-dart.png'),
@@ -52,7 +53,7 @@ const SHIPS = [
     img: ASSET('objects/enemy-gunship.png'),
     name: 'Fortress Gunship',
     tier: 'Threat III',
-    blurb: 'A flying wall of turrets. Outrun it or thread under it — you do not duel it.',
+    blurb: 'A flying wall of turrets. Outrun it or thread under it. You do not duel it.',
   },
   {
     img: ASSET('objects/enemy-drone.png'),
@@ -269,7 +270,7 @@ const blocks: Block[] = [
                 </div>
               </div>
               <p className="mt-8 sm:mt-10 text-lg sm:text-xl leading-relaxed font-medium">
-                Eleven procedural biomes, infinite in every direction — and the entire map derives from one
+                Eleven procedural biomes, infinite in every direction, and the entire map derives from one
                 hashed salt, re-rolled with a random starting biome every run. Deterministic worldgen is also
                 the growth engine hiding in the codebase: pin the salt to the calendar date and everyone flies
                 the same world on the same leaderboard. Seeded, shareable worlds are a near-free future feature.
@@ -308,7 +309,7 @@ const blocks: Block[] = [
   { type: 'heading', text: 'Know your enemy', kicker: 'The threat ladder' },
   {
     type: 'text',
-    body: 'Four ship classes on an escalating threat-tier ladder, each with lead-prediction fire — and a fifth hostile who is not on the ladder. He is on a timer.',
+    body: 'Four ship classes on an escalating threat-tier ladder, each with lead-prediction fire, and a fifth hostile who is not on the ladder. He is on a timer.',
   },
   { type: 'custom', node: <EnemyRoster ships={SHIPS} boss={BOSS} /> },
 
@@ -337,7 +338,7 @@ const blocks: Block[] = [
             </div>
             <p className="text-lg sm:text-xl leading-relaxed font-medium">
               Portals open onto deep-space runs under nine photographic NASA skies, with see-through previews, a
-              void-only warp crystal — five seconds of shielded hyperburn behind a chromatic-aberration lens —
+              void-only warp crystal, five seconds of shielded hyperburn behind a chromatic-aberration lens,
               and pursuing ships that physically fall away when outrun.
             </p>
           </div>
@@ -373,7 +374,7 @@ const blocks: Block[] = [
         type: 'custom',
         node: (
           <p className="text-center text-sm font-bold text-white/50 max-w-4xl mx-auto">
-            Imagery: NASA (WISE, Spitzer, Chandra, GALEX — public domain) and ESA/Hubble · ESA/Webb (CC BY 4.0).
+            Imagery: NASA (WISE, Spitzer, Chandra, GALEX, public domain) and ESA/Hubble · ESA/Webb (CC BY 4.0).
             The base starfield stitches ESA Gaia’s all-sky map.
           </p>
         ),
@@ -407,7 +408,7 @@ const blocks: Block[] = [
               the desert, and a derelict Voyager probe is worth a flyby bonus.
             </p>
             <p className="text-lg sm:text-xl leading-relaxed font-medium">
-              Physics is Rapier WASM — the game degrades gracefully without it — and the music and SFX are
+              Physics is Rapier WASM (the game degrades gracefully without it), and the music and SFX are
               synthesized procedurally in the browser. There is not a single audio file in the repo.
             </p>
           </div>
@@ -430,7 +431,7 @@ const blocks: Block[] = [
               />
             </div>
             <figcaption className="border-t-3 border-neobrutalism-black px-4 py-3 text-sm font-bold">
-              The drowned goddess — scripted in Python, baked to JSON, instanced in Three.js.
+              The drowned goddess: scripted in Python, baked to JSON, instanced in Three.js.
             </figcaption>
           </figure>
         </div>
@@ -442,13 +443,13 @@ const blocks: Block[] = [
   { type: 'heading', text: 'Development log', kicker: '72 commits, August 6–19' },
   {
     type: 'text',
-    body: 'The compressed story — and the story is part of the pitch: one developer, an AI pair, fourteen days.',
+    body: 'The compressed story, and the story is part of the pitch: one developer, an AI pair, fourteen days.',
   },
   { type: 'custom', node: <DevLog /> },
   {
     type: 'quote',
-    text: 'The velocity is the demo. Every system — procedural worldgen, physics, enemy AI, audio synthesis, live-ops-ready leaderboard — was designed, shipped, and play-tested by one person orchestrating AI agents, on infrastructure that costs nothing.',
-    attribution: '— from the Ruin Runner flight plan (PRD)',
+    text: 'The velocity is the demo. Every system, from procedural worldgen and physics to enemy AI, audio synthesis, and the live-ops-ready leaderboard, was designed, shipped, and play-tested by one person orchestrating AI agents, on infrastructure that costs nothing.',
+    attribution: 'Sairam Vendra · pilot in command',
   },
 
   {
@@ -468,7 +469,7 @@ const blocks: Block[] = [
       },
       {
         type: 'text',
-        body: 'Death comes fast and always feels like your fault — the classic arcade contract. The death screen is an incident report in the game’s flight-deck design language: score, distance, and one button that matters.',
+        body: 'Death comes fast and always feels like your fault: the classic arcade contract. The death screen is an incident report in the game’s flight-deck design language: score, distance, and one button that matters.',
       },
       {
         type: 'gallery',
@@ -485,7 +486,7 @@ const blocks: Block[] = [
   { type: 'heading', text: 'The board to beat', kicker: 'Live from the game' },
   {
     type: 'text',
-    body: 'Not a mockup: the actual top ten, fetched from the game’s leaderboard API when this page builds — one serverless function, Blob storage, arcade initials and all.',
+    body: 'Not a mockup: the actual top ten, fetched from the game’s leaderboard API when this page builds: one serverless function, Blob storage, arcade initials and all.',
   },
   { type: 'custom', node: <LiveLeaderboard /> },
 
@@ -493,10 +494,10 @@ const blocks: Block[] = [
   {
     type: 'list',
     items: [
-      'P1 · Instruments — see what players actually do: anonymous gameplay telemetry, real run reports, a balance dashboard.',
-      'P2 · Return flights — a reason to come back tomorrow: the daily world on one shared salt, missions earning pilot wings, streaks, hull liveries.',
-      'P3 · Wingmen — players recruiting players: “fly my world” challenge links, incident-report death cards, ghost runs.',
-      'P4 · New airspace — distribution: Google Play via TWA (parked at the Bubblewrap step) and web-game portals like Poki and CrazyGames.',
+      'P1 · Instruments: see what players actually do: anonymous gameplay telemetry, real run reports, a balance dashboard.',
+      'P2 · Return flights: a reason to come back tomorrow: the daily world on one shared salt, missions earning pilot wings, streaks, hull liveries.',
+      'P3 · Wingmen: players recruiting players: “fly my world” challenge links, incident-report death cards, ghost runs.',
+      'P4 · New airspace: distribution: Google Play via TWA (parked at the Bubblewrap step) and web-game portals like Poki and CrazyGames.',
     ],
   },
 
@@ -510,12 +511,12 @@ const blocks: Block[] = [
         node: (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
             <p className="text-lg sm:text-xl leading-relaxed font-medium">
-              A polished 3D arcade game with eleven worlds, a boss, deep-space runs, and a global leaderboard —
+              A polished 3D arcade game with eleven worlds, a boss, deep-space runs, and a global leaderboard,
               live at a URL, playable in one tap, built by one person with AI agents in fourteen days, running on
               infrastructure that costs nothing.
             </p>
             <p className="text-lg sm:text-xl leading-relaxed font-bold">
-              The engine underneath — deterministic seeded worlds plus zero-friction web distribution — is
+              The engine underneath, deterministic seeded worlds plus zero-friction web distribution, is
               precisely the shape of a viral daily game: same world for everyone, one link to challenge a friend,
               no install wall in the loop.
             </p>
@@ -592,15 +593,16 @@ export default function RuinRunnerPage() {
       accent="yellow"
       eyebrow="3D game · Solo build"
       title="RUIN RUNNER"
-      summary="A browser-native 3D endless arcade flyer: pilot the last hover-car through eleven procedurally dealt ruined worlds, outrun hostile waves, and chase a global leaderboard. Built solo with an AI pair-programming workflow in 14 days — zero build step, zero engine license, near-zero server cost."
+      summary="A browser-native 3D endless arcade flyer: pilot the last hover-car through eleven procedurally dealt ruined worlds, outrun hostile waves, and chase a global leaderboard. Built solo in under 14 days!"
       facts={[
-        { label: 'Role', value: 'Solo — product, code, 3D, audio' },
+        { label: 'Role', value: 'Solo: product, code, 3D, audio' },
         { label: 'Timeline', value: 'Aug 6–19, 2026 · 14 days' },
         { label: 'Status', value: 'v1 · playable · deployed' },
         { label: 'Stack', value: 'Three.js · Rapier WASM · zero build' },
       ]}
       heroExtra={
-        <div className="relative w-full max-w-sm justify-self-center border-5 border-neobrutalism-black shadow-neobrutalism-xl bg-neobrutalism-black p-8 overflow-hidden rotate-1">
+        <div className="relative w-full max-w-sm justify-self-center rotate-1">
+        <TiltShineCard className="border-5 border-neobrutalism-black shadow-neobrutalism-xl bg-neobrutalism-black p-8">
           <div
             aria-hidden="true"
             className="absolute -right-6 -top-6 w-20 h-20 bg-neobrutalism-yellow rotate-12 border-3 border-neobrutalism-black"
@@ -635,6 +637,7 @@ export default function RuinRunnerPage() {
               ▶ Play Ruin Runner
             </a>
           </div>
+        </TiltShineCard>
         </div>
       }
       heroTicker={[

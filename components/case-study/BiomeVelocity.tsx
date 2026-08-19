@@ -86,7 +86,7 @@ export function BiomeVelocity({ biomes }: { biomes: string[] }) {
   return (
     <div
       aria-hidden="true"
-      className="relative left-1/2 -translate-x-1/2 w-screen bg-neobrutalism-white border-y-5 border-neobrutalism-black py-4 sm:py-6"
+      className="relative left-1/2 w-[104vw] -translate-x-1/2 -rotate-2 bg-neobrutalism-white border-y-5 border-neobrutalism-black py-4 sm:py-6"
     >
       <VelocityRow text={line} baseVelocity={70} />
       <VelocityRow text={line} baseVelocity={-70} outlined />
