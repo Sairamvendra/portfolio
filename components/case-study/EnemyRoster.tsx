@@ -71,7 +71,7 @@ function TiltCard({ enemy, dark, tall }: { enemy: Enemy; dark?: boolean; tall?: 
   );
 }
 
-export function EnemyRoster({ ships, boss }: { ships: Enemy[]; boss: Enemy }) {
+export function EnemyRoster({ ships, bosses }: { ships: Enemy[]; bosses: Enemy[] }) {
   return (
     <div className="grid lg:grid-cols-3 gap-6">
       <div className="lg:col-span-2 grid sm:grid-cols-2 gap-6">
@@ -79,7 +79,13 @@ export function EnemyRoster({ ships, boss }: { ships: Enemy[]; boss: Enemy }) {
           <TiltCard key={e.name} enemy={e} />
         ))}
       </div>
-      <TiltCard enemy={boss} dark tall />
+      <div className="flex flex-col gap-6">
+        {bosses.map(e => (
+          <div key={e.name} className="flex-1">
+            <TiltCard enemy={e} dark tall={bosses.length === 1} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

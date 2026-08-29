@@ -25,5 +25,6 @@ export default function ModelViewer(props: {
   fadeIn?: boolean;
   autoRotate?: boolean;
   autoRotateSpeed?: number;
+  playAnimation?: boolean;
   onModelLoaded?: () => void;
 }): React.JSX.Element;

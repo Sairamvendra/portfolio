@@ -4,6 +4,7 @@ import { Suspense, useRef, useLayoutEffect, useEffect, useMemo } from 'react';
 import { Canvas, useFrame, useLoader, useThree, invalidate } from '@react-three/fiber';
 import { OrbitControls, useGLTF, useFBX, useProgress, Html, Environment, ContactShadows } from '@react-three/drei';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
+import { clone as cloneSkeleton } from 'three/examples/jsm/utils/SkeletonUtils.js';
 import * as THREE from 'three';
 
 const isTouch = typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0);
@@ -63,6 +64,7 @@ const ModelInner = ({
   fadeIn,
   autoRotate,
   autoRotateSpeed,
+  playAnimation,
   onLoaded
 }) => {
   const outer = useRef(null);
@@ -77,12 +79,32 @@ const ModelInner = ({
 
   const ext = useMemo(() => url.split('.').pop().toLowerCase(), [url]);
   const content = useMemo(() => {
-    if (ext === 'glb' || ext === 'gltf') return useGLTF(url).scene.clone();
+    if (ext === 'glb' || ext === 'gltf') {
+      const g = useGLTF(url);
+      if (playAnimation && g.animations?.length) {
+        // SkeletonUtils keeps bone->mesh bindings intact; plain clone() breaks skinning
+        const c = cloneSkeleton(g.scene);
+        c.traverse(o => {
+          if (o.isSkinnedMesh) o.frustumCulled = false; // bounds don't follow bones
+        });
+        return c;
+      }
+      return g.scene.clone();
+    }
     if (ext === 'fbx') return useFBX(url).clone();
     if (ext === 'obj') return useLoader(OBJLoader, url).clone();
     console.error('Unsupported format:', ext);
     return null;
-  }, [url, ext]);
+  }, [url, ext, playAnimation]);
+
+  const mixer = useMemo(() => {
+    if (!playAnimation || !content || !(ext === 'glb' || ext === 'gltf')) return null;
+    const clips = useGLTF(url).animations || [];
+    if (!clips.length) return null;
+    const m = new THREE.AnimationMixer(content);
+    for (const clip of clips) m.clipAction(clip).play();
+    return m;
+  }, [content, playAnimation, url, ext]);
 
   const pivotW = useRef(new THREE.Vector3());
   useLayoutEffect(() => {
@@ -300,6 +322,11 @@ const ModelInner = ({
       need = true;
     }
 
+    if (mixer) {
+      mixer.update(dt);
+      need = true;
+    }
+
     outer.current.rotation.y += vel.current.x;
     outer.current.rotation.x += vel.current.y;
     vel.current.x *= INERTIA;
@@ -353,6 +380,7 @@ const ModelViewer = ({
   fadeIn = false,
   autoRotate = false,
   autoRotateSpeed = 0.35,
+  playAnimation = false,
   onModelLoaded
 }) => {
   useEffect(() => void useGLTF.preload(url), [url]);
@@ -459,6 +487,7 @@ const ModelViewer = ({
             fadeIn={fadeIn}
             autoRotate={autoRotate}
             autoRotateSpeed={autoRotateSpeed}
+            playAnimation={playAnimation}
             onLoaded={onModelLoaded}
           />
         </Suspense>

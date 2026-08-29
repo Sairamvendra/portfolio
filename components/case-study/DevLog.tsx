@@ -142,6 +142,79 @@ function HardeningGraphic() {
   );
 }
 
+/* Aug 20–21 — the dead zone: radiation pulsing off the ruined plant */
+function DeadZoneGraphic() {
+  return (
+    <div className="relative w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center">
+      {[0, 1, 2].map(i => (
+        <motion.span
+          key={i}
+          animate={{ scale: [0.5, 1.6], opacity: [0.9, 0] }}
+          transition={{ duration: 2.1, repeat: Infinity, delay: i * 0.7, ease: 'easeOut' }}
+          className="absolute inset-3 rounded-full border-3 border-[#6E8C46]"
+        />
+      ))}
+      <motion.span
+        animate={{ opacity: [1, 0.55, 1] }}
+        transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
+        className="w-12 h-12 rounded-full bg-[#7CFC00]/80 border-3 border-neobrutalism-black flex items-center justify-center font-black text-lg"
+      >
+        ☢
+      </motion.span>
+    </div>
+  );
+}
+
+/* Aug 24–25 — the Warden rises out of the smog beside a fresh peak */
+function ColossiGraphic() {
+  return (
+    <div className="relative flex items-end">
+      <motion.img
+        src={OBJ('alps-massif.png')}
+        alt=""
+        animate={{ y: [2, -2, 2] }}
+        transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}
+        className="h-16 sm:h-20 w-auto"
+      />
+      <motion.img
+        src={OBJ('warden.png')}
+        alt=""
+        initial={{ y: 26, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 1.1, repeat: Infinity, repeatDelay: 2.2, repeatType: 'loop', ease: 'easeOut' }}
+        className="h-20 sm:h-24 w-auto -ml-6 drop-shadow-[4px_6px_0_rgba(0,0,0,0.25)]"
+      />
+    </div>
+  );
+}
+
+/* Aug 28–29 — six wild cards dealt onto the table */
+function WildEventsGraphic() {
+  const cards: [string, string][] = [
+    ['☂', 'bg-neobrutalism-yellow'],
+    ['⛓', 'bg-neobrutalism-cyan'],
+    ['⊸', 'bg-neobrutalism-magenta'],
+    ['✚', 'bg-neobrutalism-lime'],
+    ['⚑', 'bg-neobrutalism-orange'],
+    ['◍', 'bg-neobrutalism-sky'],
+  ];
+  return (
+    <div className="flex -space-x-2 rotate-2">
+      {cards.map(([c, color], i) => (
+        <motion.span
+          key={i}
+          initial={{ y: -18, opacity: 0, rotate: -8 }}
+          animate={{ y: 0, opacity: 1, rotate: (i - 2.5) * 6 }}
+          transition={{ delay: 0.15 + i * 0.18, duration: 0.3, repeat: Infinity, repeatDelay: 2.6, repeatType: 'loop' }}
+          className={`w-8 h-11 sm:w-9 sm:h-12 flex items-center justify-center ${color} border-3 border-neobrutalism-black shadow-neobrutalism-sm font-black text-lg`}
+        >
+          {c}
+        </motion.span>
+      ))}
+    </div>
+  );
+}
+
 const DEVLOG = [
   {
     date: 'Aug 6 · Ignition',
@@ -178,6 +251,24 @@ const DEVLOG = [
     title: 'Variety, fairness, and closed exploits',
     body: 'Fluid morph-target boss animation, per-run world re-rolls, animated bird flocks, the deep-void invulnerability exploit closed.',
     graphic: <HardeningGraphic />,
+  },
+  {
+    date: 'Aug 20–21 · Escalation',
+    title: 'The fleet reborn and the Dead Zone',
+    body: 'Four redesigned hostile hulls, a three-phase Mothership boss, NASA’s real Moon in the night sky, and a twelfth biome: the Nuclear Dead Zone, the first world that fights back.',
+    graphic: <DeadZoneGraphic />,
+  },
+  {
+    date: 'Aug 24–25 · Colossi',
+    title: 'Snow Alps and THE WARDEN',
+    body: 'A 41-piece alpine kit with colliders traced from the rock, and a Hunyuan3D-born tentacled colossus claiming the Dead Zone. The Devil gets real bones and a mocap throw.',
+    graphic: <ColossiGraphic />,
+  },
+  {
+    date: 'Aug 28–29 · Wild cards',
+    title: 'Portrait flight decks and six wild events',
+    body: 'Menus rebuilt for portrait play, collider audits with the red-box patrol, and six global events: radiation squall, chain collapse, abduction beam, crippled hull, rival gates, mothership boarding.',
+    graphic: <WildEventsGraphic />,
   },
 ];
 

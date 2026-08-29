@@ -364,21 +364,27 @@ function BlockList({ blocks, accent }: { blocks: Block[]; accent: Accent }) {
         }
         if (block.type === 'text' && blocks[i - 1]?.type === 'heading') return null; // rendered with its heading above
         if (block.type === 'ticker') {
-          // a ticker right before a section band glues to it: two black full-bleeds read as one stage
-          const glued = blocks[i + 1]?.type === 'section';
+          // a ticker touching a section band glues to it (either side): two black
+          // full-bleeds read as one stage instead of leaving a white slot between
+          const glueDown = blocks[i + 1]?.type === 'section';
+          const glueUp = blocks[i - 1]?.type === 'section';
+          const margin = glueUp && glueDown ? '' : glueUp ? 'mb-14 sm:mb-20' : glueDown ? 'mt-14 sm:mt-20' : 'my-14 sm:my-20';
           return (
-            <div key={i} className={glued ? 'mt-14 sm:mt-20' : 'my-14 sm:my-20'}>
+            <div key={i} className={margin}>
               <Ticker words={block.words} accent={accent} />
             </div>
           );
         }
         if (block.type === 'section') {
           const afterTicker = i > 0 && blocks[i - 1].type === 'ticker';
+          const beforeTicker = blocks[i + 1]?.type === 'ticker';
+          const margin =
+            afterTicker && beforeTicker ? '' : afterTicker ? 'mb-14 sm:mb-20' : beforeTicker ? 'mt-14 sm:mt-20' : 'my-14 sm:my-20';
           return (
             <div
               key={i}
               // 'black' band: a dark stage for imagery that carries its own framing (e.g. app mockups)
-              className={`${block.bg === 'black' ? 'bg-neobrutalism-black text-white' : ACCENT_BG[block.bg]} border-y-5 border-neobrutalism-black ${afterTicker ? 'mb-14 sm:mb-20' : 'my-14 sm:my-20'} pb-14 sm:pb-20`}
+              className={`${block.bg === 'black' ? 'bg-neobrutalism-black text-white' : ACCENT_BG[block.bg]} border-y-5 border-neobrutalism-black ${margin} pb-14 sm:pb-20`}
             >
               <BlockList blocks={block.blocks} accent={accent} />
             </div>

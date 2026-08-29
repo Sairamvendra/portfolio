@@ -40,7 +40,7 @@ function LoopGraphic() {
 
 /* 02 — the threat ladder popping in tier by tier */
 function LadderGraphic() {
-  const ships = ['enemy-saucer.png', 'enemy-dart.png', 'enemy-gunship.png', 'enemy-drone.png'];
+  const ships = ['enemy-probe.png', 'enemy-interceptor.png', 'enemy-harvester.png', 'enemy-heavy.png'];
   return (
     <div className="flex items-end gap-3 sm:gap-5">
       {ships.map((s, i) => (

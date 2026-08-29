@@ -14,11 +14,12 @@ import { VoidWall } from '@/components/case-study/VoidWall';
 import AccordionGallery from '@/components/reactbits/AccordionGallery';
 import { TiltShineCard } from '@/components/ui/ProfileTiltCard';
 import { HoverCarViewer } from '@/components/case-study/HoverCarViewer';
+import { WardenViewer } from '@/components/case-study/WardenViewer';
 
 export const metadata = {
   title: 'Ruin Runner | Sairam Vendra',
   description:
-    'A browser-native 3D endless arcade flyer: eleven procedurally dealt ruined worlds, a boulder-hurling devil, deep-space runs under real NASA skies, and a global leaderboard, built solo with an AI pair-programming workflow in 14 days, on infrastructure that costs nothing.',
+    'A browser-native 3D endless arcade flyer: thirteen procedurally dealt ruined worlds, a boulder-hurling devil, a tentacled warden over a nuclear dead zone, deep-space runs under real NASA skies, and a global leaderboard, built solo with an AI pair-programming workflow — v1 in 14 days, on infrastructure that costs nothing.',
   openGraph: {
     images: ['/projects/ruinrunner.jpg'],
   },
@@ -38,57 +39,72 @@ const BIOMES = [
   'Sky Shards',
   'Sacred Peaks',
   'Elder Grove',
+  'Nuclear Dead Zone',
+  'Snow Alps',
 ];
 
 const SHIPS = [
   {
-    img: ASSET('objects/enemy-saucer.png'),
-    name: 'Armoured Saucer',
-    tier: 'Threat I',
-    blurb: 'Slow, shielded, and everywhere. The first rung of the ladder: it soaks a full cannon burst before it pops.',
+    img: ASSET('objects/enemy-probe.png'),
+    name: 'Probe',
+    tier: 'L1 · Swarm',
+    blurb: 'A single glass-domed saucer spitting green spark shards. One is target practice. Twelve are a weather system.',
   },
   {
-    img: ASSET('objects/enemy-dart.png'),
-    name: 'Strike Dart',
-    tier: 'Threat II',
-    blurb: 'Fast flanker with lead-prediction fire. If it shoots, it shot at where you were about to be.',
+    img: ASSET('objects/enemy-interceptor.png'),
+    name: 'Interceptor',
+    tier: 'L2 · Strafer',
+    blurb: 'Three drive pods and lead-prediction needle slugs. If it fires, it fired at where you were about to be.',
   },
   {
-    img: ASSET('objects/enemy-gunship.png'),
-    name: 'Fortress Gunship',
-    tier: 'Threat III',
-    blurb: 'A flying wall of turrets. Outrun it or thread under it. You do not duel it.',
+    img: ASSET('objects/enemy-harvester.png'),
+    name: 'Harvester',
+    tier: 'L3 · Cruiser',
+    blurb: 'A tiered cruiser charging ringed plasma orbs in its ventral emitter — the same hull behind the abduction-beam wild event.',
   },
   {
-    img: ASSET('objects/enemy-drone.png'),
-    name: 'Socketed Drone',
-    tier: 'Threat IV',
-    blurb: 'The late-wave swarm unit. Socketed guns, no self-preservation, arrives in numbers.',
+    img: ASSET('objects/enemy-heavy.png'),
+    name: 'MK-II Heavy',
+    tier: 'MK-II · Battery',
+    blurb: 'Six twin cannon, missile clusters, and a ventral lance. A flying wall of ordnance: outrun it or thread under it.',
   },
 ];
 
-const BOSS = {
-  img: ASSET('objects/devil.png'),
-  name: 'The Devil',
-  tier: 'Boss',
-  blurb:
-    'A morph-target boss who stalks every biome on a timer, eyes tinted to the world he hunts you in. Boulder-hurling, fluidly animated, impossible to miss on the minimap.',
-};
+const BOSSES = [
+  {
+    img: ASSET('objects/devil.png'),
+    name: 'The Devil',
+    tier: 'Boss',
+    blurb:
+      'A rigged, mocap-armed giant who wakes on a run timer and stalks every biome. Two seconds of tremor warning, then boulders arc from his hand to the sky.',
+  },
+  {
+    img: ASSET('objects/warden.png'),
+    name: 'The Warden',
+    tier: 'Boss',
+    blurb:
+      'A tentacled colossus that owns the Nuclear Dead Zone — boulders from a curling tentacle, a magenta eye-lance that locks and burns. Unkillable; sear the eye shut and run.',
+  },
+];
 
 const HANGAR = [
   { img: ASSET('objects/hover-car.png'), name: 'RR-09 Hull' },
-  { img: ASSET('objects/enemy-saucer.png'), name: 'Armoured Saucer' },
+  { img: ASSET('objects/enemy-probe.png'), name: 'L1 Probe' },
   { img: ASSET('objects/tree-giant.png'), name: 'Giant Spruce' },
   { img: ASSET('objects/skull.png'), name: 'Titan Skull' },
-  { img: ASSET('objects/enemy-dart.png'), name: 'Strike Dart' },
+  { img: ASSET('objects/enemy-interceptor.png'), name: 'L2 Interceptor' },
   { img: ASSET('objects/statue-drowned-goddess.png'), name: 'Drowned Goddess' },
   { img: ASSET('objects/bird-downstroke.png'), name: 'Bird · Downstroke' },
-  { img: ASSET('objects/enemy-gunship.png'), name: 'Fortress Gunship' },
+  { img: ASSET('objects/enemy-harvester.png'), name: 'L3 Harvester' },
   { img: ASSET('objects/tree-a.png'), name: 'Forest Kit A' },
   { img: ASSET('objects/asteroid-bennu.png'), name: 'Bennu · NASA' },
   { img: ASSET('objects/devil.png'), name: 'The Devil' },
   { img: ASSET('objects/tree-grove.png'), name: 'Elder Grove' },
-  { img: ASSET('objects/enemy-drone.png'), name: 'Socketed Drone' },
+  { img: ASSET('objects/enemy-heavy.png'), name: 'MK-II Heavy' },
+  { img: ASSET('objects/warden.png'), name: 'The Warden' },
+  { img: ASSET('objects/hovercycle-nk7.png'), name: 'NK-7 Hovercycle' },
+  { img: ASSET('objects/alps-massif.png'), name: 'Alps Massif' },
+  { img: ASSET('objects/enemy-mothership.png'), name: 'L4 Mothership' },
   { img: ASSET('objects/bush.png'), name: 'Scrub Bush' },
   { img: ASSET('objects/bird-upstroke.png'), name: 'Bird · Upstroke' },
   { img: ASSET('objects/debris-rock.png'), name: 'Debris' },
@@ -147,9 +163,9 @@ const blocks: Block[] = [
     node: (
       <ArcadeStats
         items={[
-          { to: 11, label: 'Biomes' },
+          { to: 13, label: 'Biomes' },
           { to: 14, label: 'Days to v1' },
-          { to: 72, label: 'Commits, solo' },
+          { to: 136, label: 'Commits, solo' },
           { to: 0, prefix: '~$', label: 'Monthly infra' },
         ]}
       />
@@ -177,8 +193,8 @@ const blocks: Block[] = [
             <p className="text-lg sm:text-xl leading-relaxed font-medium">
               You fly a hover-car at ever-increasing speed through an infinite world. Everything else exists to
               make the next thirty seconds different from the last: the world deals a fresh map every run,
-              hostile waves escalate on a threat ladder, a boulder-hurling giant wakes on a timer, and portals
-              lead to deep-space runs under real NASA skies.
+              hostile waves escalate on a threat ladder, giants wake on timers, six wild events cut in
+              unannounced, and portals lead to deep-space runs under real NASA skies.
             </p>
             <p className="text-lg sm:text-xl leading-relaxed font-bold">
               Zero build step, zero engine license: the whole game is two files, served static. It ships by git
@@ -218,7 +234,7 @@ const blocks: Block[] = [
                 </div>
               </div>
               <p className="mt-8 sm:mt-10 text-lg sm:text-xl leading-relaxed font-medium">
-                Eleven procedural biomes, infinite in every direction, and the entire map derives from one
+                Thirteen procedural biomes, infinite in every direction, and the entire map derives from one
                 hashed salt, re-rolled with a random starting biome every run. Deterministic worldgen is also
                 the growth engine hiding in the codebase: pin the salt to the calendar date and everyone flies
                 the same world on the same leaderboard. Seeded, shareable worlds are a near-free future feature.
@@ -242,6 +258,8 @@ const blocks: Block[] = [
           { image: ASSET('shots/flight-caldera.jpg'), label: 'Volcanic Caldera', alt: 'Flying over glowing lava vents in haze' },
           { image: ASSET('shots/forest-portal.jpg'), label: 'Deep Forest', alt: 'A purple portal glowing between low-poly trees' },
           { image: ASSET('shots/flight-boneyard.jpg'), label: 'Titan Boneyard', alt: 'Flying over giant ribcages with a portal ahead' },
+          { image: ASSET('shots/flight-deadzone.jpg'), label: 'Nuclear Dead Zone', alt: 'Flying past cracked cooling towers over glowing reactor sludge in olive smog' },
+          { image: ASSET('shots/flight-alps.jpg'), label: 'Snow Alps', alt: 'Skimming a snowfield between pines, drifts, and a walled alpine massif' },
           { image: ASSET('shots/sky-isles.jpg'), label: 'Floating Isles', alt: 'Hopping between floating grass islands above the clouds' },
           { image: ASSET('shots/void-nebula.jpg'), label: 'The Void', alt: 'Deep-space run through a star-dense NASA nebula' },
         ]}
@@ -257,11 +275,97 @@ const blocks: Block[] = [
   { type: 'heading', text: 'Know your enemy', kicker: 'The threat ladder' },
   {
     type: 'text',
-    body: 'Four ship classes on an escalating threat-tier ladder, each with lead-prediction fire, and a fifth hostile who is not on the ladder. He is on a timer.',
+    body: 'Four ship classes on an escalating threat-tier ladder, each with lead-prediction fire — plus a three-phase Mothership crowning the fleet, and two colossi who are not on the ladder at all. One is on a timer. One is simply there.',
   },
-  { type: 'custom', node: <EnemyRoster ships={SHIPS} boss={BOSS} /> },
+  { type: 'custom', node: <EnemyRoster ships={SHIPS} bosses={BOSSES} /> },
 
-  { type: 'ticker', words: ['cannon', 'shield', 'score ×2', 'magnet field', 'hearts', 'warp crystal', 'near-miss bonus', 'combo chain'] },
+  {
+    type: 'section',
+    bg: 'black',
+    blocks: [
+      {
+        type: 'custom',
+        node: (
+          // the actual in-game rigged model, playing its authored clip — drag it
+          <div className="grid lg:grid-cols-[1fr_minmax(340px,460px)] gap-10 lg:gap-14 items-center">
+            <div>
+              <div className="relative w-fit">
+                <div className="absolute -top-4 left-0 z-10 px-3 py-1.5 bg-neobrutalism-white border-3 border-neobrutalism-black shadow-neobrutalism-sm rotate-1">
+                  <p className="text-xs font-black uppercase tracking-widest text-neobrutalism-black whitespace-nowrap">
+                    Born from a single image
+                  </p>
+                </div>
+                <div className="block w-fit px-6 py-3 bg-neobrutalism-yellow border-5 border-neobrutalism-black shadow-neobrutalism-lg -rotate-1">
+                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neobrutalism-black whitespace-nowrap">
+                    THE WARDEN
+                  </h2>
+                </div>
+              </div>
+              <div className="mt-8 sm:mt-10 space-y-5 text-white">
+                <p className="text-lg sm:text-xl leading-relaxed font-medium">
+                  The Dead Zone&rsquo;s keeper is the game&rsquo;s first AI-born asset: an image concept run
+                  through Hunyuan3D image-to-mesh, cleaned up and rigged in Blender, and shipped as a skinned
+                  GLB with authored clips. What you see here is the actual in-game model, playing its real
+                  animation cycle. Drag it.
+                </p>
+                <p className="text-lg sm:text-xl leading-relaxed font-medium">
+                  In the zone it is simply THERE: a 34-metre silhouette resolving out of the olive smog,
+                  tentacles combing the rooftops, hurling boulders and tracking you with a telegraphed magenta
+                  eye-lance. Unkillable — but a bolt in the open eye sears it shut.
+                </p>
+              </div>
+            </div>
+            <figure className="relative border-5 border-neobrutalism-black shadow-neobrutalism-xl bg-[#7FE817]">
+              <div className="h-0">
+                <div className="relative z-10 w-fit -rotate-3 -translate-y-4 -translate-x-4 px-4 py-1.5 bg-neobrutalism-yellow border-3 border-neobrutalism-black shadow-neobrutalism-sm">
+                  <span className="font-black uppercase tracking-widest whitespace-nowrap text-neobrutalism-black text-sm">
+                    Live rig · drag me
+                  </span>
+                </div>
+              </div>
+              <WardenViewer />
+            </figure>
+          </div>
+        ),
+      },
+    ],
+  },
+
+  { type: 'heading', text: 'Six wild cards', kicker: 'Global events' },
+  {
+    type: 'text',
+    body: 'Not biome-bound and never announced: six run-breaking events that can cut into any flight, from a radiation squall to boarding the mothership itself through an iris in its hull.',
+  },
+  {
+    type: 'custom',
+    node: (
+      // the six wild events as icon flash cards — same icon/color deck as the devlog fan
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-5">
+        {(
+          [
+            ['☂', 'Radiation squall', 'bg-neobrutalism-yellow'],
+            ['⛓', 'Chain collapse', 'bg-neobrutalism-cyan'],
+            ['⊸', 'Abduction beam', 'bg-neobrutalism-magenta'],
+            ['✚', 'Crippled hull', 'bg-neobrutalism-lime'],
+            ['⚑', 'Rival runner gates', 'bg-neobrutalism-orange'],
+            ['◍', 'Mothership boarding', 'bg-neobrutalism-sky'],
+          ] as [string, string, string][]
+        ).map(([icon, label, color], i) => (
+          <div
+            key={label}
+            className={`${color} border-3 border-neobrutalism-black shadow-neobrutalism-md p-5 flex flex-col items-center justify-center gap-3 text-center ${
+              i % 2 === 0 ? '-rotate-1' : 'rotate-1'
+            } transition-transform duration-200 hover:scale-105 hover:rotate-0`}
+          >
+            <span aria-hidden="true" className="text-4xl sm:text-5xl font-black leading-none">
+              {icon}
+            </span>
+            <span className="text-xs sm:text-sm font-black uppercase tracking-wide leading-tight">{label}</span>
+          </div>
+        ))}
+      </div>
+    ),
+  },
 
   {
     type: 'section',
@@ -314,6 +418,8 @@ const blocks: Block[] = [
     ],
   },
 
+  { type: 'ticker', words: ['cannon', 'shield', 'score ×2', 'magnet field', 'hearts', 'warp crystal', 'near-miss bonus', 'combo chain'] },
+
   {
     type: 'custom',
     node: (
@@ -338,6 +444,11 @@ const blocks: Block[] = [
               Blender kits scripted in Python → vertex-colored JSON → instanced meshes, so a biome full of props
               costs a handful of draw calls. NASA’s public-domain models fly too: asteroid Bennu tumbles past in
               the desert, and a derelict Voyager probe is worth a flyby bonus.
+            </p>
+            <p className="text-lg sm:text-xl leading-relaxed font-medium">
+              A second route joined the kit late: Hunyuan3D image-to-mesh, which turned single concept images
+              into the Warden, the Devil&rsquo;s body, and a trio of floating sky isles — each cleaned, rigged,
+              and vertex-colored in Blender before shipping.
             </p>
             <p className="text-lg sm:text-xl leading-relaxed font-medium">
               Physics is Rapier WASM (the game degrades gracefully without it), and the music and SFX are
@@ -372,10 +483,10 @@ const blocks: Block[] = [
   },
   { type: 'custom', node: <HangarFlyby items={HANGAR} /> },
 
-  { type: 'heading', text: 'Development log', kicker: '72 commits, August 6–19' },
+  { type: 'heading', text: 'Development log', kicker: '136 commits, August 6–30' },
   {
     type: 'text',
-    body: 'The compressed story, and the story is part of the pitch: one developer, an AI pair, fourteen days.',
+    body: 'The compressed story, and the story is part of the pitch: one developer, an AI pair, a playable v1 in fourteen days — then two more worlds, two colossi, and six wild events without slowing down.',
   },
   { type: 'custom', node: <DevLog /> },
   {
@@ -469,8 +580,8 @@ const blocks: Block[] = [
           </div>
           <ul className="mt-8 sm:mt-10 space-y-4">
           {[
-            'P1 · Instruments: see what players actually do: anonymous gameplay telemetry, real run reports, a balance dashboard.',
-            'P2 · Return flights: a reason to come back tomorrow: the daily world on one shared salt, missions earning pilot wings, streaks, hull liveries.',
+            'P1 · Instruments: end-of-run reports and difficulty decks (ROOKIE/PILOT/ACE) already fly; next, anonymous gameplay telemetry and a balance dashboard.',
+            'P2 · Return flights: a second hull (the NK-7 hovercycle) is already on the title deck; next, the daily world on one shared salt, missions earning pilot wings, streaks.',
             'P3 · Wingmen: players recruiting players: “fly my world” challenge links, incident-report death cards, ghost runs.',
             'P4 · New airspace: distribution: Google Play via TWA (parked at the Bubblewrap step) and web-game portals like Poki and CrazyGames.',
           ].map((item, i) => (
@@ -499,9 +610,9 @@ const blocks: Block[] = [
         node: (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
             <p className="text-lg sm:text-xl leading-relaxed font-medium">
-              A polished 3D arcade game with eleven worlds, a boss, deep-space runs, and a global leaderboard,
-              live at a URL, playable in one tap, built by one person with AI agents in fourteen days, running on
-              infrastructure that costs nothing.
+              A polished 3D arcade game with thirteen worlds, two colossi and a mothership boss, deep-space
+              runs, and a global leaderboard, live at a URL, playable in one tap, built by one person with AI
+              agents — v1 in fourteen days — running on infrastructure that costs nothing.
             </p>
             <p className="text-lg sm:text-xl leading-relaxed font-bold">
               The engine underneath, deterministic seeded worlds plus zero-friction web distribution, is
@@ -514,8 +625,8 @@ const blocks: Block[] = [
       {
         type: 'stats',
         items: [
-          { value: '6.9k', label: 'Lines · 2 files' },
-          { value: '4+1', label: 'Enemy types + boss' },
+          { value: '9.8k', label: 'Lines · 2 files' },
+          { value: '4+3', label: 'Ship classes + bosses' },
           { value: '9', label: 'Photographic NASA skies' },
           { value: 'Top 100', label: 'Live global leaderboard' },
         ],
@@ -547,15 +658,10 @@ const blocks: Block[] = [
               </p>
             </div>
             <div className="flex flex-col items-center gap-6 shrink-0">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={ASSET('objects/hover-car.png')}
-                alt=""
-                aria-hidden="true"
-                loading="lazy"
-                decoding="async"
-                className="h-24 sm:h-32 w-auto -rotate-6 drop-shadow-[8px_10px_0_rgba(255,215,0,0.35)]"
-              />
+              {/* same live ride viewer as the hero card, sized to the old poster footprint */}
+              <div className="w-72 h-24 sm:h-32" aria-hidden="true">
+                <HoverCarViewer height={128} zoom={0.64} />
+              </div>
               <a
                 href="https://ruin-runner.vercel.app"
                 target="_blank"
@@ -581,11 +687,11 @@ export default function RuinRunnerPage() {
       accent="yellow"
       eyebrow="3D game · Solo build"
       title="RUIN RUNNER"
-      summary="A browser-native 3D endless arcade flyer: pilot the last hover-car through eleven procedurally dealt ruined worlds, outrun hostile waves, and chase a global leaderboard. Built solo in under 14 days!"
+      summary="A browser-native 3D endless arcade flyer: pilot the last hover-car through thirteen procedurally dealt ruined worlds, outrun hostile waves, and chase a global leaderboard. v1 built solo in under 14 days — still shipping!"
       facts={[
         { label: 'Role', value: 'Solo: product, code, 3D, audio' },
-        { label: 'Timeline', value: 'Aug 6–19, 2026 · 14 days' },
-        { label: 'Status', value: 'v1 · playable · deployed' },
+        { label: 'Timeline', value: 'v1 in 14 days · Aug 2026 · live ops' },
+        { label: 'Status', value: 'Live · in active development' },
         { label: 'Stack', value: 'Three.js · Rapier WASM' },
       ]}
       heroExtra={
@@ -623,12 +729,12 @@ export default function RuinRunnerPage() {
         </div>
       }
       heroTicker={[
-        '11 procedural biomes',
+        '13 procedural biomes',
         '9 real NASA skies',
-        '4 ship classes + one devil',
+        '4 ship classes + two colossi',
         'global top-100 leaderboard',
         'one link · no install',
-        '14 days · 72 commits',
+        'v1 in 14 days · 136 commits',
       ]}
       blocks={blocks}
     />
