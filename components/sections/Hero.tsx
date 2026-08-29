@@ -7,6 +7,7 @@ import { Download, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { scrollToSection } from '@/lib/utils';
 import { ProfileTiltCard } from '@/components/ui/ProfileTiltCard';
+import WarpText from '@/components/ui/WarpText/WarpText';
 
 export function Hero() {
   return (
@@ -41,8 +42,23 @@ export function Hero() {
               <p className="text-sm font-bold">👋 Hello, I&apos;m</p>
             </div>
 
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black leading-tight">
-              SAIRAM VENDRA
+            <h1 className="leading-tight">
+              <WarpText
+                text={'SAIRAM\nVENDRA'}
+                color="#000000"
+                warpStrength={0.1}
+                warpScale={1.7}
+                speed={0.55}
+                pointerInfluence={0.42}
+                pointerStrength={0.38}
+                refraction={0.035}
+                ripple
+                fontSize="clamp(3rem, 6vw, 6rem)"
+                fontWeight={900}
+                letterSpacing="0em"
+                lineHeight={1}
+                style={{ height: 'clamp(11rem, 16vw, 14rem)', minHeight: 0 }}
+              />
             </h1>
 
             {/* Role descriptions card */}
