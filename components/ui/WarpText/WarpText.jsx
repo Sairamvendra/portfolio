@@ -120,6 +120,10 @@ void main() {
 
 const getFontValue = value => (typeof value === 'number' ? `${value}px` : value);
 
+// ponytail: fixed bleed so warp displacement never clips; the host compensates
+// with a matching negative inset so the visible text box equals a plain h1's
+const TEXT_PAD = 24;
+
 const hexToVec3 = hex => {
   const n = parseInt(hex.replace('#', ''), 16);
   return [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255];
@@ -190,8 +194,8 @@ const buildTextCanvas = ({ container, width, height, dpr, props }) => {
   };
   applyFont();
 
-  const maxWidth = width * 0.86;
-  const maxHeight = height * 0.78;
+  const maxWidth = width - TEXT_PAD * 2;
+  const maxHeight = height - TEXT_PAD * 2;
   const widest = Math.max(...lines.map(line => measureLine(ctx, line, letterSpacing)), 1);
   const blockHeight = Math.max(lineHeight * lines.length, 1);
   const fit = Math.min(1, maxWidth / widest, maxHeight / blockHeight);
@@ -203,8 +207,9 @@ const buildTextCanvas = ({ container, width, height, dpr, props }) => {
     applyFont();
   }
 
-  const startY = height / 2 - (lineHeight * (lines.length - 1)) / 2;
-  lines.forEach((line, index) => drawLine(ctx, line, width * 0.02, startY + index * lineHeight, letterSpacing));
+  // top-left aligned like a normal h1 line box, not canvas-centered
+  const startY = TEXT_PAD + lineHeight / 2;
+  lines.forEach((line, index) => drawLine(ctx, line, TEXT_PAD, startY + index * lineHeight, letterSpacing));
 
   return canvas;
 };

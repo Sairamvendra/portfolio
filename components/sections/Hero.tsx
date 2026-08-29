@@ -42,7 +42,10 @@ export function Hero() {
               <p className="text-sm font-bold">👋 Hello, I&apos;m</p>
             </div>
 
-            <h1 className="leading-tight">
+            {/* h1 box matches the plain-text version exactly (2 lines, line-height 1 —
+                measured from the original render); the warp canvas bleeds 24px past it
+                so displacement never clips */}
+            <h1 className="relative" style={{ height: 'calc(clamp(3rem, 6vw, 6rem) * 2)' }}>
               <WarpText
                 text={'SAIRAM\nVENDRA'}
                 color="#000000"
@@ -57,7 +60,7 @@ export function Hero() {
                 fontWeight={900}
                 letterSpacing="0em"
                 lineHeight={1}
-                style={{ height: 'clamp(11rem, 16vw, 14rem)', minHeight: 0 }}
+                style={{ position: 'absolute', inset: '-24px', width: 'auto', height: 'auto', minHeight: 0 }}
               />
             </h1>
 
