@@ -115,6 +115,7 @@ export function Hero() {
               {/* Profile image card — tilt + glare + info bar */}
               <ProfileTiltCard
                 src="/sairam.png"
+                revealSrc="/sairam-toon.jpg"
                 alt={`${PERSONAL_INFO.name} - ${PERSONAL_INFO.title}`}
               />
 

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import RippleReveal from '@/components/ui/RippleReveal/RippleReveal';
 
 // React Bits ProfileCard, translated to neobrutalism: 3D cursor tilt, glare
 // and holo rainbow shine, with hard borders and offset shadows instead of glass.
@@ -100,10 +101,11 @@ export function TiltShineCard({ className = '', children }: { className?: string
   );
 }
 
-export function ProfileTiltCard({ src, alt }: { src: string; alt: string }) {
+export function ProfileTiltCard({ src, alt, revealSrc }: { src: string; alt: string; revealSrc?: string }) {
   return (
     <TiltShineCard className="w-full h-full border-5 border-neobrutalism-black shadow-neobrutalism-xl bg-neobrutalism-white">
       <img src={src} alt={alt} className="w-full h-full object-cover" />
+      {revealSrc && <RippleReveal src={src} revealSrc={revealSrc} />}
     </TiltShineCard>
   );
 }
