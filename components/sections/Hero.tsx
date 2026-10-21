@@ -8,6 +8,7 @@ import { motion } from 'framer-motion';
 import { scrollToSection } from '@/lib/utils';
 import { ProfileTiltCard } from '@/components/ui/ProfileTiltCard';
 import WarpText from '@/components/ui/WarpText/WarpText';
+import { RoleHoverCards } from '@/components/ui/RoleHoverCards';
 
 export function Hero() {
   return (
@@ -66,9 +67,9 @@ export function Hero() {
 
             {/* Role descriptions card */}
             <div className="p-6 bg-neobrutalism-black border-3 border-neobrutalism-black shadow-neobrutalism-xl">
-              <p className="text-lg sm:text-xl font-bold text-white leading-relaxed">
-                AI solutions architect, <span className="text-neobrutalism-yellow">Creative Technologist</span>, Product Designer, AI film director, Strategic generalist.
-              </p>
+              <div className="text-lg sm:text-xl font-bold text-white leading-relaxed">
+                <RoleHoverCards />
+              </div>
             </div>
 
             <div className="flex flex-wrap gap-4 pt-4">
