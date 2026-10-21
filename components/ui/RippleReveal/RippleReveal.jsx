@@ -138,12 +138,13 @@ const hexToRGB = hex => {
 const RippleReveal = ({
   src,
   revealSrc,
-  brushSize = 130,
+  brushSize = 115,
   strength = 0.08,
   swirl = 1,
   rings = 4,
   spread = 5,
   fade = 2.5,
+  hold = 0.6, // seconds a ripple stays at full strength before it starts fading
   spacing = 15,
   threshold = 0.3,
   glint = 0.6,
@@ -200,7 +201,7 @@ const RippleReveal = ({
     const offsets = new Float32Array(MAX_WAVES * 2);
     const scales = new Float32Array(MAX_WAVES * 2);
     const opacities = new Float32Array(MAX_WAVES);
-    const waves = Array.from({ length: MAX_WAVES }, () => ({ x: 0, y: 0, scale: START_SCALE, target: START_SCALE, opacity: 0 }));
+    const waves = Array.from({ length: MAX_WAVES }, () => ({ x: 0, y: 0, scale: START_SCALE, target: START_SCALE, opacity: 0, age: 0 }));
     let current = 0;
 
     const geometry = new Geometry(gl, {
@@ -280,12 +281,12 @@ const RippleReveal = ({
 
     let previousX = 0;
     let previousY = 0;
-    const onMove = event => {
+    const spawn = (clientX, clientY, force) => {
       const rect = mount.getBoundingClientRect();
-      if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) return;
-      const x = event.clientX - rect.left;
-      const y = rect.height - (event.clientY - rect.top);
-      if (Math.abs(x - previousX) <= spacing && Math.abs(y - previousY) <= spacing) return;
+      if (clientX < rect.left || clientX > rect.right || clientY < rect.top || clientY > rect.bottom) return;
+      const x = clientX - rect.left;
+      const y = rect.height - (clientY - rect.top);
+      if (!force && Math.abs(x - previousX) <= spacing && Math.abs(y - previousY) <= spacing) return;
       const wave = waves[current];
       current = (current + 1) % MAX_WAVES;
       wave.x = x;
@@ -293,10 +294,21 @@ const RippleReveal = ({
       wave.scale = START_SCALE;
       wave.target = START_SCALE * Math.max(1, spread);
       wave.opacity = 1;
+      wave.age = 0;
       previousX = x;
       previousY = y;
     };
+    const onMove = event => spawn(event.clientX, event.clientY, false);
+    // taps have no move, so a press always drops a ripple
+    const onDown = event => spawn(event.clientX, event.clientY, true);
+    // touch drags turn into page scroll, which cancels pointer events; touchmove keeps firing
+    const onTouchMove = event => {
+      const touch = event.touches[0];
+      if (touch) spawn(touch.clientX, touch.clientY, false);
+    };
     window.addEventListener('pointermove', onMove, { passive: true });
+    window.addEventListener('pointerdown', onDown, { passive: true });
+    window.addEventListener('touchmove', onTouchMove, { passive: true });
 
     let raf = 0;
     let previousTime = 0;
@@ -312,7 +324,8 @@ const RippleReveal = ({
       for (let i = 0; i < MAX_WAVES; i += 1) {
         const wave = waves[i];
         if (wave.opacity > 0) {
-          wave.opacity *= decay;
+          wave.age += delta;
+          if (wave.age > hold) wave.opacity *= decay;
           wave.scale += (wave.target - wave.scale) * growth;
           if (wave.opacity < 0.002) wave.opacity = 0;
         }
@@ -343,6 +356,8 @@ const RippleReveal = ({
       cancelAnimationFrame(raf);
       ro.disconnect();
       window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerdown', onDown);
+      window.removeEventListener('touchmove', onTouchMove);
       if (canvas.parentNode === mount) mount.removeChild(canvas);
       gl.getExtension('WEBGL_lose_context')?.loseContext();
     };
