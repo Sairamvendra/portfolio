@@ -24,6 +24,8 @@
 
   html {
     scroll-behavior: smooth;
+    /* fixed header is ~71px; land nav scrolls below it at the section's top edge */
+    scroll-padding-top: 72px;
     /* guard: off-screen slide-in transforms (FadeIn x-offset) and any wide element
        clip instead of side-scrolling the page; hidden is the pre-Safari-16 fallback */
     overflow-x: hidden;
